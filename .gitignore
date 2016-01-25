@@ -1,0 +1,13 @@
+!.keep
+*.DS_Store
+*.swo
+*.swp
+/.bundle
+/.yardoc
+/coverage/*
+/log/*
+/public/system
+/public/assets
+/tags
+/tmp/*
+/vendor/bundle
