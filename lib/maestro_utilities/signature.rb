@@ -34,7 +34,7 @@ module MaestroUtilities
 
     def digest(text)
       digest = OpenSSL::Digest.new(HASH)
-      signature = OpenSSL::HMAC.digest(digest, text, seed)
+      signature = OpenSSL::HMAC.digest(digest, seed, text)
     end
 
     def encode(value)

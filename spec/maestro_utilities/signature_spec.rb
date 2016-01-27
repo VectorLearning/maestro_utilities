@@ -90,7 +90,7 @@ describe MaestroUtilities::Signature do
 
   def signature(text)
     digest = OpenSSL::Digest.new('sha256')
-    signature = OpenSSL::HMAC.digest(digest, text, seed)
+    signature = OpenSSL::HMAC.digest(digest, seed, text)
     Base64.encode64(signature).chomp.gsub('+', '_')
   end
 end
