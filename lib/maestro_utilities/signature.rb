@@ -11,9 +11,11 @@ module MaestroUtilities
 
     def self.valid?(params)
       Rails.logger.info "REQUEST PARAMS: #{params.except(:signature) if defined?(Rails)}"
-      Rails.logger.info "WITHIN TIMEOUT? #{params.fetch(:expires).to_i < Time.now.to_i}"
+      Rails.logger.info "EXPIRED? #{params.fetch(:expires).to_i < Time.now.to_i}"
       return false if params.fetch(:expires).to_i < Time.now.to_i
       Rails.logger.info "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
+      Rails.logger.info "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
+      Rails.logger.info "SIGNATURE PARAM: #{params.fetch(:signature)}"
       new(params.except(:signature)).signature == params.fetch(:signature)
     rescue KeyError
       false
