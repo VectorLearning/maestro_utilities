@@ -10,15 +10,15 @@ module MaestroUtilities
     attr_accessor :seed
 
     def self.valid?(params)
-      Rails.logger.warn "-----EXPIRES PARAM: #{params.fetch(:expires)} --->  TIME NOW: #{Time.now.to_i}"
-      Rails.logger.warn "-----SIGNATURE PARAM: #{params.fetch(:signature)} --->  #{new(params.except(:signature)).signature}"
-      Rails.logger.warn "REQUEST PARAMS: #{params.except(:signature) if defined?(Rails)}"
-      Rails.logger.warn "EXPIRED? #{params.fetch(:expires).to_i < Time.now.to_i}"
+      # Rails.logger.warn "-----EXPIRES PARAM: #{params.fetch(:expires)} --->  TIME NOW: #{Time.now.to_i}"
+      # Rails.logger.warn "-----SIGNATURE PARAM: #{params.fetch(:signature)} --->  #{new(params.except(:signature)).signature}"
+      # Rails.logger.warn "REQUEST PARAMS: #{params.except(:signature) if defined?(Rails)}"
+      # Rails.logger.warn "EXPIRED? #{params.fetch(:expires).to_i < Time.now.to_i}"
       return false if params.fetch(:expires).to_i < Time.now.to_i
-      Rails.logger.warn "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
-      Rails.logger.warn "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
-      Rails.logger.warn "SIGNATURE PARAM: #{params.fetch(:signature)}"
-      new(params.fetch([:expires, :token])).signature == params.fetch(:signature)
+      # Rails.logger.warn "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
+      # Rails.logger.warn "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
+      # Rails.logger.warn "SIGNATURE PARAM: #{params.fetch(:signature)}"
+      new(params.except(:signature)).signature == params.fetch(:signature)
     rescue KeyError
       false
     end
