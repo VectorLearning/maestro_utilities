@@ -18,7 +18,7 @@ module MaestroUtilities
       Rails.logger.warn "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
       Rails.logger.warn "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
       Rails.logger.warn "SIGNATURE PARAM: #{params.fetch(:signature)}"
-      new(params.except(:signature)).signature == params.fetch(:signature)
+      new(params.fetch([:expires, :token])).signature == params.fetch(:signature)
     rescue KeyError
       false
     end
