@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'maestro_utilities/version'
+require 'maestro/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "maestro_utilities"
-  spec.version       = MaestroUtilities::VERSION
+  spec.name          = "maestro"
+  spec.version       = Maestro::VERSION
   spec.authors       = ["Jason Paluck"]
   spec.email         = ["jason.paluck@redvector.com"]
 

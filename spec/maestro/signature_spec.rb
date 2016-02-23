@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'active_support/all'
 
-describe MaestroUtilities::Signature do
+describe Maestro::Signature do
   describe '.valid?' do
     let(:expires) { Time.now.utc.to_i }
     let(:params) { { one: 1, two: 2, expires: expires } }

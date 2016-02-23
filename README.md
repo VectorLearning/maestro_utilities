@@ -7,13 +7,13 @@ This gem provides a utility library to support Maestro integrations.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "maestro_utilities", github: "VectorLearning/maestro_utilities"
+gem "maestro", github: "VectorLearning/maestro-gem"
 ```
 
 Add this line to your applications/s application.rb file:
 
 ```ruby
-require 'maestro_utilities'
+require 'maestro'
 ```
 
 Add an ENV variable for 'MAESTRO_SEED' matching the core Maestro application. (See Jason)
@@ -27,7 +27,7 @@ And then execute:
 Reference classes such as:
 
 ```ruby
-MaestroUtilities::Signature.new()
+Maestro::Signature.new()
 ```
 
 ## Development

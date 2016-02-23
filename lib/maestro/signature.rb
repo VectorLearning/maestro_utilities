@@ -1,8 +1,8 @@
 require 'base64'
 require 'openssl'
 
-module MaestroUtilities
-  class MaestroUtilities::Signature
+module Maestro
+  class Signature
     HASH = 'sha256'
     SEED = ENV['MAESTRO_SEED']
 
