@@ -10,17 +10,19 @@ Add this line to your application's Gemfile:
 gem "maestro", github: "VectorLearning/maestro-gem"
 ```
 
-Add this line to your applications/s application.rb file:
+Execute in your terminal:
 
-```ruby
-require 'maestro'
+```sh
+$ bundle
 ```
 
-Add an ENV variable for 'MAESTRO_SEED' matching the core Maestro application. (See Jason)
+Configure Maestro in your application, such as in an initializer:
 
-And then execute:
-
-    $ bundle
+```ruby
+Maestro.configure do |config|
+  config.seed = 'my-seed' # Must match core Maestro application (See Jason)
+end
+```
 
 # Usage
 
@@ -34,8 +36,6 @@ Maestro::Signature.new()
 
 After checking out the repo, run `bin/setup` to install dependencies.
 
-Add an ENV variable to your profile (ex. ~/.zshrc.local), such as:
-
-export MAESTRO_SEED=SOME_SECURE_SEED
-
-Then, run `bundle exec rspec spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Then, run `bundle exec rspec spec` to run the tests. You can also run
+`bin/console` for an interactive prompt that will allow you to
+experiment.

@@ -4,7 +4,6 @@ require 'openssl'
 module Maestro
   class Signature
     HASH = 'sha256'
-    SEED = ENV['MAESTRO_SEED']
 
     attr_accessor :params
     attr_accessor :seed
@@ -25,7 +24,7 @@ module Maestro
 
     def initialize(params, options={})
       self.params = params
-      self.seed = options.fetch(:seed, SEED)
+      self.seed = options.fetch(:seed) { Maestro.config.seed }
     end
 
     def signature
