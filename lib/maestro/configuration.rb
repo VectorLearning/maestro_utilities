@@ -1,5 +1,5 @@
 module Maestro
-  Configuration = Struct.new(:seed)
+  Configuration = Struct.new(:app_id, :auth_name, :auth_pass, :host, :launch_urls, :seed)
 
   def self.config
     @config
