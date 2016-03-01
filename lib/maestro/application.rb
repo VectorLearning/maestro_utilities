@@ -8,7 +8,7 @@ module Maestro
     def self.register
       raise ConfigurationError, "A value for `app_id` is required" unless Maestro.config.app_id
 
-      Maestro.connection.put do |request|
+      response = Maestro.connection.put do |request|
         request.url '/v1/applications/%s' % Maestro.config.app_id
         request.headers['Content-Type'] = 'application/json'
         request.body = JSON.generate({
@@ -17,6 +17,8 @@ module Maestro
           }
         })
       end
+
+      raise Error, "Could not register application" unless response.success?
     end
   end
 end
