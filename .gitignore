@@ -4,10 +4,11 @@
 *.swp
 /.bundle
 /.yardoc
+/Gemfile.lock
 /coverage/*
 /log/*
-/public/system
 /public/assets
+/public/system
 /tags
 /tmp/*
 /vendor/bundle
