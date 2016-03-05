@@ -1,6 +1,6 @@
 require_relative '../../lib/maestro/configuration'
 
-describe Maestro do
+RSpec.describe Maestro do
   it 'can be configured' do
     expect {
       described_class.configure do |config|

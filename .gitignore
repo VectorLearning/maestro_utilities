@@ -9,6 +9,10 @@
 /log/*
 /public/assets
 /public/system
+/spec/dummy/log/*.log
+/spec/dummy/spec/example-status.txt
+/spec/dummy/tmp
+/spec/example-status.txt
 /tags
 /tmp/*
 /vendor/bundle
