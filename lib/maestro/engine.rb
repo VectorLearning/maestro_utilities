@@ -1,4 +1,5 @@
 require 'maestro'
+require 'maestro/data'
 require 'react-rails'
 
 module Maestro

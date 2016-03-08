@@ -7,14 +7,23 @@ maestro_helper = Module.new do
     Maestro.configure do |config|
       config.auth_name = 'name'
       config.auth_pass = 'pass'
-      config.host = 'http://maestro.url'
-      config.seed = 'seed'
+      config.host      = 'http://maestro.url'
+      config.seed      = 'seed'
       yield(config) if block_given?
     end
   end
 
-  def stub_maestro_request method, path
-    stub_request(method, "http://name:pass@maestro.url#{path}")
+  def maestro_uri path=nil, query=nil
+    URI.parse(Maestro.config.host).tap do |uri|
+      uri.user     = Maestro.config.auth_name
+      uri.password = Maestro.config.auth_pass
+      uri.path     = path if path
+      uri.query    = query if query
+    end
+  end
+
+  def stub_maestro_request method, path=nil, query=nil
+    stub_request(method, maestro_uri(path, query).to_s)
   end
 end
 

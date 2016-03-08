@@ -24,6 +24,7 @@ module Maestro
       @app_id           = attributes['app_id']
       @expires_at       = attributes['expires_at']
       @expires_at_epoch = attributes['expires_at_epoch']
+      @lms_host         = attributes['lms_host']
       @lms_id           = attributes['lms_id']
       @token            = attributes['token']
       @lms_data         = attributes['lms_data']
@@ -34,22 +35,21 @@ module Maestro
       end
     end
 
+    attr_accessor :additional_data
     attr_accessor :app_id
+    attr_accessor :email
     attr_accessor :expires_at
     attr_accessor :expires_at_epoch
-    attr_accessor :lms_data
-    attr_accessor :lms_id
-    attr_accessor :token
-    attr_accessor :token
-    attr_accessor :user_id
     attr_accessor :first_name
     attr_accessor :last_name
-    attr_accessor :role
     attr_accessor :launch_url
+    attr_accessor :lms_data
+    attr_accessor :lms_id
     attr_accessor :organization_id
     attr_accessor :organization_name
-    attr_accessor :email
-    attr_accessor :additional_data
+    attr_accessor :role
+    attr_accessor :token
+    attr_accessor :user_id
 
     def delete
       Maestro.connection.delete do |request|
@@ -66,6 +66,5 @@ module Maestro
     def valid?
       true
     end
-
   end
 end
