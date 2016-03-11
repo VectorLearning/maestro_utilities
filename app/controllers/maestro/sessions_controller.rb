@@ -15,13 +15,17 @@ module Maestro
       if maestro_session.valid?
         maestro_session.delete
         session.delete(:maestro_token)
-        redirect_to maestro_session.return_url
+        redirect_to redirect_url
       else
         instance_exec(&Maestro.config.after_invalid_session)
       end
     end
 
     private
+
+    def redirect_url
+      params[:return_url].presence || main_app.root_url
+    end
 
     def signature_params
       @signature_params ||= request.query_parameters

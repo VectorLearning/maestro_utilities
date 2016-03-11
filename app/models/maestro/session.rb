@@ -31,7 +31,6 @@ module Maestro
       @last_name        = attributes['last_name']
       @launch_urls      = attributes['launch_urls']
       @lms_id           = attributes['lms_id']
-      @return_url       = attributes['return_url']
       @role             = attributes['role']
       @token            = attributes['token']
       @user_id          = attributes['user_id']
@@ -47,7 +46,6 @@ module Maestro
     attr_reader :last_name
     attr_reader :launch_urls
     attr_reader :lms_id
-    attr_reader :return_url
     attr_reader :role
     attr_reader :token
     attr_reader :user_id

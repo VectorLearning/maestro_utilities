@@ -66,11 +66,11 @@ module Maestro
         before do
           stub_maestro_request(:patch, '/v1/sessions')
             .with(body: {session: {token: token}})
-            .to_return(body: %'{"return_url":"#{return_url}","token":"#{token}"}', status: 200)
-          delete(:destroy)
+            .to_return(body: %'{"token":"#{token}"}', status: 200)
+          delete(:destroy, {return_url: return_url})
         end
 
-        it 'redirects to return_url' do
+        it 'redirects to supplied return_url' do
           expect(response).to redirect_to(return_url)
         end
 
@@ -80,6 +80,14 @@ module Maestro
 
         it 'sends DELETE request to Maestro' do
           expect(delete_request).to have_been_requested
+        end
+
+        context 'with no return_url given' do
+          let(:return_url) { '' }
+
+          it 'redirects to root URL by default' do
+            expect(response).to redirect_to('/')
+          end
         end
       end
 
