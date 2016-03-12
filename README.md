@@ -7,35 +7,35 @@ This gem provides a utility library to support Maestro integrations.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "maestro_utilities", github: "VectorLearning/maestro_utilities"
+gem "maestro", github: "VectorLearning/maestro-gem"
 ```
 
-Add this line to your applications/s application.rb file:
+Execute in your terminal:
+
+```sh
+$ bundle
+```
+
+Configure Maestro in your application, such as in an initializer:
 
 ```ruby
-require 'maestro_utilities'
+Maestro.configure do |config|
+  config.seed = 'my-seed' # Must match core Maestro application (See Jason)
+end
 ```
-
-Add an ENV variable for 'MAESTRO_SEED' matching the core Maestro application. (See Jason)
-
-And then execute:
-
-    $ bundle
 
 # Usage
 
 Reference classes such as:
 
 ```ruby
-MaestroUtilities::Signature.new()
+Maestro::Signature.new()
 ```
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies.
 
-Add an ENV variable to your profile (ex. ~/.zshrc.local), such as:
-
-export MAESTRO_SEED=SOME_SECURE_SEED
-
-Then, run `bundle exec rspec spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Then, run `bundle exec rspec spec` to run the tests. You can also run
+`bin/console` for an interactive prompt that will allow you to
+experiment.
