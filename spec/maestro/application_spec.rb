@@ -5,16 +5,14 @@ RSpec.describe Maestro::Application do
     before do
       configure_maestro do |config|
         config.app_id = 'app-id'
-        config.launch_urls = {
-          full_window: 'http://app.maestro.url/'
-        }
+        config.launch_url = 'http://app.maestro.url/'
       end
     end
 
     describe '.register' do
       it 'sends application register request to Maestro' do
         request = stub_maestro_request(:put, "/v1/applications/app-id")
-          .with(body: {application: {launch_urls: {full_window: 'http://app.maestro.url/'}}})
+          .with(body: {application: {launch_url: 'http://app.maestro.url/'}})
         described_class.register
         expect(request).to have_been_requested
       end

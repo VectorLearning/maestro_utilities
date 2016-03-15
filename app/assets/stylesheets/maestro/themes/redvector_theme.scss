@@ -1,0 +1,151 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+
+$color-dark: #797c83;
+$color-darkest: #44484d;
+$color-orange: #FF9513;
+$color-lightest: #ffffff;
+$color-red: #B4141B;
+
+.navbar,
+.rv-header {
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+  font-size: 13px;
+  line-height: 1.384615385em;
+}
+
+.rv-header {
+  margin-top: 1.1em;
+  margin-bottom: 1.1em;
+
+  img { width: 240px; margin-bottom: 1em; }
+
+  .account-links,
+  .contact-links {
+    display: block;
+    li {
+      float: right;
+      a {
+        color: $color-darkest;
+        font-weight: bold;
+        &:hover, &:focus {
+          color: lighten($color-darkest, 10%);
+          text-decoration: none;
+        }
+        &.color-red {
+          color: $color-red;
+          &:hover, &:focus {
+            color: lighten($color-red, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  .account-links {
+    li {
+      margin-left: 2em;
+      a {
+        font-size: 1.1em;
+      }
+    }
+  }
+  .contact-links {
+    margin-top: 1.25em;
+    li {
+      &:first-of-type a {
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+        padding-left: 1.25em;
+      }
+      &:last-of-type a {
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        padding-right: 1.25em;
+      }
+      a {
+        font-size: 1.25em;
+      }
+    }
+  }
+}
+
+.navbar,
+.navbar-inverse, {
+  min-height: 0px;
+  background: $color-darkest;
+  border-radius: 0;
+  border: 0;
+
+  .nav {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    > li {
+      border-bottom: 1px solid #33363d;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      @media (min-width: 768px) { border: none; }
+      > a {
+        font-weight: bold;
+        color: $color-lightest;
+        padding-top: 0.75em;
+        padding-bottom: 0.75em;
+
+        &:hover,
+        &:focus {
+          background-color: $color-dark;
+          color: darken($color-lightest, 10%);
+        }
+      }
+
+      &.dropdown {
+        .dropdown-toggle {
+          background-color: rgba(255, 255, 255, 0.15);
+          &:hover, &:focus {
+            background-color: $color-dark;
+          }
+        }
+        .dropdown-menu {
+          background-color: $color-darkest;
+          li {
+            border-bottom: 1px solid #33363d;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            &.active a {
+              background-color: $color-dark;
+            }
+            a {
+              color: $color-lightest;
+              &:hover,
+              &:focus {
+                background-color: $color-dark;
+                color: darken($color-lightest, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-toggle {
+    white-space: nowrap;
+    font-weight: bold;
+    border: 0;
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 15px;
+    border-radius: 0;
+    font-size: 1.5em;
+
+    &:hover, &:focus { background-color: $color-dark; }
+
+    i.fa { color: $color-orange; }
+
+    .text {
+      font-weight: bold;
+      color: $color-lightest;
+      display: inline-block;
+      margin-left: 0.25em;
+    }
+  }
+}

@@ -8,7 +8,7 @@ module Maestro
     attr_reader :expires_at_epoch
     attr_reader :first_name
     attr_reader :last_name
-    attr_reader :launch_urls
+    attr_reader :launch_url
     attr_reader :lms_id
     attr_reader :role
     attr_reader :token

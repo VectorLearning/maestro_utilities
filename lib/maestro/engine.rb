@@ -28,5 +28,9 @@ module Maestro
         include Maestro::Engine.helpers
       end
     end
+
+    initializer "maestro_engine.assets.precompile" do |app|
+      app.config.assets.precompile += %w( maestro/themes/targetsolutions_theme.css maestro/components/targetsolutions/components.js maestro/themes/centrelearn_theme.css maestro/components/centrelearn/components.js maestro/themes/redvector_theme.css maestro/components/redvector/components.js )
+    end
   end
 end

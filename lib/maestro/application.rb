@@ -13,7 +13,7 @@ module Maestro
         request.headers['Content-Type'] = 'application/json'
         request.body = JSON.generate({
           application: {
-            launch_urls: Maestro.config.launch_urls
+            launch_url: Maestro.config.launch_url
           }
         })
       end
