@@ -1,4 +1,4 @@
-module Maestro
+module ::Maestro
   module SessionHelper
 
     def maestro_session
