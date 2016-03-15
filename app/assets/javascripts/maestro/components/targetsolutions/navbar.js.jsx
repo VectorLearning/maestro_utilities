@@ -23,7 +23,7 @@ var NavBar = React.createClass({
                     <span className="caret"></span>
                   </a>
                   <ul className="dropdown-menu">
-                    <li><a href="#">My Profile</a></li>
+                    <li><a href={this.props.additional_data.profile_url}>My Profile</a></li>
                     <li><a href="#">Sign Out</a></li>
                   </ul>
                 </li>
