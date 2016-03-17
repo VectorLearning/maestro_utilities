@@ -21,7 +21,6 @@ module Maestro
     end
 
     def initialize attributes
-      @api_key          = attributes['api_key']
       @app_id           = attributes['app_id']
       @expires_at       = attributes['expires_at']
       @expires_at_epoch = attributes['expires_at_epoch']
@@ -29,13 +28,12 @@ module Maestro
       @token            = attributes['token']
       @lms_data         = attributes['lms_data']
 
-      attributes['lms_data'].each do |key, value|
+      attributes.fetch('lms_data', {}).each do |key, value|
         method = "#{key}="
         send(method, value) if respond_to?(method)
       end
     end
 
-    attr_accessor :api_key
     attr_accessor :app_id
     attr_accessor :expires_at
     attr_accessor :expires_at_epoch

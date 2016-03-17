@@ -1,4 +1,5 @@
 require 'maestro'
+require 'react-rails'
 
 module Maestro
   class Configuration
