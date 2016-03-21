@@ -1,6 +1,6 @@
 module Maestro
   module Data
-    class GetProfile
+    module GetProfile
       def self.call(session)
         response = Maestro.connection.get do |request|
           request.url '/v1/lms/profile'

@@ -1,3 +1,4 @@
+require 'maestro/connection'
 require 'virtus'
 
 module Maestro
@@ -11,5 +12,8 @@ module Maestro
   end
 end
 
+require 'maestro/data/delete_session'
 require 'maestro/data/get_profile'
+require 'maestro/data/get_session'
 require 'maestro/data/profile'
+require 'maestro/data/session'

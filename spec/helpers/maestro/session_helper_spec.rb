@@ -16,8 +16,8 @@ module Maestro
             .to_return(status: 200)
         end
 
-        it 'returns Maestro::Session instance' do
-          expect(helper.maestro_session).to be_kind_of(Maestro::Session)
+        it 'returns Maestro::Data::Session instance' do
+          expect(helper.maestro_session).to be_kind_of(Maestro::Data::Session)
         end
 
         it 'returns valid session' do
@@ -32,8 +32,8 @@ module Maestro
             .to_return(status: 403)
         end
 
-        it 'returns Maestro::Session instance' do
-          expect(helper.maestro_session).to be_kind_of(Maestro::InvalidSession)
+        it 'returns Maestro::Data::Session instance' do
+          expect(helper.maestro_session).to be_kind_of(Maestro::Data::Session)
         end
 
         it 'returns invalid session' do
