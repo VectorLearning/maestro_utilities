@@ -12,7 +12,9 @@ module Maestro
   end
 end
 
+require 'maestro/data/competency_topic'
 require 'maestro/data/delete_session'
+require 'maestro/data/get_competency_topics'
 require 'maestro/data/get_profile'
 require 'maestro/data/get_session'
 require 'maestro/data/profile'
