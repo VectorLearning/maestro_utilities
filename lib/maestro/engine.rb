@@ -22,6 +22,7 @@ module Maestro
   end
 
   class Engine < ::Rails::Engine
+    config.eager_load_namespaces << Maestro::Data
     isolate_namespace Maestro
 
     initializer 'maestro_engine.action_controller' do |app|

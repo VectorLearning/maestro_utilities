@@ -1,21 +1,27 @@
+require 'active_support/dependencies/autoload'
 require 'maestro/connection'
 require 'virtus'
 
 module Maestro
   module Data
+    extend ActiveSupport::Autoload
+
     Error         = Class.new(StandardError)
     ResponseError = Class.new(Error)
 
     class Model
       include Virtus.model
     end
+
+    # Data Objects
+    autoload :CompetencyTopic
+    autoload :DeleteSession
+    autoload :Profile
+    autoload :Session
+
+    # Service Objects
+    autoload :GetCompetencyTopics
+    autoload :GetProfile
+    autoload :GetSession
   end
 end
-
-require 'maestro/data/competency_topic'
-require 'maestro/data/delete_session'
-require 'maestro/data/get_competency_topics'
-require 'maestro/data/get_profile'
-require 'maestro/data/get_session'
-require 'maestro/data/profile'
-require 'maestro/data/session'
