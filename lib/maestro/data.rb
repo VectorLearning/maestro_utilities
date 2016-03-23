@@ -14,14 +14,17 @@ module Maestro
     end
 
     # Data Objects
+    autoload :Answer
     autoload :CompetencyTopic
     autoload :DeleteSession
     autoload :Profile
+    autoload :Question
     autoload :Session
 
     # Service Objects
     autoload :GetCompetencyTopics
     autoload :GetProfile
+    autoload :GetQuestionsByTopic
     autoload :GetSession
   end
 end
