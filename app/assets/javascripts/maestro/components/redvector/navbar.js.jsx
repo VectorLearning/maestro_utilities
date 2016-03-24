@@ -103,7 +103,7 @@ var NavTopLinks = React.createClass({
                 <a href=""><i className="fa fa-sign-out margin-right-5"></i>Sign Out</a>
               </li>
               <li>
-                <a href="#"><i className="fa fa-user margin-right-5"></i>User Name</a>
+                <a href="#" className="color-red"><i className="fa fa-user margin-right-5"></i>User Name</a>
               </li>
             </ul>
             <ul className="contact-links clearfix">

@@ -20,6 +20,7 @@ $color-red: #B4141B;
 
   img { width: 240px; margin-bottom: 1em; }
 
+  ul { list-style-type: none; }
   .account-links,
   .contact-links {
     display: block;
@@ -149,3 +150,6 @@ $color-red: #B4141B;
     }
   }
 }
+
+// helpers
+.margin-right-5 { margin-right: 0.25em; }
