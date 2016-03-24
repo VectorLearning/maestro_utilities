@@ -13,7 +13,7 @@ module Maestro
 
     def destroy
       if maestro_session.valid?
-        maestro_session.delete
+        Maestro::Data::DeleteSession.call(maestro_session)
         session.delete(:maestro_token)
         redirect_to redirect_url
       else
