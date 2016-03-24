@@ -28,11 +28,12 @@ module Maestro
       it 'returns array of Question' do
         stub_maestro_request(:get, path, query)
           .and_return(body: JSON.generate(response_data))
-        questions = described_class.call(session, topic_id)
-        expect(questions).to match_array([kind_of(Question)])
-        expect(questions.first.text).to eq('Question Text?')
-        expect(questions.first.answers).to match_array([kind_of(Answer)])
-        expect(questions.first.answers.first.text).to eq('Answer Text')
+        response = described_class.call(session, topic_id)
+        expect(response).to be_kind_of(GetQuestionsByTopic::Response)
+        expect(response.questions).to match_array([kind_of(Question)])
+        expect(response.questions.first.text).to eq('Question Text?')
+        expect(response.questions.first.answers).to match_array([kind_of(Answer)])
+        expect(response.questions.first.answers.first.text).to eq('Answer Text')
       end
 
       it 'throws ResponseError if response not successful' do
