@@ -6,8 +6,11 @@ module Maestro
   module Data
     extend ActiveSupport::Autoload
 
-    Error         = Class.new(StandardError)
-    ResponseError = Class.new(Error)
+    Error                 = Class.new(StandardError)
+    ResponseError         = Class.new(Error)
+    GatewayError          = Class.new(ResponseError)
+    MethodNotAllowedError = Class.new(ResponseError)
+    UnauthorizedError     = Class.new(ResponseError)
 
     class Model
       include Virtus.model
@@ -26,5 +29,7 @@ module Maestro
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
+
+    autoload :HttpService
   end
 end

@@ -27,6 +27,9 @@ maestro_helper = Module.new do
   end
 end
 
+# Requires supporting ruby files with custom matchers and macros, etc.
+Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |file| require file }
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
