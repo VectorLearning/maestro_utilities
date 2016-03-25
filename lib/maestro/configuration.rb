@@ -5,6 +5,7 @@ module Maestro
     attr_accessor :auth_pass
     attr_accessor :host
     attr_accessor :launch_url
+    attr_accessor :logger
     attr_accessor :seed
   end
 

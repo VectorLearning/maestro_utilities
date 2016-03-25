@@ -7,8 +7,10 @@ module Maestro
     raise ConfigurationError, "A value for `auth_pass` is required" unless config.auth_pass
     raise ConfigurationError, "A value for `host` is required" unless config.host
 
-    @connection = Faraday.new(url: config.host)
-    @connection.basic_auth(config.auth_name, config.auth_pass)
-    @connection
+    @connection = Faraday.new(url: config.host) do |connection|
+      connection.request  :basic_auth, config.auth_name, config.auth_pass
+      connection.response :logger, Maestro.config.logger if Maestro.config.logger
+      connection.adapter  Faraday.default_adapter
+    end
   end
 end
