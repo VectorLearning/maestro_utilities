@@ -11,7 +11,7 @@ module Maestro
       def self.call(session, topic_id)
         response = Maestro.connection.get do |request|
           request.url "/v1/lms/competency_topics/#{topic_id}/questions"
-          request.params['token'] = session.token
+          request.params['token'] = session.is_a?(String) ? session : session.token
         end
 
         ensure_successful_response(response)
