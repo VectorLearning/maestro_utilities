@@ -2,3 +2,8 @@ language: ruby
 rvm:
   - 2.3.0
 before_install: gem install bundler -v 1.11.2
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+  slack: vltech:t6cocepi1FC4CNQFbnwPRzzb
