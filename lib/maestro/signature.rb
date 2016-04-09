@@ -28,7 +28,7 @@ module Maestro
     end
 
     def signature
-      encode(digest(query_string)).gsub('+', '_')
+      encode(digest(query_string))
     end
 
     def to_query
@@ -43,7 +43,7 @@ module Maestro
     end
 
     def encode(value)
-      Base64.encode64(value).chomp
+      Base64.urlsafe_encode64(value).chomp
     end
 
     def query_string

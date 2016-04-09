@@ -90,6 +90,6 @@ RSpec.describe Maestro::Signature do
   def signature(text)
     digest = OpenSSL::Digest.new('sha256')
     signature = OpenSSL::HMAC.digest(digest, seed, text)
-    Base64.encode64(signature).chomp.gsub('+', '_')
+    Base64.urlsafe_encode64(signature).chomp
   end
 end
