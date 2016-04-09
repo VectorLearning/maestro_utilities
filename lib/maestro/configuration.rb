@@ -7,6 +7,7 @@ module Maestro
     attr_accessor :launch_url
     attr_accessor :logger
     attr_accessor :seed
+    attr_accessor :debug
   end
 
   def self.config
