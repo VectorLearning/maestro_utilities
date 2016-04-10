@@ -4,6 +4,8 @@ rvm:
 before_script:
   - psql -c 'create database maestro_gem_test;' -U postgres
 before_install: gem install bundler -v 1.11.2
+script:
+  - bundle exec rspec
 notifications:
   email:
     on_success: change
