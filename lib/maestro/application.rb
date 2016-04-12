@@ -9,11 +9,12 @@ module Maestro
       raise ConfigurationError, "A value for `app_id` is required" unless Maestro.config.app_id
 
       response = Maestro.connection.put do |request|
-        request.url '/v1/applications/%s' % Maestro.config.app_id
+        request.url '/v%s/applications/%s' % [Maestro.config.api_version, Maestro.config.app_id]
         request.headers['Content-Type'] = 'application/json'
         request.body = JSON.generate({
           application: {
-            launch_url: Maestro.config.launch_url
+            api_methods: Maestro.config.api_methods,
+            launch_url: Maestro.config.launch_url,
           }
         })
       end

@@ -1,5 +1,7 @@
 module Maestro
   class Configuration < BasicObject
+    attr_accessor :api_version
+    attr_accessor :api_methods
     attr_accessor :app_id
     attr_accessor :auth_name
     attr_accessor :auth_pass
