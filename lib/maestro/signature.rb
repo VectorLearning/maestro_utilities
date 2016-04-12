@@ -9,13 +9,11 @@ module Maestro
     attr_accessor :seed
 
     def self.valid?(params)
-      if Maestro.config.debug == "true"
-        Rails.logger.warn "REQUEST PARAMS: #{params}"
-        Rails.logger.warn "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
-        Rails.logger.warn "TIME NOW: #{Time.now.to_i}"
-        Rails.logger.warn "EXPIRED? #{params.fetch(:expires).to_i < Time.now.to_i}"
-        Rails.logger.warn "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
-      end
+      Rails.logger.debug "REQUEST PARAMS: #{params}"
+      Rails.logger.debug "VERIFICATION SIGNATURE: #{new(params.except(:signature)).signature}"
+      Rails.logger.debug "TIME NOW: #{Time.now.to_i}"
+      Rails.logger.debug "EXPIRED? #{params.fetch(:expires).to_i < Time.now.to_i}"
+      Rails.logger.debug "SIGNATURES MATCH? #{new(params.except(:signature)).signature == params.fetch(:signature)}"
       return false if params.fetch(:expires).to_i < Time.now.to_i
       new(params.except(:signature)).signature == params.fetch(:signature)
     rescue KeyError
