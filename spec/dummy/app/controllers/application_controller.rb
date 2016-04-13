@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Maestro::ControllerHelper
   before_filter :authenticate
   protect_from_forgery with: :exception
 

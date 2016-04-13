@@ -62,7 +62,7 @@ RSpec.configure do |config|
         .and_return(body: JSON.generate(session_data(expires, token)))
       params = {token: token, expires: expires}
       signed = Maestro::Signature.new(params).to_query
-      visit("/sessions?%s" % signed)
+      visit("/?%s" % signed)
     end
 
     def session_data(expires, token)

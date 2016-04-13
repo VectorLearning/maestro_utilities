@@ -4,20 +4,10 @@ require 'react-rails'
 
 module Maestro
   class Configuration
-    attr_writer :after_invalid_session
     attr_writer :after_invalid_signature
-    attr_writer :after_session_create
-
-    def after_invalid_session
-      @after_invalid_session || ->{ head :unauthorized }
-    end
 
     def after_invalid_signature
       @after_invalid_signature || ->{ head :unauthorized }
-    end
-
-    def after_session_create
-      @after_session_create || ->{ head :ok }
     end
   end
 
