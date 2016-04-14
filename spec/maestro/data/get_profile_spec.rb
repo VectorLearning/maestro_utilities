@@ -8,7 +8,6 @@ module Maestro
       let(:query)    { "token=#{token}" }
       let(:response) { described_class.call(session) }
       let(:session)  { double('Session', token: token) }
-      let(:topic_id) { 1 }
       let(:token)    { 'token' }
 
       it_behaves_like 'an HTTP error handling service'
