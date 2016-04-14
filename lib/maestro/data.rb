@@ -29,6 +29,7 @@ module Maestro
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
+    autoload :UpdateUserAssessment
 
     autoload :HttpService
   end
