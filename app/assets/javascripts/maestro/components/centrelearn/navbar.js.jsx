@@ -7,7 +7,7 @@ var NavBar = React.createClass({
       <div>
         <div id="centrelearn-top-navbar">
           <div id="centrelearn-top-navbar-white">
-            <img src="../assets/maestro/centerLearn_logo.jpg" />
+            <img src="https://s3.amazonaws.com/knowledge-assessment-static-assets/centerLearn_logo.jpg" />
           </div>
           <div id="centrelearn-top-navbar-blue">
             Training just got easier.
