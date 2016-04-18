@@ -95,7 +95,7 @@ var NavTopLinks = React.createClass({
       <section className="container-fluid rv-header">
         <div className="row top-links">
           <div className="col-xs-12 col-sm-6">
-            <img src="/assets/maestro/redvector_logo.png" />
+            <img src="https://s3.amazonaws.com/knowledge-assessment-static-assets/redvector_logo.png" />
           </div>
           <div className="col-xs-12 col-sm-6 text-right">
             <ul className="account-links clearfix">
