@@ -49,6 +49,7 @@ RSpec.describe ApplicationController do
     context 'with no launch parameters' do
       controller(described_class) do
         skip_before_filter :authenticate
+        skip_before_filter :redirect_to_lms_on_session_expiration
 
         def index
           render nothing: true
@@ -94,6 +95,22 @@ RSpec.describe ApplicationController do
       it 'returns unauthorized HTTP status' do
         get(:index)
         expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context 'with expired session' do
+      let(:host) { 'http://redirect.url/' }
+
+      before do
+        body = JSON.generate(lms_data: {lms_host: host})
+        stub_maestro_request(:patch, '/v1/sessions')
+          .with(body: {session: {token: token}})
+          .to_return(body: body, status: 403)
+      end
+
+      it 'redirects to LMS' do
+        get(:index)
+        expect(response).to redirect_to(host)
       end
     end
   end
