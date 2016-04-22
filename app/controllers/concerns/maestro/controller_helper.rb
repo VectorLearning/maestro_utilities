@@ -9,7 +9,8 @@ module Maestro
     def check_signature?
       signature_params.key?(:expires) &&
         signature_params.key?(:signature) &&
-        signature_params.key?(:token)
+        signature_params.key?(:token) &&
+        signature_params[:token] != session[:maestro_token]
     end
 
     def set_maestro_session
