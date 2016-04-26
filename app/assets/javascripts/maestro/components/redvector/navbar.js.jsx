@@ -3,10 +3,22 @@
 // create classes
 var NavBar = React.createClass({
   render: function(){
-    return(
+    var full_name = this.props.first_name + ' ' + this.props.last_name;
+    if(this.props.lms_navigation.organization_logo_url) {
+      var organization_colors = this.props.lms_navigation.organization_colors;
+      var navStyle = { backgroundColor: this.props.lms_navigation.organization_colors.background };
+      image_url = this.props.lms_navigation.organization_logo_url;
+      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} />;
+      styles = <Styles colors={organization_colors} />
+    } else {
+      header = <HeaderRetail full_name={full_name} />;
+      styles = "";
+    }
+    return (
       <div>
-        <NavTopLinks />
-        <nav className="navbar navbar-inverse">
+        {header}
+        {styles}
+        <nav className={this.props.lms_navigation.organization_logo_url ? "navbar" : "navbar navbar-inverse"}>
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -85,40 +97,6 @@ var NavLink = React.createClass({
   render: function(){
     return(
       <li className={(this.props.active ? "active" : "")}><a href={this.props.linkTo}>{this.props.text}</a></li>
-    );
-  }
-});
-
-var NavTopLinks = React.createClass({
-  render: function(){
-    return(
-      <section className="container-fluid rv-header">
-        <div className="row top-links">
-          <div className="col-xs-12 col-sm-6">
-            <img src="https://s3.amazonaws.com/knowledge-assessment-static-assets/redvector_logo.png" />
-          </div>
-          <div className="col-xs-12 col-sm-6 text-right">
-            <ul className="account-links clearfix">
-              <li>
-                <a href=""><i className="fa fa-sign-out margin-right-5"></i>Sign Out</a>
-              </li>
-              <li>
-                <a href="#" className="color-red"><i className="fa fa-user margin-right-5"></i>User Name</a>
-              </li>
-            </ul>
-            <ul className="contact-links clearfix">
-              <li>
-                <a href="tel:1-866-546-1212">
-                    <i className="fa fa-phone fa-lg margin-right-5"></i>1-866-546-1212
-                </a>
-              </li>
-              <li>
-                <a href="#"><i className="fa fa-comments fa-lg margin-right-5"></i>Start Live Chat</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
     );
   }
 });
