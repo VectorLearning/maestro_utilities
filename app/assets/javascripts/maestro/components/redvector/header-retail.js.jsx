@@ -15,16 +15,6 @@ var HeaderRetail = React.createClass({
                 <a href="#" className="color-red"><i className="fa fa-user margin-right-5"></i>{this.props.full_name}</a>
               </li>
             </ul>
-            <ul className="contact-links clearfix">
-              <li>
-                <a href="tel:1-866-546-1212">
-                    <i className="fa fa-phone fa-lg margin-right-5"></i>1-866-546-1212
-                </a>
-              </li>
-              <li>
-                <a href="#"><i className="fa fa-comments fa-lg margin-right-5"></i>Start Live Chat</a>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
