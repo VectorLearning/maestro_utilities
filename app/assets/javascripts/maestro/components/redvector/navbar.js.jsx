@@ -18,7 +18,7 @@ var NavBar = React.createClass({
       <div>
         {header}
         {styles}
-        <nav className={this.props.lms_navigation.organization_logo_url ? "navbar" : "navbar navbar-inverse"}>
+        <nav className={this.props.lms_navigation.organization_logo_url ? "navbar pl-navbar" : "navbar navbar-inverse"}>
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
