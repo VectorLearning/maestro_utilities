@@ -85,6 +85,16 @@ $color-red: #B4141B;
   }
 }
 
+.pl-navbar {
+  ul > li { border: 0 !important; }
+  .navbar-toggle {
+    i.fa { color: inherit !important; }
+    .text {
+      color: inherit !important;
+    }
+  }
+}
+
 .navbar,
 .navbar-inverse, {
   min-height: 0px;
