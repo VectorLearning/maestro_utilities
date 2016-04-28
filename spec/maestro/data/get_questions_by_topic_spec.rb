@@ -4,20 +4,24 @@ module Maestro
   module Data
     RSpec.describe GetQuestionsByTopic do
       let!(:request) { stub_maestro_request(:get, path, query) }
-      let(:path)     { "/v1/lms/competency_topics/#{topic_id}/questions" }
-      let(:query)    { "token=#{token}" }
-      let(:response) { described_class.call(session, topic_id) }
+      let(:path)     { "/v1/lms/questions" }
+      let(:query)    { "token=#{token}&topic_ids=#{topic_ids}" }
+      let(:topic_ids) { "GUID" }
+      let(:response) { described_class.call(session, topic_ids) }
       let(:session)  { double('Session', token: token) }
-      let(:topic_id) { 1 }
       let(:token)    { 'token' }
 
       def response_data
-        {
-          questions: [{
-            answers: [{correct: true, text: 'Answer Text'}],
-            id: 1,
-            text: 'Question Text?'
-          }]
+        { "topic_questions": [
+          {
+            "topic_id": "fa50fa96-9080-461f-b69e-09b318c6e319",
+            "topic_name": "Boolean Algebra",
+            "question_ids": [
+              "1a8bc0a0-ca9a-4509-9445-0ea1c0f5df0c",
+              "fb9f15a5-13a2-4562-b79e-2145f6a6ecd8"
+              ]
+            }
+          ]
         }
       end
 
@@ -28,13 +32,12 @@ module Maestro
         expect(request).to have_been_requested
       end
 
-      it 'returns array of Question' do
+      it 'returns array of Question GUIDs' do
         request.and_return(body: JSON.generate(response_data))
-        expect(response).to be_kind_of(GetQuestionsByTopic::Response)
-        expect(response.questions).to match_array([kind_of(Question)])
-        expect(response.questions.first.text).to eq('Question Text?')
-        expect(response.questions.first.answers).to match_array([kind_of(Answer)])
-        expect(response.questions.first.answers.first.text).to eq('Answer Text')
+        expect(response).to be_a_kind_of(Hash)
+        expect(response['topic_questions'].first['question_ids']).to eq(
+        ["1a8bc0a0-ca9a-4509-9445-0ea1c0f5df0c",
+         "fb9f15a5-13a2-4562-b79e-2145f6a6ecd8"])
       end
     end
   end
