@@ -86,6 +86,12 @@ $color-red: #B4141B;
 }
 
 .pl-navbar {
+  .navbar-collapse {
+    @media (min-width: 768px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
   ul > li { border: 0 !important; }
   .navbar-toggle {
     i.fa { color: inherit !important; }
@@ -181,25 +187,27 @@ $ribbon-menu-blue: #6195c6;
 .pl-menu {
   @media (min-width: 768px) {
   	.navbar-nav {
+      &:before,
+    	&:after {
+    		display: none;
+    	}
   	  float: left;
   	  margin: 0;
   	  width: 100%;
   	  display: table;
   	  table-layout: fixed;
   	  text-align: center;
-  	}
 
-  	.navbar-nav:before,
-  	.navbar-nav:after {
-  		display: none;
-  	}
-
-  	/* line 270, /Users/peterkraus/Dev/KnowledgeAssessment/vendor/bundle/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_navbar.scss */
-  	.navbar-nav > li {
-  	  float: none;
-  	  display: table-cell;
-  	  white-space: nowrap;
-  	  width: auto;
+      > li {
+    	  float: none;
+    	  display: table-cell;
+    	  white-space: nowrap;
+    	  width: auto;
+        > a {
+          padding-left: 0;
+          padding-right: 0;
+        }
+    	}
   	}
   }
   margin-bottom: 18px;
