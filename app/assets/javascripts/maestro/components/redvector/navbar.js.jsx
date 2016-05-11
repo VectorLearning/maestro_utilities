@@ -3,7 +3,8 @@
 // create classes
 var NavBar = React.createClass({
   render: function(){
-    var header;
+    var header,
+        navRibbon;
     var full_name = this.props.first_name + ' ' + this.props.last_name;
     if(this.props.lms_navigation.organization_logo_url) {
       colors = this.props.lms_navigation.organization_colors;
@@ -25,8 +26,11 @@ var NavBar = React.createClass({
     } else {
       header = <HeaderRetail full_name={full_name} />;
     }
+    if(this.props.lms_navigation.hasOwnProperty('subnav')) {
+      navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
+    };
     return (
-      <div>
+      <div className={this.props.lms_navigation.organization_logo_url ? "nav-container pl-menu" : "nav-container"}>
         {header}
         <nav className={this.props.lms_navigation.organization_logo_url ? "navbar pl-navbar" : "navbar navbar-inverse"} style={styles.defaultBackground}>
           <div className="container-fluid">
@@ -39,6 +43,7 @@ var NavBar = React.createClass({
             </div>
           </div>
         </nav>
+        {navRibbon}
       </div>
     );
   }
