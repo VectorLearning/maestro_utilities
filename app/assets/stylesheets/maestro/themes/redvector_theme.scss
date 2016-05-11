@@ -179,6 +179,29 @@ $color-red: #B4141B;
 
 $ribbon-menu-blue: #6195c6;
 .pl-menu {
+  @media (min-width: 768px) {
+  	.navbar-nav {
+  	  float: left;
+  	  margin: 0;
+  	  width: 100%;
+  	  display: table;
+  	  table-layout: fixed;
+  	  text-align: center;
+  	}
+
+  	.navbar-nav:before,
+  	.navbar-nav:after {
+  		display: none;
+  	}
+
+  	/* line 270, /Users/peterkraus/Dev/KnowledgeAssessment/vendor/bundle/gems/bootstrap-sass-3.3.6/assets/stylesheets/bootstrap/_navbar.scss */
+  	.navbar-nav > li {
+  	  float: none;
+  	  display: table-cell;
+  	  white-space: nowrap;
+  	  width: auto;
+  	}
+  }
   margin-bottom: 18px;
   .pl-navbar { margin-bottom: 0; }
   font-size: 13px;
