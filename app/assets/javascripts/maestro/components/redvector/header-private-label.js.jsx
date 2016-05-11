@@ -6,10 +6,10 @@ var HeaderPrivateLabel = React.createClass({
           <div className="col-xs-12 text-right">
             <ul className="account-links clearfix">
               <li>
-                <a href="#"><i className="fa fa-sign-out margin-right-5"></i>Sign Out</a>
+                <a href={this.props.logout_url}><i className="fa fa-sign-out margin-right-5"></i>Sign Out</a>
               </li>
               <li>
-                <a href="#"><i className="fa fa-user margin-right-5"></i>{this.props.full_name}</a>
+                <a href={this.props.profile_url}><i className="fa fa-user margin-right-5"></i>{this.props.full_name}</a>
               </li>
             </ul>
           </div>

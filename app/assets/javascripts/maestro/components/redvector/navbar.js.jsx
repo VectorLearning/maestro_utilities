@@ -5,6 +5,8 @@ var NavBar = React.createClass({
   render: function(){
     var header,
         navRibbon;
+    var logout_url = this.props.additional_data.logout_url;
+    var profile_url = this.props.additional_data.profile_url;
     var full_name = this.props.first_name + ' ' + this.props.last_name;
     if(this.props.lms_navigation.organization_logo_url) {
       colors = this.props.lms_navigation.organization_colors;
@@ -22,9 +24,9 @@ var NavBar = React.createClass({
         }
       };
       image_url = this.props.lms_navigation.organization_logo_url;
-      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} />;
+      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} logout_url={logout_url} profile_url={profile_url} />;
     } else {
-      header = <HeaderRetail full_name={full_name} />;
+      header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
     if(this.props.lms_navigation.hasOwnProperty('subnav')) {
       navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
