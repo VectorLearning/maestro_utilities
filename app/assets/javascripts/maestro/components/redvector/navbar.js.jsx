@@ -85,15 +85,15 @@ var NavBrand = React.createClass({
 var NavMenu = React.createClass({
   render: function(){
     var styles = this.props.styles;
-    var links = this.props.links.map(function(link){
+    var links = this.props.links.map(function(link, index){
       if(link.hasOwnProperty('sublinks')) {
         return (
-          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} styles={styles} />
+          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} styles={styles} key={index} />
         );
       }
       else {
         return (
-          <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} />
+          <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} key={index} />
         );
       }
     });
@@ -121,12 +121,12 @@ var NavLinkDropdown = React.createClass({
       linkStyle = styles.linkNormal;
     }
     var active = false;
-    var links = this.props.links.map(function(link){
+    var links = this.props.links.map(function(link, index){
       if(link.active){
         active = true;
       }
       return (
-        <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} />
+        <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} key={index} />
       );
     });
     return (
@@ -159,7 +159,7 @@ var NavLink = React.createClass({
       linkStyle = styles.linkNormal;
     }
     return(
-      <li className={(this.props.active ? "active" : "")}>
+      <li className={(this.props.active ? "active" : "")} key={this.props.key}>
         <a style={linkStyle} href={this.props.linkTo} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{this.props.text}</a>
       </li>
     );
