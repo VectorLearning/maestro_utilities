@@ -9,6 +9,7 @@ var NavBar = React.createClass({
     var profile_url = this.props.additional_data.profile_url;
     var full_name = this.props.first_name + ' ' + this.props.last_name;
     if(this.props.lms_navigation.organization_logo_url) {
+      var is_pl = true;
       colors = this.props.lms_navigation.organization_colors;
       styles = {
         defaultBackground: {
@@ -28,7 +29,8 @@ var NavBar = React.createClass({
     } else {
       header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
-    if(this.props.lms_navigation.hasOwnProperty('subnav')) {
+    if(is_pl && this.props.lms_navigation.hasOwnProperty('subnav')) {
+      debugger
       navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
     };
     return (
