@@ -30,7 +30,6 @@ var NavBar = React.createClass({
       header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
     if(is_pl && this.props.lms_navigation.hasOwnProperty('subnav')) {
-      debugger
       navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
     };
     return (

@@ -16,17 +16,14 @@ var NavigationRibbon = React.createClass({
 });
 
 var NavigationRibbonItem = React.createClass({
-  iconCssClass: function(){
-    return "fa fa-lg " + this.props.link.icon;
+  linkMarkup: function(){
+    return { __html: this.props.link.text };
   },
   render: function(){
     var link = this.props.link;
     var key = this.props.key;
     return (
-      <a href={link.link} className={link.active ? "active" : ""} key={this.props.key}>
-        <i className={this.iconCssClass()}></i>
-        {link.text}
-      </a>
+      <a href={link.link} className={link.active ? "active" : ""} key={this.props.key} dangerouslySetInnerHTML={this.linkMarkup()} />
     );
   }
 });
