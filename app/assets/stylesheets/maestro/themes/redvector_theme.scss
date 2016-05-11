@@ -40,7 +40,10 @@ $color-red: #B4141B;
 
 .pl-header {
   margin-top: 0.75em;
-  img { max-width: 100%; }
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .rv-header {
