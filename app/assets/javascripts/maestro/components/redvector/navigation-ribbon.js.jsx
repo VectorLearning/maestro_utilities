@@ -6,8 +6,10 @@ var NavigationRibbon = React.createClass({
       );
     });
     return (
-      <div>
-        {links}
+      <div className="container-fluid">
+        <div className="pl-ribbon">
+          {links}
+        </div>
       </div>
     );
   }
@@ -21,12 +23,10 @@ var NavigationRibbonItem = React.createClass({
     var link = this.props.link;
     var key = this.props.key;
     return (
-      <div key={this.props.key}>
-        <a href={link.link} className={link.active ? "active" : ""}>
+      <a href={link.link} className={link.active ? "active" : ""} key={this.props.key}>
         <i className={this.iconCssClass()}></i>
         {link.text}
-        </a>
-      </div>
+      </a>
     );
   }
 });
