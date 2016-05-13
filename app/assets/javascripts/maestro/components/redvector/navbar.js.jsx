@@ -88,15 +88,17 @@ var NavBrand = React.createClass({
 var NavMenu = React.createClass({
   render: function(){
     var styles = this.props.styles;
+
     var links = this.props.links.map(function(link, index){
+      var active = isActive(link.active);
       if(link.hasOwnProperty('sublinks')) {
         return (
-          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} styles={styles} key={index} />
+          <NavLinkDropdown links={link.sublinks} text={link.text} active={active} styles={styles} key={index} />
         );
       }
       else {
         return (
-          <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} key={index} />
+          <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
         );
       }
     });
@@ -116,6 +118,7 @@ var NavLinkDropdown = React.createClass({
     this.setState({hover: !this.state.hover});
   },
   render: function(){
+    var active = this.props.active;
     var styles = this.props.styles;
     var linkStyle;
     if (this.state.hover) {
@@ -123,13 +126,11 @@ var NavLinkDropdown = React.createClass({
     } else {
       linkStyle = styles.linkNormal;
     }
-    var active = false;
+
     var links = this.props.links.map(function(link, index){
-      if(link.active){
-        active = true;
-      }
+      var active = isActive(link.active);
       return (
-        <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} key={index} />
+        <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
       );
     });
     return (

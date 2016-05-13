@@ -1,10 +1,7 @@
 var NavigationRibbon = React.createClass({
   render: function(){
     var links = this.props.links.map(function(link, index){
-      var active = false;
-      if (link.active == "true") {
-        active = true;
-      }
+      var active = isActive(link.active);
       return (
         <NavigationRibbonItem link={link} key={index} active={active} />
       );
