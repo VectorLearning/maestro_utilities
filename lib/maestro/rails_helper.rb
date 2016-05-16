@@ -23,7 +23,7 @@ RSpec.configure do |config|
         first_name: "Jason",
         last_name: "Paluck",
         email: "jason.paluck@redvector.com",
-        role: "user",
+        role: "admin",
         app_id: Maestro.config.app_id,
         api_key: "gjhg76tv4rhcc73",
         lms_navigation: {
@@ -52,20 +52,20 @@ RSpec.configure do |config|
       JSON.parse(response.body)
     end
 
-    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32)
+    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), role: 'admin'
       uri = URI.parse(Maestro.config.host)
       uri.user = Maestro.config.auth_name
       uri.password = Maestro.config.auth_pass
       uri.path = '/v1/sessions'
       stub_request(:patch, uri)
         .with(:body => {session: {token: token}})
-        .and_return(body: JSON.generate(session_data(expires, token)))
+        .and_return(body: JSON.generate(session_data(expires, token, role)))
       params = {token: token, expires: expires}
       signed = Maestro::Signature.new(params).to_query
       visit("/?%s" % signed)
     end
 
-    def session_data(expires, token)
+    def session_data(expires, token, role)
       {
         token: token,
         app_id: Maestro.config.app_id,
@@ -81,7 +81,7 @@ RSpec.configure do |config|
           first_name: "Jason",
           last_name: "Paluck",
           email: "jason.paluck@redvector.com",
-          role: "user",
+          role: role,
           app_id: Maestro.config.app_id,
           api_key: "gjhg76tv4rhcc73",
           lms_navigation: {
