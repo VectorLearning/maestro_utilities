@@ -1,8 +1,9 @@
 var NavigationRibbon = React.createClass({
   render: function(){
     var links = this.props.links.map(function(link, index){
+      var active = isActive(link.active);
       return (
-        <NavigationRibbonItem link={link} key={index} />
+        <NavigationRibbonItem link={link} key={index} active={active} />
       );
     });
     return (
@@ -23,7 +24,7 @@ var NavigationRibbonItem = React.createClass({
     var link = this.props.link;
     var key = this.props.key;
     return (
-      <a href={link.link} className={link.active ? "active" : ""} key={this.props.key} dangerouslySetInnerHTML={this.linkMarkup()} />
+      <a href={link.link} className={(this.props.active ? "active" : "")} key={this.props.key} dangerouslySetInnerHTML={this.linkMarkup()} />
     );
   }
 });
