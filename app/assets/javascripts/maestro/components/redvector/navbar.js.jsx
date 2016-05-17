@@ -3,9 +3,13 @@
 // create classes
 var NavBar = React.createClass({
   render: function(){
-    var header;
+    var header,
+        navRibbon;
+    var logout_url = this.props.additional_data.logout_url;
+    var profile_url = this.props.additional_data.profile_url;
     var full_name = this.props.first_name + ' ' + this.props.last_name;
     if(this.props.lms_navigation.organization_logo_url) {
+      var is_pl = true;
       colors = this.props.lms_navigation.organization_colors;
       styles = {
         defaultBackground: {
@@ -21,12 +25,15 @@ var NavBar = React.createClass({
         }
       };
       image_url = this.props.lms_navigation.organization_logo_url;
-      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} />;
+      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} logout_url={logout_url} profile_url={profile_url} />;
     } else {
-      header = <HeaderRetail full_name={full_name} />;
+      header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
+    if(is_pl && this.props.lms_navigation.hasOwnProperty('subnav')) {
+      navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
+    };
     return (
-      <div>
+      <div className={this.props.lms_navigation.organization_logo_url ? "nav-container pl-menu" : "nav-container"}>
         {header}
         <nav className={this.props.lms_navigation.organization_logo_url ? "navbar pl-navbar" : "navbar navbar-inverse"} style={styles.defaultBackground}>
           <div className="container-fluid">
@@ -39,6 +46,7 @@ var NavBar = React.createClass({
             </div>
           </div>
         </nav>
+        {navRibbon}
       </div>
     );
   }
@@ -80,15 +88,17 @@ var NavBrand = React.createClass({
 var NavMenu = React.createClass({
   render: function(){
     var styles = this.props.styles;
-    var links = this.props.links.map(function(link){
+
+    var links = this.props.links.map(function(link, index){
+      var active = isActive(link.active);
       if(link.hasOwnProperty('sublinks')) {
         return (
-          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} styles={styles} />
+          <NavLinkDropdown links={link.sublinks} text={link.text} active={active} styles={styles} key={index} />
         );
       }
       else {
         return (
-          <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} />
+          <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
         );
       }
     });
@@ -108,6 +118,7 @@ var NavLinkDropdown = React.createClass({
     this.setState({hover: !this.state.hover});
   },
   render: function(){
+    var active = this.props.active;
     var styles = this.props.styles;
     var linkStyle;
     if (this.state.hover) {
@@ -115,13 +126,11 @@ var NavLinkDropdown = React.createClass({
     } else {
       linkStyle = styles.linkNormal;
     }
-    var active = false;
-    var links = this.props.links.map(function(link){
-      if(link.active){
-        active = true;
-      }
+
+    var links = this.props.links.map(function(link, index){
+      var active = isActive(link.active);
       return (
-        <NavLink linkTo={link.link} text={link.text} active={link.active} styles={styles} />
+        <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
       );
     });
     return (
@@ -154,7 +163,7 @@ var NavLink = React.createClass({
       linkStyle = styles.linkNormal;
     }
     return(
-      <li className={(this.props.active ? "active" : "")}>
+      <li className={(this.props.active ? "active" : "")} key={this.props.key}>
         <a style={linkStyle} href={this.props.linkTo} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{this.props.text}</a>
       </li>
     );
