@@ -20,9 +20,10 @@ module Maestro
 
       it 'returns array of CompetencyTopic' do
         request
-          .and_return(body: '{"topics": [{"id": 1, "name": "Topic Name"}]}')
+          .and_return(body: '{"topics": [{"id": 1, "name": "Topic Name", "icon": "home"}]}')
         expect(response).to match_array([kind_of(CompetencyTopic)])
         expect(response.first.name).to eq('Topic Name')
+        expect(response.first.icon).to eq('home')
       end
     end
   end
