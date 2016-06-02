@@ -14,7 +14,11 @@ module Maestro
           })
         end
 
-        data = JSON.parse(response.body.presence || '{}')
+        if response.body.presence == 'null'
+          data = JSON.parse('{}')
+        else
+          data = JSON.parse(response.body.presence)
+        end
 
         if response.success?
           ::Maestro::Data::Session.new(data.merge(valid: true))
