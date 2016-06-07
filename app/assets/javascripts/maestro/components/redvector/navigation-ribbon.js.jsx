@@ -8,7 +8,7 @@ var NavigationRibbon = React.createClass({
     });
     return (
       <div className="container-fluid">
-        <div className="pl-ribbon">
+        <div className="rv-ribbon">
           {links}
         </div>
       </div>

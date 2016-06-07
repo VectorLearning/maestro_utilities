@@ -29,7 +29,7 @@ var NavBar = React.createClass({
     } else {
       header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
-    if(is_pl && this.props.lms_navigation.hasOwnProperty('subnav')) {
+    if(this.props.lms_navigation.hasOwnProperty('subnav')) {
       navRibbon = <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
     };
     return (
