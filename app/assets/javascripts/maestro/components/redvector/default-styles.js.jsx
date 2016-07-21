@@ -1,11 +1,11 @@
-var colors = {
+let colors = {
   'background': '',
   'text': '',
   'hover_background': '',
   'hover_text': ''
 };
 
-var styles = {
+let styles = {
   defaultBackground: {},
   linkNormal: {},
   linkHover: {}

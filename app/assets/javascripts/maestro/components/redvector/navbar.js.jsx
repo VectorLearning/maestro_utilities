@@ -1,15 +1,20 @@
 //= require ../base/navbar
 
 // create classes
-var NavBar = React.createClass({
+let NavBar = React.createClass({
   render: function(){
-    var header,
+    let header,
         navRibbon;
-    var logout_url = this.props.additional_data.logout_url;
-    var profile_url = this.props.additional_data.profile_url;
-    var full_name = this.props.first_name + ' ' + this.props.last_name;
+    let is_aicc = false;
+    let logout_url = this.props.additional_data.logout_url;
+    let profile_url = this.props.additional_data.profile_url;
+    let full_name = this.props.first_name + ' ' + this.props.last_name;
+
+    if(this.props.additional_data.hasOwnProperty('aicc')) {
+      is_aicc = JSON.parse(this.props.additional_data.aicc)
+    }
     if(this.props.lms_navigation.organization_logo_url) {
-      var is_pl = true;
+      let is_pl = true;
       colors = this.props.lms_navigation.organization_colors;
       styles = {
         defaultBackground: {
@@ -25,7 +30,7 @@ var NavBar = React.createClass({
         }
       };
       image_url = this.props.lms_navigation.organization_logo_url;
-      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} logout_url={logout_url} profile_url={profile_url} />;
+      header = <HeaderPrivateLabel full_name={full_name} image_url={image_url} logout_url={logout_url} profile_url={profile_url} is_aicc={is_aicc} />;
     } else {
       header = <HeaderRetail full_name={full_name} logout_url={logout_url} profile_url={profile_url} />;
     }
@@ -52,7 +57,7 @@ var NavBar = React.createClass({
   }
 });
 
-var HamburgerButton = React.createClass({
+let HamburgerButton = React.createClass({
   getInitialState: function(){
     return {hover: false}
   },
@@ -60,8 +65,8 @@ var HamburgerButton = React.createClass({
     this.setState({hover: !this.state.hover});
   },
   render: function(){
-    var styles = this.props.styles;
-    var linkStyle;
+    let styles = this.props.styles;
+    let linkStyle;
     if (this.state.hover) {
       linkStyle = styles.linkHover;
     } else {
@@ -85,12 +90,12 @@ var NavBrand = React.createClass({
   }
 });
 
-var NavMenu = React.createClass({
+let NavMenu = React.createClass({
   render: function(){
-    var styles = this.props.styles;
+    let styles = this.props.styles;
 
-    var links = this.props.links.map(function(link, index){
-      var active = isActive(link.active);
+    let links = this.props.links.map(function(link, index){
+      let active = isActive(link.active);
       if(link.hasOwnProperty('sublinks')) {
         return (
           <NavLinkDropdown links={link.sublinks} text={link.text} active={active} styles={styles} key={index} />
@@ -110,7 +115,7 @@ var NavMenu = React.createClass({
   }
 });
 
-var NavLinkDropdown = React.createClass({
+let NavLinkDropdown = React.createClass({
   getInitialState: function(){
     return {hover: false}
   },
@@ -118,17 +123,17 @@ var NavLinkDropdown = React.createClass({
     this.setState({hover: !this.state.hover});
   },
   render: function(){
-    var active = this.props.active;
-    var styles = this.props.styles;
-    var linkStyle;
+    let active = this.props.active;
+    let styles = this.props.styles;
+    let linkStyle;
     if (this.state.hover) {
       linkStyle = styles.linkHover;
     } else {
       linkStyle = styles.linkNormal;
     }
 
-    var links = this.props.links.map(function(link, index){
-      var active = isActive(link.active);
+    let links = this.props.links.map(function(link, index){
+      let active = isActive(link.active);
       return (
         <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
       );
@@ -147,7 +152,7 @@ var NavLinkDropdown = React.createClass({
   }
 });
 
-var NavLink = React.createClass({
+let NavLink = React.createClass({
   getInitialState: function(){
     return {hover: false}
   },
@@ -155,8 +160,8 @@ var NavLink = React.createClass({
     this.setState({hover: !this.state.hover});
   },
   render: function(){
-    var styles = this.props.styles;
-    var linkStyle;
+    let styles = this.props.styles;
+    let linkStyle;
     if (this.state.hover) {
       linkStyle = styles.linkHover;
     } else {
