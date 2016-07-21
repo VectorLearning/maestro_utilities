@@ -1,5 +1,5 @@
-var isActive = function(value) {
-  var active = false;
+let isActive = function(value) {
+  let active = false;
   if(value == 'true'){
     active = true;
   }

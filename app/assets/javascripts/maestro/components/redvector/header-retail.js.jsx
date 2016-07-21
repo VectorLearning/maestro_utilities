@@ -1,4 +1,4 @@
-var HeaderRetail = React.createClass({
+let HeaderRetail = React.createClass({
   render: function(){
     return(
       <section className="container-fluid rv-header">
