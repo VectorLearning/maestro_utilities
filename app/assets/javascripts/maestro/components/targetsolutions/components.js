@@ -1,1 +1,2 @@
 //= require ./navbar
+//= require ./sidenav
