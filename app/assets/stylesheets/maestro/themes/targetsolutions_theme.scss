@@ -1,9 +1,63 @@
 $color-primary: #ba3737;
+$color-primary-dark: darken($color-primary, 5%); 
 $color-secondary: #444444;
 $color-secondary-dark: darken($color-secondary, 5%);
 
+// navbar
+.navbar {
+  border: none;
+  border-radius: 0;
+  font-size: 13px;
+  min-height: 40px;
+  margin-bottom: 0;
+  
+  .nav {
+    
+    li {
+      a {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        color: #fff;        
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    
+    .dropdown {
+      .caret {
+        display: inline-block;
+        margin-left: 5px;
+      }
+      
+      .dropdown-menu > li > a {
+        color: #000;
+        @media (max-width: 767px) {
+          color: #fff;
+        }
+        font-size: 13px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+      }
+
+      .dropdown-menu > .active > a {
+        background-color: #ddd;
+        color: #000;
+      } 
+    }
+  }
+}
+
+
 #navbar--top {
   background-color: $color-secondary;
+
+  .navbar-brand {
+    color: #fff;
+    font-size: 13px;
+    height: 40px;
+    padding: 10px 15px;
+  }
 
   .navbar-brand,
   .navbar-nav {
@@ -37,80 +91,22 @@ $color-secondary-dark: darken($color-secondary, 5%);
         color: #fff !important;
         
         &:hover {
-          background-color: #b23535;
+          background-color: $color-primary-dark;
         }
       } 
     }
-    & > .active {
+    & > li.active {
       & > a {
-        background-color: #9E2F2F;
-        color: #fff;
-        
-        &:hover {
-          background-color: #9E2F2F;
-          color: #fff;
-        }
+        background-color: $color-primary-dark;
       }
     }
-    .dropdown.active {
-      .dropdown-toggle {
-        background-color: #9E2F2F;
-        color: #fff;
-      }
+    .dropdown.open {
+      background-color: $color-primary-dark;
+      color: #fff;
     }
   }
 }
 
-// navbar
-.navbar {
-  border: none;
-  border-radius: 0;
-  font-size: 13px;
-  min-height: 40px;
-  margin-bottom: 0;
-  
-  .navbar-brand {
-    color: #fff;
-    font-size: 13px;
-    height: 40px;
-    padding: 10px 15px;
-  }
-  
-  .nav {
-    padding: 0;
-    
-    li {
-      a {
-        color: #fff;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
-    
-    .dropdown {
-      .caret {
-        display: inline-block;
-        margin-left: 5px;
-      }
-      
-      .dropdown-menu > li > a {
-        color: #000;
-        font-size: 13px;
-        padding-bottom: 5px;
-        padding-top: 5px;
-      }
-
-      .dropdown-menu > .active > a {
-        background-color: #ddd;
-        color: #000;
-      } 
-    }
-  }
-}
 
 // html,
 // body,
