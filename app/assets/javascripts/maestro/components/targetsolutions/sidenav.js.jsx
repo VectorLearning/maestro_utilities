@@ -1,5 +1,4 @@
-//= require react
-//= require react_ujs
+//= require ../base/sidenav
 
 var SideNav = React.createClass({
   render: function() {

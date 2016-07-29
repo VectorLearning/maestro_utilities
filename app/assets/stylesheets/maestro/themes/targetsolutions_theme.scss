@@ -160,3 +160,18 @@ $color-sidenav-primary-dark: #444;
     }
   }
 }
+
+#footer {
+  background-color: $color-navbar-secondary;
+
+  .navbar-nav:first-child a {
+    padding-bottom: 8px;
+    padding-top: 12px;
+  }
+
+  .navbar-right {
+    span {
+      background-image: url("http://app.targetsolutions.com/tsapp/dashboard/pl_fb/library/images/pro/targetsolutions.png");
+    }
+  }
+}
