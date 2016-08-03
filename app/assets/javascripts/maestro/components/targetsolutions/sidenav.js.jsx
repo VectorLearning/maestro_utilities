@@ -2,17 +2,15 @@
 
 var SideNav = React.createClass({
   render: function() {
-    var links = [
-      {name: "Home", icon: "home", active: true},
-      {name: "Home", icon: "home"},
-      {name: "Home", icon: "home"}
-    ];
-    var navItems = links.map(function(link){
-      return <NavItem name={ link.name } icon={ link.icon } active={link.active} />
+    var links = this.props.lms_navigation.subnav.links.map(function(link){
+      return (
+        <NavItem text={ link.text } icon={ link.icon } active={link.active} />
+      );
     });
+
     return (
       <ul className="nav nav-pills nav-stacked" id="sidenav">
-        { navItems }
+        { links }
       </ul>
     );
   }
@@ -21,7 +19,7 @@ var SideNav = React.createClass({
 var NavItem = React.createClass({
   render: function() {
     return (
-      <li className={(this.props.active ? "active" : "")}><a href=""><i className={"fa fa-" + this.props.icon + " fa-2x"}></i><span>{ this.props.name }</span></a></li>
+      <li className={(this.props.active ? "active" : "")}><a href=""><i className={"fa fa-" + this.props.icon + " fa-2x"}></i><span>{ this.props.text }</span></a></li>
     );
   }
 });

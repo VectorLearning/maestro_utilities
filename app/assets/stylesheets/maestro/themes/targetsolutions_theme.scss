@@ -105,6 +105,9 @@ $color-sidenav-primary-dark: #444;
     .dropdown.open {
       background-color: $color-navbar-primary-dark;
       color: #fff;
+      & > a {
+        background-color: $color-navbar-primary-dark;
+      }
     }
   }
 }
