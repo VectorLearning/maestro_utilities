@@ -19,6 +19,7 @@ module Maestro
     # Data Objects
     autoload :Answer
     autoload :CompetencyTopic
+    autoload :User
     autoload :DeleteSession
     autoload :Profile
     autoload :Question
@@ -26,6 +27,7 @@ module Maestro
 
     # Service Objects
     autoload :GetCompetencyTopics
+    autoload :GetUsers
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
