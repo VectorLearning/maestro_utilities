@@ -12,8 +12,12 @@ module Maestro
         ensure_successful_response(response)
 
         data = parse_json(response.body)
-        data.fetch('users', [])
+        headers = response.headers
+
+        users = data.fetch('users', [])
           .map { |data| ::Maestro::Data::User.new(data) }
+
+        { headers: headers, users: users }
       end
     end
   end
