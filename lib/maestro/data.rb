@@ -20,6 +20,8 @@ module Maestro
     autoload :Answer
     autoload :CompetencyTopic
     autoload :User
+    autoload :Group
+    autoload :Category
     autoload :DeleteSession
     autoload :Profile
     autoload :Question
@@ -28,6 +30,8 @@ module Maestro
     # Service Objects
     autoload :GetCompetencyTopics
     autoload :GetUsers
+    autoload :GetGroups
+    autoload :GetCategories
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
