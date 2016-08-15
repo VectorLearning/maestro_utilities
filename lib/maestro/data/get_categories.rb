@@ -1,13 +1,12 @@
 module Maestro
   module Data
-    module GetUsers
+    module GetCategories
       extend HttpService
 
-      def self.call(session, groups)
+      def self.call(session)
         response = Maestro.connection.get do |request|
-          request.url '/v1/lms/users'
+          request.url '/v1/lms/categories'
           request.params['token'] = session.token
-          request.params['groups'] = groups
         end
 
         ensure_successful_response(response)
@@ -15,10 +14,10 @@ module Maestro
         data = parse_json(response.body)
         headers = response.headers
 
-        users = data.fetch('users', [])
-          .map { |data| ::Maestro::Data::User.new(data) }
+        categories = data.fetch('categories', [])
+          .map { |data| ::Maestro::Data::Category.new(data) }
 
-        { headers: headers, users: users }
+        { headers: headers, categories: categories }
       end
     end
   end
