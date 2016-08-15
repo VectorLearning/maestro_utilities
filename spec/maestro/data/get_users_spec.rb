@@ -18,11 +18,13 @@ module Maestro
         expect(request).to have_been_requested
       end
 
-      it 'returns array of User' do
+      it 'returns result hash' do
         request
-          .and_return(body: '{"users": [{"id": 1, "first_name": "User Name"}]}')
-        expect(response).to match_array([kind_of(User)])
-        expect(response.first.first_name).to eq('User Name')
+          .and_return(body: '{"users": [{"id": 1, "first_name": "Name"}]}')
+        expect(response.class).to eq Hash
+        expect(response.keys).to eq [:headers, :users]
+        expect(response[:users]).to match_array([kind_of(User)])
+        expect(response[:users].first.first_name).to eq('Name')
       end
     end
   end
