@@ -22,6 +22,7 @@ module Maestro
     autoload :User
     autoload :Group
     autoload :Category
+    autoload :TsCourse
     autoload :DeleteSession
     autoload :Profile
     autoload :Question
@@ -32,6 +33,7 @@ module Maestro
     autoload :GetUsers
     autoload :GetGroups
     autoload :GetCategories
+    autoload :GetTsCourses
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
