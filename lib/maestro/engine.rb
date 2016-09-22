@@ -23,7 +23,16 @@ module Maestro
     end
 
     initializer "maestro_engine.assets.precompile" do |app|
-      app.config.assets.precompile += %w( maestro/themes/targetsolutions_theme.css maestro/components/targetsolutions/components.js maestro/themes/centrelearn_theme.css maestro/components/centrelearn/components.js maestro/themes/redvector_theme.css maestro/components/redvector/components.js )
+      app.config.assets.precompile += %w(
+        maestro/components/centrelearn/components.js
+        maestro/components/dummylms/components.js
+        maestro/components/redvector/components.js
+        maestro/components/targetsolutions/components.js
+        maestro/themes/centrelearn_theme.css
+        maestro/themes/dummylms_theme.css
+        maestro/themes/redvector_theme.css
+        maestro/themes/targetsolutions_theme.css
+      )
     end
   end
 end
