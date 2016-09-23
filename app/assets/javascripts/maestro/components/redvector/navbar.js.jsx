@@ -1,3 +1,6 @@
+//= require ../shared/jquery.min
+//= require ../shared/bootstrap/collapse
+//= require ../shared/bootstrap/dropdown
 //= require ../base/navbar
 
 // create classes
