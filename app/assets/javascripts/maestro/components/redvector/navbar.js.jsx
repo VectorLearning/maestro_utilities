@@ -1,7 +1,18 @@
 //= require ../base/navbar
+//= require ../base/bs-collapse
 
 // create classes
 let NavBar = React.createClass({
+  getInitialState: function() {
+    return {
+      menuVisible: false
+    }
+  },
+  toggleMenu: function(value) {
+    this.setState({
+      menuVisible: !this.state.menuVisible
+    });
+  },
   render: function(){
     let header,
         navRibbon;
@@ -43,10 +54,10 @@ let NavBar = React.createClass({
         <nav className={this.props.lms_navigation.organization_logo_url ? "navbar pl-navbar" : "navbar navbar-inverse"} style={styles.defaultBackground}>
           <div className="container-fluid">
             <div className="navbar-header">
-              <HamburgerButton styles={styles} />
+              <HamburgerButton styles={styles} toggleMenu={this.toggleMenu} />
               <NavBrand linkTo="#" text="RedVector" />
             </div>
-            <div className="collapse navbar-collapse" id="navbar-collapse">
+            <div className={`collapse navbar-collapse ${this.state.menuVisible ? 'in' : ''}`}>
               <NavMenu links={this.props.lms_navigation.navbar.links} styles={styles} />
             </div>
           </div>
@@ -58,6 +69,9 @@ let NavBar = React.createClass({
 });
 
 let HamburgerButton = React.createClass({
+  clickHandler: function(){
+    this.props.toggleMenu();
+  },
   getInitialState: function(){
     return {hover: false}
   },
@@ -73,7 +87,7 @@ let HamburgerButton = React.createClass({
       linkStyle = styles.linkNormal;
     }
     return (
-      <button type="button" style={linkStyle} className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+      <button type="button" style={linkStyle} className="navbar-toggle" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.clickHandler}>
         <span className="sr-only">Toggle navigation</span>
         <i className="fa fa-bars"></i>
         <span className="text">Menu</span>
@@ -117,7 +131,13 @@ let NavMenu = React.createClass({
 
 let NavLinkDropdown = React.createClass({
   getInitialState: function(){
-    return {hover: false}
+    return {
+      expanded: false,
+      hover: false
+    }
+  },
+  toggleDropdown: function(){
+    this.setState({expanded: !this.state.expanded});
   },
   toggleHover: function() {
     this.setState({hover: !this.state.hover});
@@ -135,12 +155,12 @@ let NavLinkDropdown = React.createClass({
     let links = this.props.links.map(function(link, index){
       let active = isActive(link.active);
       return (
-        <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} />
+        <NavLink linkTo={link.link} text={link.text} active={active} styles={styles} key={index} toggleDropdown={this.toggleDropdown} />
       );
     });
     return (
-      <li className={"dropdown " + (active ? "active" : "")}>
-        <a href="#" style={linkStyle} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+      <li className={`dropdown ${active ? 'active' : ''} ${this.state.expanded ? 'open' : ''}`}>
+        <a href="#" style={linkStyle} className="dropdown-toggle" role="button" aria-haspopup="true" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} onClick={this.toggleDropdown}>
           {this.props.text}
           <span className="caret"></span>
         </a>
@@ -169,7 +189,7 @@ let NavLink = React.createClass({
     }
     return(
       <li className={(this.props.active ? "active" : "")} key={this.props.key}>
-        <a style={linkStyle} href={this.props.linkTo} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>{this.props.text}</a>
+        <a style={linkStyle} href={this.props.linkTo} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} >{this.props.text}</a>
       </li>
     );
   }
