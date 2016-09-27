@@ -18,7 +18,7 @@ var NavBar = React.createClass({
             <ul className="nav navbar-nav navbar-right hidden-xs">
               <NavProfile first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </ul>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
+            <div className="collapse navbar-collapse" id="navbar-collapse">
               <NavMenu classes="visible-xs-block" links={this.props.lms_navigation.navbar.links} first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </div>
           </div>
@@ -61,15 +61,15 @@ var NavProfile = React.createClass({
 var NavMenu = React.createClass({
   render: function(){
     var that = this;
-    var links = this.props.links.map(function(link){
+    var links = this.props.links.map(function(link, index){
       if(link.hasOwnProperty('sublinks')) {
         return (
-          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} />
+          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} key={index} />
         );
       }
       else {
         return (
-          <NavLink linkTo={link.link} text={link.text} active={link.active} />
+          <NavLink linkTo={link.link} text={link.text} active={link.active} key={index} />
         );
       }
     });
@@ -94,9 +94,9 @@ var NavMenu = React.createClass({
 
 var NavLinkDropdown = React.createClass({
   render: function(){
-    var links = this.props.links.map(function(link){
+    var links = this.props.links.map(function(link, index){
       return (
-        <NavLink linkTo={link.link} text={link.text} active={link.active} />
+        <NavLink linkTo={link.link} text={link.text} active={link.active} key={index} />
       );
     });
     return (
