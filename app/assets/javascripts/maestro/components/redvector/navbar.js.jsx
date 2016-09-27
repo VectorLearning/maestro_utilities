@@ -1,5 +1,4 @@
 //= require ../base/navbar
-//= require ../base/bs-collapse
 
 // create classes
 let NavBar = React.createClass({

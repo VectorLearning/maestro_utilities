@@ -1,14 +1,20 @@
 //= require ../base/navbar
 
 var NavBar = React.createClass({
+  getInitialState: function(){
+    return { menuShown: false }
+  },
+  toggleMenu: function() {
+    this.setState({ menuShown: !this.state.menuShown });
+  },
   render: function(){
     return(
-      <div id="navbar">
+      <div id="navbar" className="nav-container">
         <nav className="navbar navbar-inverse" id="navbar--top">
           <div className="container-fluid">
             <div className="navbar-header">
               <NavBrand linkTo="#" text={this.props.organization_name} />
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" onClick={this.toggleMenu}>
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
@@ -18,7 +24,7 @@ var NavBar = React.createClass({
             <ul className="nav navbar-nav navbar-right hidden-xs">
               <NavProfile first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </ul>
-            <div className="collapse navbar-collapse" id="navbar-collapse">
+            <div className={`collapse navbar-collapse ${this.state.menuShown ? 'in': ''}`} id="navbar-collapse">
               <NavMenu classes="visible-xs-block" links={this.props.lms_navigation.navbar.links} first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </div>
           </div>
@@ -42,10 +48,16 @@ var NavBrand = React.createClass({
 });
 
 var NavProfile = React.createClass({
+  getInitialState: function(){
+    return { ddVisible: false }
+  },
+  toggleDropdown: function() {
+    this.setState({ ddVisible: !this.state.ddVisible });
+  },
   render: function() {
     return (
-      <li className="dropdown">
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <li className={`dropdown ${this.state.ddVisible ? 'open' : ''}`}>
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onClick={this.toggleDropdown}>
           {this.props.first_name} {this.props.last_name}
           <span className="caret"></span>
         </a>
@@ -93,6 +105,12 @@ var NavMenu = React.createClass({
 });
 
 var NavLinkDropdown = React.createClass({
+  getInitialState: function(){
+    return { ddVisible: false }
+  },
+  toggleDropdown: function() {
+    this.setState({ ddVisible: !this.state.ddVisible });
+  },
   render: function(){
     var links = this.props.links.map(function(link, index){
       return (
@@ -100,8 +118,8 @@ var NavLinkDropdown = React.createClass({
       );
     });
     return (
-      <li className={"dropdown " + (this.props.active ? "active" : "")}>
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <li className={`dropdown ${this.props.active ? 'active' : ''} ${this.state.ddVisible ? 'open' : ''}`}>
+        <a href="#" className="dropdown-toggle" role="button" aria-haspopup="true" onClick={this.toggleDropdown}>
           {this.props.text}
           <span className="caret"></span>
         </a>
