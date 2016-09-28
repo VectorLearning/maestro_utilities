@@ -18,15 +18,7 @@ body {
 }
 
 .nav-container {
-  // @import 'shared/normalize';
-  // max-width: 1008px;
-  // margin: 0 auto;
-
-  // BOOTSTRAP RE-IMPLEMENTATION
-
   @import 'shared/bootstrap';
-
-  // .row { @include make-row; }
 
   .container-fluid {
     @include container-fixed;
@@ -38,8 +30,6 @@ body {
       text-decoration: none;
     }
   }
-
-  // END BOOTSTRAP RE-IMPLEMENTATION
 
   .container,
   .container-fluid {
@@ -279,7 +269,6 @@ body {
       font-weight: bold;
       font-size: 1em;
       text-align: center;
-      //display: block;
       padding-top: 0.75em;
       padding-bottom: 0.75em;
       border-bottom: 6px solid transparent;
@@ -307,8 +296,6 @@ body {
       }
     }
   }
-
-  // helpers
   .margin-right-5 { margin-right: 0.25em; }
 }
 
