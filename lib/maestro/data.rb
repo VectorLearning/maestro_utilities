@@ -20,6 +20,7 @@ module Maestro
     autoload :Answer
     autoload :CompetencyTopic
     autoload :User
+    autoload :SelectedUser
     autoload :Group
     autoload :Category
     autoload :TsCourse
@@ -30,7 +31,9 @@ module Maestro
 
     # Service Objects
     autoload :GetCompetencyTopics
+    autoload :GetUser
     autoload :GetUsers
+    autoload :GetSelectedUsers
     autoload :GetGroups
     autoload :GetCategories
     autoload :GetTsCourses
