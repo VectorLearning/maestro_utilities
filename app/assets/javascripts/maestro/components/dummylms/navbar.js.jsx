@@ -14,7 +14,7 @@ var NavBar = React.createClass({
           <div className="container-fluid">
             <div className="navbar-header">
               <NavBrand linkTo="#" text={this.props.organization_name} />
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" onClick={this.toggleMenu}>
+              <button type="button" className="navbar-toggle collapsed" onClick={this.toggleMenu}>
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
@@ -24,7 +24,7 @@ var NavBar = React.createClass({
             <ul className="nav navbar-nav navbar-right hidden-xs">
               <NavProfile first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </ul>
-            <div className={`collapse navbar-collapse ${this.state.menuShown ? 'in': ''}`} id="navbar-collapse">
+            <div className={`collapse navbar-collapse ${this.state.menuShown ? 'in': ''}`}>
               <NavMenu classes="visible-xs-block" links={this.props.lms_navigation.navbar.links} first_name={this.props.first_name} last_name={this.props.last_name} profile_url={this.props.additional_data.profile_url} />
             </div>
           </div>
@@ -57,7 +57,7 @@ var NavProfile = React.createClass({
   render: function() {
     return (
       <li className={`dropdown ${this.state.ddVisible ? 'open' : ''}`}>
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onClick={this.toggleDropdown}>
+        <a href="#" className="dropdown-toggle" role="button" aria-haspopup="true" onClick={this.toggleDropdown}>
           {this.props.first_name} {this.props.last_name}
           <span className="caret"></span>
         </a>
