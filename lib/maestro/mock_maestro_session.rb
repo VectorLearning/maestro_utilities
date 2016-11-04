@@ -7,7 +7,7 @@ class MockMaestroSession
   end
 
   def user_id
-    user.id
+    user.lms_u_id
   end
 
   def valid?
