@@ -2,9 +2,9 @@
 
 var SideNav = React.createClass({
   render: function() {
-    var links = this.props.lms_navigation.subnav.links.map(function(link){
+    var links = this.props.lms_navigation.subnav.links.map(function(link, index){
       return (
-        <NavItem text={ link.text } icon={ link.icon } active={link.active} />
+        <NavItem text={ link.text } icon={ link.icon } active={link.active} key={index} />
       );
     });
 
