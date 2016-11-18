@@ -1,13 +1,13 @@
 #centrelearn-top-navbar {
   height: 77px;
   min-height: 77px;
-  
+
   #centrelearn-top-navbar-white {
     background-color: #fff;
     float: left;
     height: 100%;
     width: 33%;
-    
+
     img {
       float: right;
       margin: 25px;
@@ -15,7 +15,7 @@
       vertical-align: middle;
     }
   }
-  
+
   #centrelearn-top-navbar-blue {
     background-color: #3F7BB8;
     color: #fff;
@@ -26,7 +26,7 @@
     height: 100%;
     padding: 30px 10px;
     width: 67%;
-    
+
     .btn {
       float: right;
       position: relative;
@@ -41,15 +41,15 @@
   border-radius: 0;
   height: 40px;
   min-height: 40px;
-  
+
   .navbar-brand {
     height: 40px;
     padding: 10px 15px;
   }
-  
+
   .navbar-nav {
-    padding: 0; 
-    
+    padding: 0;
+
     li {
       a {
         color: #fff;
@@ -61,7 +61,7 @@
         text-transform: uppercase;
       }
     }
-    
+
     .active {
       a {
         background-color: #2D5C8E !important;
