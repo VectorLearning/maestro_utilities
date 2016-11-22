@@ -6,7 +6,7 @@ $color-navbar-secondary: #444;
 $color-navbar-secondary-dark: darken($color-navbar-secondary, 5%);
 $color-sidenav-primary: #686868;
 $color-sidenav-primary-dark: #444;
-$sidenav-width: 59px;
+$sidenav-width: 55px;
 $sidenav-width-expanded: 241px;
 
 html {
@@ -21,11 +21,6 @@ body {
 
 .nav-container {
   @import 'shared/bootstrap';
-
-  img {
-    // margin-left: -15px;
-    // margin-right: -15px;
-    max-width: 100%; }
 
   // navbar
   .navbar {
@@ -146,16 +141,20 @@ body {
 
     nav {
       background-color: $color-sidenav-primary;
-      width : $sidenav-width;
+      width: $sidenav-width;
+      transition: width 0.1s;
 
-      .text { display: none; }
+      .hidden-text { display: none; }
       &:hover {
         width: $sidenav-width-expanded;
-        .text { display: inline; }
-        > ul > li.active {
-          .collapse {
-            display: block;
+        .hidden-text { display: inline; }
+        ul {
+          &.collapse {
+            max-height: 999px;
+            transition: all 1.5s;
+            &.in {transition: all 1.5s;}
           }
+          ul a { padding-left: 40px; }
         }
       }
       a {
@@ -168,32 +167,42 @@ body {
           margin-right: 15px;
           width: 30px;
         }
-        i.fa-chevron-down { float: right; }
+        i.fa-chevron-down {
+          float: right;
+          position: relative;
+          top: 0.25em;
+        }
       }
       ul {
         list-style-type: none;
         padding-left: 0;
+        &.collapse {
+          max-height: 0px;
+          overflow: hidden;
+          transition: all 0s;
+        }
       }
       li {
         display: block;
-        &.active > a {
-          background-color: $color-sidenav-primary-dark !important;
+
+        &.active {
+          background-color: lighten($color-sidenav-primary-dark, 8%);
+          > a {
+            background-color: $color-sidenav-primary-dark !important;
+          }
+        }
+        > a {
+          &:hover {
+            background-color: lighten($color-sidenav-primary-dark, 8%);
+          }
         }
       }
       > ul {
         > li {
-          border-left: 4px solid transparent;
-          &.active,
-          &:hover {
-            border-color: $color-navbar-primary;
+          > a > .text {
+            position: relative;
+            top: -0.5em;
           }
-          &.active ul li {
-            a {
-              background-color: lighten($color-sidenav-primary-dark, 8%);
-              &:hover { background-color: $color-sidenav-primary-dark; }
-            }
-          }
-          &:hover a { background-color: lighten($color-sidenav-primary-dark, 8%) }
         }
       }
     }
