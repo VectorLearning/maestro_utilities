@@ -1,3 +1,4 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
 
 $color-navbar-primary: #ba3737;
@@ -21,6 +22,7 @@ body {
 
 .nav-container {
   @import 'shared/bootstrap';
+  font-size: 13px;
 
   // navbar
   .navbar {
@@ -134,10 +136,15 @@ body {
   &#sidenav {
     color: #fff;
     float: left;
-    margin-left: -15px;
+    // margin-left: -15px;
     position: absolute;
     width : $sidenav-width;
     z-index: 5;
+
+    .container &,
+    .container-fluid & {
+      margin-left: -15px;
+    }
 
     nav {
       background-color: $color-sidenav-primary;
