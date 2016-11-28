@@ -35,6 +35,7 @@ module Maestro
     autoload :GetUsers
     autoload :GetSelectedUsers
     autoload :GetGroups
+    autoload :GetUsersGroups
     autoload :GetCategories
     autoload :GetTsCourses
     autoload :GetProfile
