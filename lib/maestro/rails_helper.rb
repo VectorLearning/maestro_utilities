@@ -52,20 +52,20 @@ RSpec.configure do |config|
       JSON.parse(response.body)
     end
 
-    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), user: mock_user, organization: mock_organization
+    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), user: mock_user, organization: mock_organization, additional_data: {}
       uri = URI.parse(Maestro.config.host)
       uri.user = Maestro.config.auth_name
       uri.password = Maestro.config.auth_pass
       uri.path = '/v1/sessions'
       stub_request(:patch, uri)
         .with(:body => {session: {token: token}})
-        .and_return(body: JSON.generate(session_data(expires, token, user, organization)))
+        .and_return(body: JSON.generate(session_data(expires, token, user, organization, additional_data)))
       params = {token: token, expires: expires}
       signed = Maestro::Signature.new(params).to_query
       visit("/?%s" % signed)
     end
 
-    def session_data(expires, token, user, organization)
+    def session_data(expires, token, user, organization, additional_data)
       {
         token: token,
         app_id: Maestro.config.app_id,
@@ -91,7 +91,7 @@ RSpec.configure do |config|
               ]
             }
           }
-        }
+        }.merge(additional_data: additional_data)
       }
     end
 
@@ -111,9 +111,9 @@ RSpec.configure do |config|
       end
     end
 
-    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32)
+    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), additional_data: {}
       before(:each) do
-        with_valid_maestro_session(expires: expires, token: token)
+        with_valid_maestro_session(expires: expires, token: token, additional_data: additional_data)
       end
     end
   end
