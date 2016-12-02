@@ -111,9 +111,9 @@ RSpec.configure do |config|
       end
     end
 
-    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), additional_data: {}
+    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), user: mock_user, organization: mock_organization, additional_data: {}
       before(:each) do
-        with_valid_maestro_session(expires: expires, token: token, additional_data: additional_data)
+        with_valid_maestro_session(expires: expires, token: token, additional_data: additional_data, user: user, organization: organization)
       end
     end
   end
