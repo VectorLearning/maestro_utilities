@@ -41,6 +41,7 @@ module Maestro
     autoload :GetProfile
     autoload :GetQuestionsByTopic
     autoload :GetSession
+    autoload :UpdateSelectedUserList
     autoload :UpdateUserAssessment
     autoload :UpdateUserCourse
 
