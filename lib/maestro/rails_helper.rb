@@ -74,9 +74,9 @@ RSpec.configure do |config|
         expires_at: Time.at(expires),
         expires_at_epoch: expires,
         lms_data: {
-          lms_id: "TargetSolutions",
-          user_id: user.id,
-          organization_id: organization.id,
+          lms_id: user.lms_id,
+          user_id: user.lms_u_id,
+          organization_id: organization.lms_organization_id,
           organization_name: organization.name,
           first_name: user.first_name,
           last_name: user.last_name,
@@ -96,11 +96,11 @@ RSpec.configure do |config|
     end
 
     def mock_user
-      OpenStruct.new(id: '1234', first_name: 'Billy', last_name: 'Willis', email: 'example@example.com', role: 'admin')
+      OpenStruct.new(id: '1234', lms_u_id: '123', first_name: 'Billy', last_name: 'Willis', email: 'example@example.com', role: 'admin')
     end
 
     def mock_organization
-      OpenStruct.new(id: '9876', name: 'Mock Organization')
+      OpenStruct.new(id: '9876', lms_organization_id: '123',  name: 'Mock Organization')
     end
   end
 
@@ -111,9 +111,9 @@ RSpec.configure do |config|
       end
     end
 
-    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), additional_data: {}
+    def with_valid_maestro_session expires: 1.hour.from_now.to_i, token: SecureRandom.urlsafe_base64(32), user: mock_user, organization: mock_organization, additional_data: {}
       before(:each) do
-        with_valid_maestro_session(expires: expires, token: token, additional_data: additional_data)
+        with_valid_maestro_session(expires: expires, token: token, additional_data: additional_data, user: user, organization: mock_organization)
       end
     end
   end
