@@ -44,6 +44,8 @@ module Maestro
     autoload :UpdateSelectedUserList
     autoload :UpdateUserAssessment
     autoload :UpdateUserCourse
+    autoload :CreateNotification
+    autoload :CreateBulkNotifications
 
     autoload :HttpService
   end
