@@ -3,11 +3,13 @@ module Maestro
     module GetUsers
       extend HttpService
 
-      def self.call(session, groups)
+      def self.call(session, groups, page, search)
         response = Maestro.connection.get do |request|
           request.url '/v1/lms/users'
           request.params['token'] = session.token
-          request.params['groups'] = groups
+          request.params['groups'] = groups if groups
+          request.params['page'] = page if page
+          request.params['search'] = search if search
         end
 
         ensure_successful_response(response)

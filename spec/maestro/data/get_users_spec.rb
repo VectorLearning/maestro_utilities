@@ -7,9 +7,11 @@ module Maestro
       let(:path)     { '/v1/lms/users' }
       let(:query)    { "token=#{token}" }
       let(:groups)   { [] }
-      let(:response) { described_class.call(session, groups) }
+      let(:page)     { nil }
+      let(:search)   { nil }
+      let(:response) { described_class.call(session, groups, page, search) }
       let(:session)  { double('Session', token: token, user_id: user_id) }
-      let(:user_id) { 1 }
+      let(:user_id)  { 1 }
       let(:token)    { 'token' }
 
       it_behaves_like 'an HTTP error handling service'
