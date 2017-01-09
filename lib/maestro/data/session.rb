@@ -16,6 +16,7 @@ module Maestro
       attribute :lms_data,          Hash
       attribute :lms_id,            String
       attribute :token,             String
+      attribute :timezone,          String
 
       lms_data_attribute :email
       lms_data_attribute :first_name
@@ -30,6 +31,10 @@ module Maestro
 
       def valid?
         @valid
+      end
+
+      def timezone
+        lms_data.dig('additional_data', 'timezone')
       end
     end
   end
