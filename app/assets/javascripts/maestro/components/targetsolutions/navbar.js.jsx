@@ -1,5 +1,3 @@
-//= require ../base/navbar
-
 var NavBar = React.createClass({
   getInitialState: function(){
     return { menuShown: false }
@@ -8,8 +6,14 @@ var NavBar = React.createClass({
     this.setState({ menuShown: !this.state.menuShown });
   },
   render: function(){
+    let themeClass = 'default';
+
+    if (this.props.lms_navigation.theme) {
+      themeClass = this.props.lms_navigation.theme;
+    }
+
     return(
-      <div id="navbar" className="nav-container">
+      <div id="navbar" className={`nav-container ${themeClass}`}>
         <nav className="navbar navbar-inverse" id="navbar--top">
           <div className="container-fluid">
             <div className="navbar-header">

@@ -1,7 +1,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
 
-$color-navbar-primary: #ba3737;
+$color-navbar-primary: #2689BF;
 $color-navbar-primary-dark: darken($color-navbar-primary, 5%);
 $color-navbar-secondary: #444;
 $color-navbar-secondary-dark: darken($color-navbar-secondary, 5%);
@@ -197,6 +197,7 @@ body {
           > a {
             background-color: $color-sidenav-primary-dark !important;
           }
+          a { border-left: 4px solid $color-navbar-primary; }
         }
         > a {
           &:hover {
@@ -232,3 +233,42 @@ body {
 }
 
 #page-contents { padding-left: $sidenav-width; }
+
+
+// THEMES
+
+$colorProfiles: (
+  city: #B24D3E,
+  default: #2689BF,
+  enterprise: #745BC3,
+  enterpriseBlack: #111,
+  enterprisePurple: #745BC3,
+  fire: #ba3737,
+  lawenforcement: #334F77,
+  policeone: #334f77,
+  risk: #B24D3E,
+  school: #589972,
+  sdrma: #C8A24B,
+  water: #2689BF,
+);
+
+@each $name, $color in $colorProfiles {
+  $color-dark: darken($color, 5%);
+
+  #navbar.#{$name} {
+    #navbar--bottom {
+      background-color: $color;
+
+      .navbar-nav {
+        & > li > a:hover,
+        & > li.active > a,
+        .dropdown.open,
+        .dropdown.open > a { background-color: $color-dark; }
+      }
+    }
+  }
+
+  #sidenav.#{$name} nav li.active a {
+    border-left: 4px solid $color;
+  }
+}
