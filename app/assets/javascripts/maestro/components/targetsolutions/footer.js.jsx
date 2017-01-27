@@ -1,5 +1,3 @@
-//= require ../base/footer
-
 var Footer = React.createClass({
   render: function() {
     return (

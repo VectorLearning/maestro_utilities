@@ -1,7 +1,11 @@
-//= require ../base/sidenav
-
 let SideNav = React.createClass({
   render: function() {
+    let themeClass = 'default';
+
+    if (this.props.lms_navigation.theme) {
+      themeClass = this.props.lms_navigation.theme;
+    }
+
     let links = this.props.lms_navigation.subnav.links.map(function(item, index){
       return (
         <NavItem key={index} item={item} />
@@ -9,7 +13,7 @@ let SideNav = React.createClass({
     });
 
     return (
-      <div className="nav-container" id="sidenav">
+      <div className={`nav-container ${themeClass}`} id="sidenav">
         <nav role="navigation">
           <ul>
             { links }
