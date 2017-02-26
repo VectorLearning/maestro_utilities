@@ -38,6 +38,7 @@ class NavBar extends React.Component {
               </button>
             </div>
             <NavBarDropdown classes='navbar-right hidden-xs' text={this.name} links={this.links} />
+            <NavBarNotifications classes='navbar-right' />
             <div className={`collapse navbar-collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar-collapse'>
               <NavBarDropdown classes='visible-xs' text={this.name} links={this.links} />
             </div>
