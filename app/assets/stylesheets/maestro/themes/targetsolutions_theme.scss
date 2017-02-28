@@ -272,3 +272,182 @@ $colorProfiles: (
     border-left: 4px solid $color;
   }
 }
+
+
+.notification-container {
+  background-color: #fff;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-width: 402px;
+  width: 402px;
+}
+.notification-heading {
+  background: #444;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius-topright: 6px;
+  -moz-background-clip: padding;
+  border-top-right-radius: 6px;
+  background-clip: padding-box;
+  color: #fff;
+  font-weight: bold;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 0 0 12px;
+}
+.notification-content {
+  padding: 0;
+}
+.notification-content ul {
+  margin: 0;
+  padding: 0;
+}
+.notification-content ul li {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  border-bottom: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  clear: both;
+  overflow: auto;
+  padding: 8px;
+}
+.notification-content ul li a {
+  border: none;
+  color: #333333;
+  font-size: 13px;
+  line-height: 22.75px;
+  padding: 0;
+}
+.notification-content ul li a:hover {
+  background: #efefef;
+}
+.notification-content ul li .icon-24 {
+  display: inline-block;
+  float: none;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  width: 25px;
+}
+.notification-content ul li .titleAlt {
+  color: #333333;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.5;
+  vertical-align: middle;
+  width: 330px;
+}
+.notification-content ul li:first-child {
+  border-top: none;
+}
+.notification-content ul li:last-child {
+  border-bottom: none;
+}
+.notification-content ul li:last-child a {
+  color: #337ab7;
+  font-weight: normal;
+}
+.notification-content ul li:hover {
+  background-color: #efefef;
+}
+.navbar-notifications.highlight {
+  color: #ffff00 !important;
+}
+.navbar-notifications.highlight .badge {
+  background-color: #ffff00 !important;
+  color: #000 !important;
+}
+.popover {
+  background-color: #fff;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-width: 402px;
+  width: 402px;
+}
+.popover .popover-title {
+  background: #444;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius-topright: 6px;
+  -moz-background-clip: padding;
+  border-top-right-radius: 6px;
+  background-clip: padding-box;
+  color: #fff;
+  font-weight: bold;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 0 0 12px;
+}
+.popover .popover-content {
+  padding: 0;
+}
+.popover .popover-content ul {
+  margin: 0;
+  padding: 0;
+}
+.popover .popover-content ul li {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+  border-bottom: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  clear: both;
+  overflow: auto;
+  padding: 8px;
+}
+.popover .popover-content ul li a {
+  border: none;
+  color: #333333;
+  font-size: 13px;
+  line-height: 22.75px;
+  padding: 0;
+}
+.popover .popover-content ul li a:hover {
+  background: #efefef;
+}
+.popover .popover-content ul li .icon-24 {
+  display: inline-block;
+  float: none;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  width: 25px;
+}
+.popover .popover-content ul li .titleAlt {
+  color: #333333;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.5;
+  vertical-align: middle;
+  width: 330px;
+}
+.popover .popover-content ul li:first-child {
+  border-top: none;
+}
+.popover .popover-content ul li:last-child {
+  border-bottom: none;
+}
+.popover .popover-content ul li:last-child a {
+  color: #337ab7;
+  font-weight: normal;
+}
+.popover .popover-content ul li:hover {
+  background-color: #efefef;
+}
