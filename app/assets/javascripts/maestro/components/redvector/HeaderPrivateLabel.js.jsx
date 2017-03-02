@@ -17,7 +17,7 @@ let HeaderPrivateLabel = React.createClass({
 
   render() {
     return (
-      <section className="container-fluid pl-header">
+      <section className="pl-header">
         <div className="row top-links">
           {this.renderLinks()}
           <div className="col-xs-12">

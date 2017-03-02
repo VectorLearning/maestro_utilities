@@ -5,6 +5,8 @@
 //= require ./NavigationRibbon
 //= require ./NavMenu
 
+const DEFAULT_HEADER_WIDTH = 1300;
+
 let colors = {
   background: '',
   text: '',
@@ -21,6 +23,12 @@ let styles = {
 const NavBar = React.createClass({
   getInitialState() {
     return { menuVisible: false };
+  },
+
+  getNavLinks() {
+    if (this.props.lms_navigation.navbar.hasOwnProperty('links')) {
+      return this.props.lms_navigation.navbar.links;
+    }
   },
 
   getStyles() {
@@ -46,6 +54,13 @@ const NavBar = React.createClass({
       return JSON.parse(this.props.additional_data.aicc);
     }
     return false;
+  },
+
+  getMaxWidth() {
+    if (this.props.maxWidth) {
+      return this.props.maxWidth;
+    }
+    return DEFAULT_HEADER_WIDTH;
   },
 
   toggleMenu() {
@@ -87,30 +102,40 @@ const NavBar = React.createClass({
     const { lms_navigation } = this.props;
     const is_pl = lms_navigation.organization_logo_url;
 
+    const maxWidthStyle = {
+      maxWidth: this.getMaxWidth(),
+      width: 'auto'
+    };
+
     if (lms_navigation.hasOwnProperty('organization_colors')) {
       styles = this.getStyles();
     }
 
     return (
-      <div className={is_pl ? 'nav-container pl-menu' : 'nav-container'}>
-        {this.renderHeader()}
-        <nav
-          className={is_pl ? 'navbar pl-navbar' : 'navbar navbar-inverse'}
-          style={styles.defaultBackground}
-        >
-          <div className="container-fluid">
+      <div className={`nav-container ${is_pl ? 'pl-menu' : ''}`}>
+          <div className="centered" style={maxWidthStyle}>
+            {this.renderHeader()}
+          </div>
+          <nav
+            className={`navbar ${is_pl ? 'pl-navbar' : 'navbar-inverse'}`}
+            style={styles.defaultBackground}
+          >
             <div className="navbar-header">
               <HamburgerButton styles={styles} toggleMenu={this.toggleMenu} />
               <a className="navbar-brand sr-only" href="/">
                 RedVector
               </a>
             </div>
-            <div className={`collapse navbar-collapse ${this.state.menuVisible ? 'in' : ''}`}>
-              <NavMenu links={lms_navigation.navbar.links} styles={styles} />
+            <div
+              style={maxWidthStyle}
+              className={`centered collapse navbar-collapse ${this.state.menuVisible ? 'in' : ''}`}
+            >
+              <NavMenu links={this.getNavLinks()} styles={styles} />
             </div>
+          </nav>
+          <div className="centered" style={maxWidthStyle}>
+            {this.renderNavRibbon()}
           </div>
-        </nav>
-        {this.renderNavRibbon()}
       </div>
     );
   }

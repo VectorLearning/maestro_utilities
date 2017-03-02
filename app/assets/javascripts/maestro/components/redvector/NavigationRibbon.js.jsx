@@ -12,10 +12,8 @@ const NavigationRibbon = React.createClass({
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="rv-ribbon">
-          {this.renderLinks()}
-        </div>
+      <div className="rv-ribbon">
+        {this.renderLinks()}
       </div>
     );
   }
