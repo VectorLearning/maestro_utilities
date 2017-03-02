@@ -146,6 +146,23 @@ body {
       margin-left: -15px;
     }
 
+    &.home {
+      width: $sidenav-width-expanded;
+      .hidden-text { display: inline; }
+      ul {
+        &.collapse {
+          max-height: 999px;
+          transition: all 1.5s;
+          &.in {transition: all 1.5s;}
+        }
+        ul a { padding-left: 40px; }
+      }
+
+      nav {
+        width: $sidenav-width-expanded!important;
+      }
+    }
+
     nav {
       background-color: $color-sidenav-primary;
       width: $sidenav-width;
@@ -212,6 +229,41 @@ body {
             top: -0.5em;
           }
         }
+      }
+    }
+  }
+
+  #sidenav__avatar {
+    height: 200px;
+    width: 241px;
+    background-color: $color-sidenav-primary;
+
+    a {
+      background: #000;
+      -webkit-border-radius: 0;
+      -webkit-background-clip: padding-box;
+      -moz-border-radius: 0;
+      -moz-background-clip: padding;
+      border-radius: 0;
+      background-clip: padding-box;
+      color: #fff;
+      font-size: 15px;
+      opacity: 1;
+      padding: 8px 1px 7px 3px;
+      width: 30px;
+      height: 30px;
+      line-height: 10px;
+      position: absolute;
+      z-index: 3;
+      right: 0;
+      top: 0;
+      display: none;
+    }
+
+
+    &:hover {
+      a {
+        display: block;
       }
     }
   }
