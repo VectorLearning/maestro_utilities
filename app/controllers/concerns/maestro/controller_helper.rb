@@ -14,7 +14,7 @@ module Maestro
         else
           instance_exec(&Maestro.config.after_invalid_signature)
         end
-      else signature_params_present?
+      elsif signature_params_present?
         if Maestro::Signature.valid?(signature_params)
           session[:maestro_token] = signature_params[:token]
         else
@@ -24,10 +24,10 @@ module Maestro
     end
 
     def header_params_present?
-      header_signature_params[:expires] &&
-      header_signature_params[:signature] &&
-      header_signature_params[:token] &&
-      header_signature_params[:token] != session[:maestro_token]
+      header_params[:expires] &&
+      header_params[:signature] &&
+      header_params[:token] &&
+      header_params[:token] != session[:maestro_token]
     end
 
     def header_params
