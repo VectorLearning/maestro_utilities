@@ -24,10 +24,10 @@ module Maestro
     end
 
     def header_params_present?
-      header_params[:expires] &&
-      header_params[:signature] &&
-      header_params[:token] &&
-      header_params[:token] != session[:maestro_token]
+      header_params[:expires].present? &&
+        header_params[:signature].present? &&
+        header_params[:token].present? &&
+        header_params[:token].present? != session[:maestro_token]
     end
 
     def header_params
