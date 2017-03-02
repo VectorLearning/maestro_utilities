@@ -5,4 +5,5 @@
 //= require ./sidenav/SideNav
 //= require ./sidenav/SideNavLink
 //= require ./sidenav/SideNavMenu
+//= require ./sidenav/SideNavAvatar
 //= require ./footer
