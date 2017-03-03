@@ -18,9 +18,9 @@ class SideNavMenu extends React.Component {
   }
 
   toggleCollapse () {
-    this.setState = {
+    this.setState({
       isOpen: !this.state.isOpen
-    }
+    })
   }
 
   render () {

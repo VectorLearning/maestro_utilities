@@ -1,6 +1,8 @@
-const SideNav = ({theme = 'default', links = [], controller = 'home'}) => (
+const SideNav = ({theme = 'default', links = [], controller = 'home', avatar = ''}) => (
   <div className={`nav-container ${theme} ${controller}`} id='sidenav'>
-    <SideNavAvatar />
+    {controller === 'home'
+      ? <SideNavAvatar avatar={avatar} />
+      : null}
     <nav role='navigation'>
       <ul>
         {links[controller].map((item, index) => {

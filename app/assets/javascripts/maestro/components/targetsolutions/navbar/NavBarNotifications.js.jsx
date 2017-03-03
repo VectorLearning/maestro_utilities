@@ -25,16 +25,24 @@ class NavBarNotifications extends React.Component {
       }
     })
 
-    // $(this.refs.notificationsAdmin).popover({
-    //   container: 'body',
-    //   content: function () {
-    //     return '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>'
-    //   },
-    //   html: true,
-    //   placement: 'bottom',
-    //   title: 'My Notifications',
-    //   trigger: 'focus'
-    // })
+    $.ajax('/home', {
+      success: function () {
+        console.log('success')
+        $(that.refs.notificationsAdmin).popover({
+          container: 'body',
+          content: function () {
+            return '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>'
+          },
+          html: true,
+          placement: 'bottom',
+          title: 'My Notifications',
+          trigger: 'focus'
+        })
+      },
+      error: function () {
+        console.log('error')
+      }
+    })
   }
 
   render () {
