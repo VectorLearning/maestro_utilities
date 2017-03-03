@@ -23,11 +23,15 @@ class NavBarDropdown extends React.Component {
     })
   }
 
+  componentDidMount () {
+    $(this.refs.dropdown).dropdown()
+  }
+
   render () {
     return (
       <ul className={`nav navbar-nav ${this.classes}`}>
         <li className={`dropdown ${this.isActive ? 'active' : ''} ${this.state.isOpen ? 'open' : ''}`}>
-          <a href='#' className='dropdown-toggle' onClick={this.toggleDropdown}>
+          <a href='#' className='dropdown-toggle' ref='dropdown' data-toggle='dropdown'>
             {this.text}
             <span className='caret'></span>
           </a>
