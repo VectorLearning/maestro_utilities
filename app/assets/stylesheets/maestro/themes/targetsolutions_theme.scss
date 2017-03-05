@@ -208,7 +208,10 @@ body {
       }
       li {
         display: block;
-
+        a { border-left: 4px solid $color-sidenav-primary; }
+        &:hover {
+          a { border-left: 4px solid $color-navbar-primary; }
+        }
         &.active {
           background-color: lighten($color-sidenav-primary-dark, 8%);
           > a {
@@ -234,8 +237,9 @@ body {
   }
 
   #sidenav__avatar {
-    height: 200px;
+    height: 240px;
     width: 241px;
+    padding: 15px;
     background-color: $color-sidenav-primary;
 
     a {
@@ -268,8 +272,7 @@ body {
     }
 
     img {
-      height: 200px;
-      width: 241px;
+      width: 100%;
     }
   }
 
@@ -507,4 +510,12 @@ $colorProfiles: (
 }
 .popover .popover-content ul li:hover {
   background-color: #efefef;
+}
+
+#sidenav {
+  .collapse {
+    a {
+      padding-left: 0px !important;
+    }
+  }
 }
