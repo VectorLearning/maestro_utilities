@@ -1,8 +1,6 @@
 class NavBar extends React.Component {
   constructor (props) {
     super(props)
-    
-    // props
     this.theme = props.theme
     this.brand = props.brand
     this.name = props.name
@@ -37,10 +35,20 @@ class NavBar extends React.Component {
                 <span className='icon-bar'></span>
               </button>
             </div>
-            <NavBarDropdown classes='navbar-right hidden-xs' text={this.name} links={this.links} />
-            <NavBarNotifications classes='navbar-right' />
+            <NavBarDropdown
+              classes='navbar-right hidden-xs'
+              text={this.name}
+              links={[
+                {link: '#', text: 'My Profile'},
+                {link: '#', text: 'Log out'}
+              ]} />
+            <NavBarNotifications
+              classes='navbar-right' />
             <div className={`collapse navbar-collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar-collapse'>
-              <NavBarDropdown classes='visible-xs' text={this.name} links={this.links} />
+              <NavBarDropdown
+                classes='visible-xs'
+                text={this.name}
+                links={this.links} />
             </div>
           </div>
         </nav>
@@ -49,8 +57,16 @@ class NavBar extends React.Component {
             <ul className={`nav navbar-nav`}>
               {this.links.map((link, index) => (
                 link.hasOwnProperty('sublinks')
-                  ? <NavBarDropdown text={link.text} links={link.sublinks} isActive={link.active === 'true'} key={index} />
-                  : <NavBarLink text={link.text} link={link.link} isActive={link.active === 'true'} key={index} />
+                  ? <NavBarDropdown
+                      text={link.text}
+                      links={link.sublinks}
+                      isActive={link.active === 'true'}
+                      key={index} />
+                  : <NavBarLink
+                      text={link.text}
+                      link={link.link}
+                      isActive={link.active === 'true'}
+                      key={index} />
               ))}
             </ul>
           </div>

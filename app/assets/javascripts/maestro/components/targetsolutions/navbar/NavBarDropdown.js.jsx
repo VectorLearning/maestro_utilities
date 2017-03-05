@@ -1,26 +1,10 @@
 class NavBarDropdown extends React.Component {
   constructor (props) {
     super(props)
-    
-    // props
     this.classes = props.classes
     this.text = props.text
     this.links = props.links
-    this.isActive = !!props.active
-
-    // methods
-    this.toggleDropdown = this.toggleDropdown.bind(this)
-
-    // state
-    this.state = {
-      isOpen: false
-    }
-  }
-
-  toggleDropdown () {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+    this.isActive = props.isActive
   }
 
   componentDidMount () {
@@ -30,14 +14,18 @@ class NavBarDropdown extends React.Component {
   render () {
     return (
       <ul className={`nav navbar-nav ${this.classes}`}>
-        <li className={`dropdown ${this.isActive ? 'active' : ''} ${this.state.isOpen ? 'open' : ''}`}>
+        <li className={`dropdown ${this.isActive ? 'active' : ''}`}>
           <a href='#' className='dropdown-toggle' ref='dropdown' data-toggle='dropdown'>
             {this.text}
             <span className='caret'></span>
           </a>
           <ul className="dropdown-menu">
             {this.links.map((link, index) => (
-              <NavBarLink text={link.text} link={link.link} active={link.active} key={index} />))}
+              <NavBarLink
+                text={link.text}
+                link={link.link}
+                isActive={link.active === 'true'}
+                key={index} />))}
           </ul>
         </li>
       </ul>
