@@ -2,6 +2,26 @@ class NavBarNotifications extends React.Component {
   constructor (props) {
     super(props)
     this.classes = props.classes
+
+    this.handleUserNotificationsClick = this.handleUserNotificationsClick.bind(this)
+    this.handleAdminNotificationsClick = this.handleAdminNotificationsClick.bind(this)
+
+    this.state = {
+      userNotificationsHighlighted: true,
+      adminNotificationsHighlighted: true
+    }
+  }
+
+  handleUserNotificationsClick() {
+    this.setState({
+      userNotificationsHighlighted: false
+    })
+  }
+
+  handleAdminNotificationsClick() {
+    this.setState({
+      adminNotificationsHighlighted: false
+    })
   }
 
   componentDidMount () {
@@ -45,13 +65,13 @@ class NavBarNotifications extends React.Component {
     return (
       <ul className={`nav navbar-nav ${this.classes}`} id='navbar-notifications-menu'>
         <li>
-          <a id='navbar-notifications-user' href='#' className='navbar-notifications' ref='notificationsUser'>
+          <a id='navbar-notifications-user' href='#' className={`navbar-notifications ${this.state.userNotificationsHighlighted ? 'highlight' : ''}`} ref='notificationsUser' onClick={this.handleUserNotificationsClick}>
             <i className='fa fa-user fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
         </li>
         <li>
-          <a id='navbar-notifications-admin' href='#' className='navbar-notifications' ref='notificationsAdmin'>
+          <a id='navbar-notifications-admin' href='#' className={`navbar-notifications ${this.state.adminNotificationsHighlighted ? 'highlight' : ''}`} ref='notificationsAdmin' onClick={this.handleAdminNotificationsClick}>
             <i className='fa fa-users fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
