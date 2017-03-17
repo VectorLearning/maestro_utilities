@@ -31,9 +31,8 @@ body {
     }
   }
 
-  .container,
-  .container-fluid {
-    max-width: 1008px;
+  .centered {
+    margin: 0 auto !important;
   }
 
   .nav-container { margin-bottom: 18px; }
@@ -62,6 +61,7 @@ body {
       }
     }
     .account-links {
+      padding-right: 1em;
       li {
         margin-left: 2em;
         a {
@@ -80,9 +80,6 @@ body {
   }
 
   .rv-header {
-    margin-top: 1.1em;
-    margin-bottom: 1.1em;
-
     img { width: 240px; margin-bottom: 1em; }
 
     .account-links,
@@ -122,6 +119,10 @@ body {
   }
 
   .pl-navbar {
+    .navbar-right {
+      margin-right: 0 !important;
+    }
+
     .navbar-collapse {
       @media (min-width: 768px) {
         padding-left: 0;

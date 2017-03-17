@@ -1,7 +1,6 @@
-let isActive = function(value) {
-  let active = false;
-  if(value == 'true'){
-    active = true;
+const isActive = function (value) {
+  if (value === 'true') {
+    return true;
   }
-  return active;
+  return false;
 };
