@@ -2,6 +2,18 @@
 //= require ./NavLinkDropdown
 
 const NavMenu = React.createClass({
+  renderExtraLinks() {
+    if (this.props.extraLinks) {
+      return (
+        <NavLinkDropdown
+          links={this.props.extraLinks}
+          text={<i className="fa fa-ellipsis-v fa-lg" />}
+          styles={this.props.styles}
+        />
+    );
+    }
+  },
+
   renderLinks() {
     const { styles, links } = this.props;
 
@@ -36,6 +48,7 @@ const NavMenu = React.createClass({
     return (
       <ul className="nav navbar-nav navbar-right">
         {this.renderLinks()}
+        {this.renderExtraLinks()}
       </ul>
     );
   }

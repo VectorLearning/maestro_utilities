@@ -25,9 +25,21 @@ const NavBar = React.createClass({
     return { menuVisible: false };
   },
 
-  getNavLinks() {
-    if (this.props.lms_navigation.navbar.hasOwnProperty('links')) {
+  getExtraLinks() {
+    if (this.props.lms_navigation.hasOwnProperty('navbar')) {
       return this.props.lms_navigation.navbar.links;
+    }
+  },
+
+  getNavLinks() {
+    const { lms_navigation } = this.props;
+
+    if (lms_navigation.hasOwnProperty('subnav')) {
+      return lms_navigation.subnav.links;
+    }
+
+    if (lms_navigation.hasOwnProperty('navbar')) {
+      return lms_navigation.navbar.links;
     }
   },
 
@@ -94,7 +106,7 @@ const NavBar = React.createClass({
 
   renderNavRibbon() {
     if (this.props.lms_navigation.hasOwnProperty('subnav')) {
-      return <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
+      // return <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
     }
   },
 
@@ -130,7 +142,10 @@ const NavBar = React.createClass({
               style={maxWidthStyle}
               className={`centered collapse navbar-collapse ${this.state.menuVisible ? 'in' : ''}`}
             >
-              <NavMenu links={this.getNavLinks()} styles={styles} />
+              <NavMenu
+                links={this.getNavLinks()} extraLinks={this.getExtraLinks()}
+                styles={styles}
+              />
             </div>
           </nav>
           <div className="centered" style={maxWidthStyle}>

@@ -3,8 +3,9 @@
 
 $color-dark: #797c83;
 $color-darkest: #44484d;
+$color-menu-dark: #333;
 $color-orange: #FF9513;
-$color-lightest: #ffffff;
+$color-lightest: #eee;
 $color-red: #B4141B;
 
 html {
@@ -19,6 +20,9 @@ body {
 
 .nav-container {
   @import 'shared/bootstrap';
+  &:not(.pl-menu) {
+    background-color: $color-menu-dark;
+  }
 
   .container-fluid {
     @include container-fixed;
@@ -61,7 +65,7 @@ body {
       }
     }
     .account-links {
-      padding-right: 1em;
+      padding-right: $grid-gutter-width / 2;
       li {
         margin-left: 2em;
         a {
@@ -80,15 +84,22 @@ body {
   }
 
   .rv-header {
-    img { width: 240px; margin-bottom: 1em; }
+    img {
+      padding: $grid-gutter-width / 2;
+      padding-bottom: 0;
+      width: 240px;
+      margin-bottom: 1em;
+    }
 
     .account-links,
     .contact-links {
       li {
+        display: inline-block;
+        padding-top: $grid-gutter-width / 2;
         a {
-          color: $color-darkest;
+          color: $color-lightest;
           &:hover, &:focus {
-            color: lighten($color-darkest, 10%);
+            color: darken($color-lightest, 25%);
           }
           &.color-red {
             color: $color-red;
@@ -141,7 +152,7 @@ body {
   .navbar,
   .navbar-inverse, {
     min-height: 0px;
-    background: $color-darkest;
+    background: $color-menu-dark;
     border-radius: 0;
     border: 0;
     margin-bottom: 0;
@@ -161,6 +172,10 @@ body {
           padding-top: 0.75em;
           padding-bottom: 0.75em;
 
+          i.fa {
+            margin-right: 0.4em;
+          }
+
           &:hover,
           &:focus {
             background-color: $color-dark;
@@ -176,18 +191,18 @@ body {
             }
           }
           .dropdown-menu {
-            background-color: $color-darkest;
+            background-color: $color-menu-dark;
             li {
-              border-bottom: 1px solid #33363d;
-              border-top: 1px solid rgba(255, 255, 255, 0.25);
+              // border-bottom: 1px solid #33363d;
+              // border-top: 1px solid rgba(255, 255, 255, 0.25);
               &.active a {
-                background-color: $color-dark;
+                background-color: rgba(255, 255, 255, 0.15);
               }
               a {
                 color: $color-lightest;
                 &:hover,
                 &:focus {
-                  background-color: $color-dark;
+                  background-color: rgba(255, 255, 255, 0.15);
                   color: darken($color-lightest, 10%);
                 }
               }

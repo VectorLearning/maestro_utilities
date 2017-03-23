@@ -11,7 +11,7 @@ const AccountLinks = React.createClass({
           </a>
         </li>
         <li>
-          <a href={profile_url} className="color-red">
+          <a href={profile_url}>
             <i className="fa fa-user margin-right-5" />
             {full_name}
           </a>

@@ -3,6 +3,10 @@ const NavLink = React.createClass({
     return { hover: false };
   },
 
+  getLinkMarkup() {
+    return { __html: this.props.text };
+  },
+
   getLinkStyle() {
     const { linkHover, linkNormal } = this.props.styles;
 
@@ -27,9 +31,8 @@ const NavLink = React.createClass({
           href={this.props.linkTo}
           onMouseEnter={this.toggleHover}
           onMouseLeave={this.toggleHover}
-        >
-          {this.props.text}
-        </a>
+          dangerouslySetInnerHTML={this.getLinkMarkup()}
+        />
       </li>
     );
   }
