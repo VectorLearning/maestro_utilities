@@ -5,6 +5,8 @@ class NavBar extends React.Component {
     this.brand = props.brand
     this.name = props.name
     this.links = props.links
+    this.token = props.token
+    this.user_id = props.user_id
 
     // methods
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this)
@@ -43,6 +45,8 @@ class NavBar extends React.Component {
                 {link: '#', text: 'Log out'}
               ]} />
             <NavBarNotifications
+              token={this.token}
+              user_id={this.user_id}
               classes='navbar-right' />
             <div className={`collapse navbar-collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar-collapse'>
               <NavBarDropdown
