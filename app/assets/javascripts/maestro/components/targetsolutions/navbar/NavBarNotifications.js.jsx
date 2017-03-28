@@ -32,7 +32,7 @@ class NavBarNotifications extends React.Component {
       contentType: 'application/json',
       headers: { 'Authorization':`Token token=\"${that.props.token}\", user_id=\"${that.props.user_id}\"`},
       success: function (data) {
-        //that.setState({adminNotificationsCount: data.length})
+        that.setState({userNotificationsCount: data.length})
 
         $(that.refs.notificationsUser).popover({
           container: 'body',
@@ -52,7 +52,7 @@ class NavBarNotifications extends React.Component {
       contentType: 'application/json',
       headers: { 'Authorization':`Token token=\"${that.props.token}\", user_id=\"${that.props.user_id}\"`},
       success: function (data) {
-        //that.setState({adminNotificationsCount: data.length})
+        that.setState({adminNotificationsCount: data.length})
 
         $(that.refs.notificationsAdmin).popover({
           container: 'body',
