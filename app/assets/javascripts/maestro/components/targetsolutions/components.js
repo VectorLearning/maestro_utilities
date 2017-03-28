@@ -2,6 +2,8 @@
 //= require ./navbar/NavBarDropdown
 //= require ./navbar/NavBarLink
 //= require ./navbar/NavBarNotifications
+//= require ./navbar/Popover
+//= require ./navbar/UserDropdown
 //= require ./sidenav/SideNav
 //= require ./sidenav/SideNavLink
 //= require ./sidenav/SideNavMenu

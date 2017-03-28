@@ -1,91 +1,93 @@
-class NavBar extends React.Component {
-  constructor (props) {
-    super(props)
-    this.theme = props.theme
-    this.brand = props.brand
-    this.name = props.name
-    this.links = props.links
+//= require ../../base/navbar
 
-    // methods
-    this.toggleMobileMenu = this.toggleMobileMenu.bind(this)
-    
-    // state
-    this.state = {
-      isMobileMenuOpen: false
-    }
-  }
+const NavBar = React.createClass({
+  getInitialState() {
+    return { isMobileMenuOpen: false };
+  },
 
-  toggleMobileMenu () {
+  renderLinks(links) {
+    return links.map((link, index) => {
+      if (link.hasOwnProperty('sublinks')) {
+        return (
+          <NavBarDropdown
+            classes=""
+            text={link.text}
+            links={link.sublinks}
+            key={index}
+          />
+        );
+      }
+
+      return (
+        <NavBarLink
+          text={link.text}
+          link={link.link}
+          active={link.active}
+          key={index}
+        />
+      );
+    });
+  },
+
+  toggleMobileMenu() {
     this.setState({
       isMobileMenuOpen: !this.state.isMobileMenuOpen
-    })
-  }
+    });
+  },
 
-  render () {
+  render() {
+    const {
+      first_name,
+      last_name,
+      lms_navigation,
+      organization_name,
+      user_id,
+      token
+    } = this.props;
+
+    const theme = lms_navigation.theme || 'default';
+    const brand = organization_name;
+    const name = `${first_name} ${last_name}`;
+    const links = lms_navigation.navbar.links;
+    const profile_links = [
+      { link: '#', text: 'My Profile' },
+      { link: '#', text: 'Log out' }
+    ];
+
     return (
-      <div id='navbar' className={`nav-container ${this.theme}`}>
+      <div id='navbar' className={`nav-container ${theme}`}>
         <nav className='navbar navbar-inverse' id='navbar--top'>
           <div className='container-fluid'>
             <div className='navbar-header'>
-              <a className='navbar-brand' href='#'>{this.brand}</a>
-              <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar-collapse' onClick={this.toggleMobileMenu}>
+              <a className='navbar-brand' href='#'>{brand}</a>
+              <button
+                type='button'
+                className='navbar-toggle collapsed'
+                data-target='#navbar-collapse'
+                onClick={this.toggleMobileMenu}
+              >
                 <span className='sr-only'>Toggle navigation</span>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
-                <span className='icon-bar'></span>
+                <span className='icon-bar' />
+                <span className='icon-bar' />
+                <span className='icon-bar' />
               </button>
             </div>
-            <NavBarDropdown
-              classes='navbar-right hidden-xs'
-              text={this.name}
-              links={[
-                {link: '#', text: 'My Profile'},
-                {link: '#', text: 'Log out'}
-              ]} />
-            <NavBarNotifications
-              classes='navbar-right' />
-            <div className={`collapse navbar-collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar-collapse'>
-              <NavBarDropdown
-                classes='visible-xs'
-                text={this.name}
-                links={this.links} />
-            </div>
+            <UserDropdown
+              classes='navbar-right'
+              text={name}
+              links={profile_links}
+            />
+            <NavBarNotifications classes='navbar-right' />
           </div>
         </nav>
-        <nav className='navbar navbar-default hidden-xs' id='navbar--bottom'>
+        <nav className={`navbar navbar-default navbar-collapse collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar--bottom'>
           <div className='container-fluid'>
             <ul className={`nav navbar-nav`}>
-              {this.links.map((link, index) => (
-                link.hasOwnProperty('sublinks')
-                  ? <NavBarDropdown
-                      text={link.text}
-                      links={link.sublinks}
-                      isActive={link.active === 'true'}
-                      key={index} />
-                  : <NavBarLink
-                      text={link.text}
-                      link={link.link}
-                      isActive={link.active === 'true'}
-                      key={index} />
-              ))}
+              {this.renderLinks(links)}
             </ul>
           </div>
         </nav>
       </div>
-    )
+    );
   }
-}
-
-NavBar.propTypes = {
-  theme: React.PropTypes.string,
-  brand: React.PropTypes.string,
-  name: React.PropTypes.string,
-  links: React.PropTypes.array
-}
-
-NavBar.defaultProps = {
-  theme: 'default',
-  brand: 'TargetSolutions',
-  name: 'Menu',
-  links: []
-}
+});

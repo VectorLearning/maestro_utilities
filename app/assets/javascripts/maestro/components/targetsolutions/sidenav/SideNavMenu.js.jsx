@@ -1,42 +1,42 @@
-class SideNavMenu extends React.Component {
-  constructor (props) {
-    super(props)
-    
-    // props
-    this.icon = props.icon
-    this.text = props.text
-    this.links = props.links
-    this.isActive = props.isActive
-    
-    // methods
-    this.toggleCollapse = this.toggleCollapse.bind(this)
-    
-    // state
-    this.state = {
-      isOpen: props.isActive
-    }
-  }
+const SideNavMenu = React.createClass({
+  getInitialState() {
+    return { isOpen: this.props.isActive };
+  },
 
-  toggleCollapse () {
+  renderLinks() {
+    return this.props.links.map((link, index) => {
+      return (
+        <SideNavLink
+          icon={link.icon}
+          text={link.text}
+          link={link.link}
+          isActive={link.active === 'true'}
+          key={index}
+        />
+      );
+    });
+  },
+
+  toggleCollapse() {
     this.setState({
       isOpen: !this.state.isOpen
-    })
-  }
+    });
+  },
 
-  render () {
+  render() {
+    const { icon, text, isActive } = this.props;
+
     return (
-      <li className={`collapsible ${this.isActive ? 'active' : ''}`}>
+      <li className={`collapsible ${isActive ? 'active' : ''}`}>
         <a href='#' onClick={this.toggleCollapse}>
-          <i className={`fa ${this.icon} fa-2x`}></i>
-          <span className='text hidden-text'>{this.text}</span>
-          <i className='fa fa-chevron-down fa-fw hidden-text'></i>
+          <i className={`fa ${icon} fa-2x`} />
+          <span className='text hidden-text'>{text}</span>
+          <i className='fa fa-chevron-down fa-fw hidden-text' />
         </a>
         <ul className={`collapse ${this.state.isOpen ? 'in' : ''}`}>
-          {this.links.map((link, index) => (
-            <SideNavLink icon={link.icon} text={link.text} link={link.link} isActive={link.active === 'true'} key={index} />
-          ))}
+          {this.renderLinks()}
         </ul>
       </li>
-    )
+    );
   }
-}
+});
