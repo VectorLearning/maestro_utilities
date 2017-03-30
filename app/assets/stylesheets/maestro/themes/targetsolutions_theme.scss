@@ -291,10 +291,10 @@ body {
   }
 
   .popover {
-    left: -125px;
+    left: -137px;
     margin-left: 36px;
     top: 100%;
-    width: 250px;
+    width: 275px !important;
   }
   .pos-rel { position: relative; }
 }
@@ -402,16 +402,24 @@ $colorProfiles: (
   .notification-content ul li a:hover {
     background: #efefef;
   }
-  .notification-content ul li .icon-24 {
-    display: inline-block;
-    float: none;
-    margin: 0 6px 0 0;
-    vertical-align: middle;
-    width: 25px;
+  .icon-24 {
+    // display: inline-block;
+    // float: none;
+    // margin: 0 6px 0 0;
+    // vertical-align: middle;
+    // width: 25px;
+    background-image: url(https://app.targetsolutions.com/tsapp/dashboard/pl_fb/library/images/pro/icon-sprite.png);
+  	background-repeat: no-repeat;
+  	width: 24px;
+  	height: 24px;
+  	display: inline-block;
+  	overflow: hidden;
+    &.icon-24-cal { background-position: -4px -122px; }
+    &.icon-24-ts-notification { background-position: -64px -512px; }
   }
   .notification-content ul li .titleAlt {
     color: #333333;
-    display: inline-block;
+    display: inline;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.5;
@@ -493,6 +501,7 @@ $colorProfiles: (
   }
   .popover .popover-content ul li a:hover {
     background: #efefef;
+    text-decoration: none;
   }
   .popover .popover-content ul li .icon-24 {
     display: inline-block;
@@ -503,7 +512,7 @@ $colorProfiles: (
   }
   .popover .popover-content ul li .titleAlt {
     color: #333333;
-    display: inline-block;
+    display: inline;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.5;

@@ -2,55 +2,45 @@ const NavBarNotifications = React.createClass({
   getInitialState() {
     return {
       userNotificationsHighlighted: true,
+      userNotificationData: [{ text: 'Loading...' }],
       userPopoverVisible: false,
       adminNotificationsHighlighted: true,
+      adminNotificationData: [{ text: 'Loading...' }],
       adminPopoverVisible: false,
     };
   },
 
-  componentDidMount() {
-    // Maybe not depend on jQuery so fucking much?
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('GET', 'myservice/username?id=some-unique-id');
-    // xhr.onload = function() {
-    //     if (xhr.status === 200) {
-    //         alert('User\'s name is ' + xhr.responseText);
-    //     }
-    //     else {
-    //         alert('Request failed.  Returned status of ' + xhr.status);
-    //     }
-    // };
-    // xhr.send();
+  componentWillMount() {
+    this.getNotificationData();
+  },
 
-    that = this
-    // TODO: Update this with notifications endpoint
+  getNotificationData() {
+    const thisContext = this;
+
     if (typeof $ !== 'undefined') {
-      $.ajax('/home', {
-        success () {
-          $(that.refs.notificationsUser).popover({
-            container: 'body',
-            content: () => '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>',
-            html: true,
-            placement: 'bottom',
-            title: 'My Notifications',
-            trigger: 'focus'
+      // USER
+      $.ajax('http://api.dev/user_notifications', {
+        contentType: 'application/json',
+        headers: { 'Authorization':`Token token=\"${thisContext.props.token}\", user_id=\"${thisContext.props.user_id}\"`},
+        success(data) {
+          thisContext.setState({
+            userNotificationsCount: data.length,
+            userNotificationData: data
           });
         },
-        error () {
+        error() {
           console.log('error');
         }
       });
 
-      // TODO: Update this with notifications endpoint
-      $.ajax('/home', {
-        success() {
-          $(that.refs.notificationsAdmin).popover({
-            container: 'body',
-            content: () => '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>',
-            html: true,
-            placement: 'bottom',
-            title: 'My Notifications',
-            trigger: 'focus'
+      // ADMIN
+      $.ajax('http://api.dev/admin_notifications', {
+        contentType: 'application/json',
+        headers: { 'Authorization':`Token token=\"${thisContext.props.token}\", user_id=\"${thisContext.props.user_id}\"`},
+        success(data) {
+          thisContext.setState({
+            adminNotificationsCount: data.length,
+            adminNotificationData: data
           });
         },
         error() {
@@ -76,23 +66,13 @@ const NavBarNotifications = React.createClass({
     });
   },
 
-  renderAdminNotifications() {
-    // do ajax stuffs, and then:
-    return (
-      'yo'
-    );
-  },
-
-  renderUserNotifications() {
-    // do ajax stuffs, and then:
-    return (
-      'yo'
-    );
-  },
-
   render() {
-    const { classes } = this.props;
+    const { classes, token, user_id } = this.props;
+
+    const UrlPrefix = 'https://app.targetsolutions.com/tsapp/dashboard/pl_fb';
+    const adminUrl = `${UrlPrefix}/index.cfm?fuseaction=c_pro.showNotifications#admin/${user_id}/${token}`;
     const adminHighlightClass = this.state.adminNotificationsHighlighted ? 'highlight' : '';
+    const userUrl = `${UrlPrefix}/index.cfm?fuseaction=c_pro.showNotifications#/${user_id}/${token}`;
     const userHighlightClass = this.state.userNotificationsHighlighted ? 'highlight' : '';
 
     return (
@@ -108,9 +88,11 @@ const NavBarNotifications = React.createClass({
             <i className='fa fa-user fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
-          <Popover visible={this.state.userPopoverVisible}>
-            {this.renderUserNotifications()}
-          </Popover>
+          <Popover
+            visible={this.state.userPopoverVisible}
+            data={this.state.userNotificationData}
+            notificationsUrl={userUrl}
+          />
         </li>
         <li className="pos-rel">
           <a
@@ -122,9 +104,10 @@ const NavBarNotifications = React.createClass({
             <i className='fa fa-users fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
-          <Popover visible={this.state.adminPopoverVisible}>
-            {this.renderAdminNotifications()}
-          </Popover>
+          <Popover
+            visible={this.state.adminPopoverVisible} data={this.state.adminNotificationData}
+            notificationsUrl={adminUrl}
+          />
         </li>
       </ul>
     );

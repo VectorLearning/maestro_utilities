@@ -42,9 +42,9 @@ const NavBar = React.createClass({
       lms_navigation,
       organization_name,
       user_id,
-      token
     } = this.props;
 
+    const { api_token } = this.props.additional_data;
     const theme = lms_navigation.theme || 'default';
     const brand = organization_name;
     const name = `${first_name} ${last_name}`;
@@ -77,7 +77,11 @@ const NavBar = React.createClass({
               text={name}
               links={profile_links}
             />
-            <NavBarNotifications classes='navbar-right' />
+            <NavBarNotifications
+              classes='navbar-right'
+              user_id={user_id}
+              token={api_token}
+            />
           </div>
         </nav>
         <nav className={`navbar navbar-default navbar-collapse collapse ${this.state.isMobileMenuOpen ? 'in' : ''}`} id='navbar--bottom'>
