@@ -3,7 +3,7 @@ const NavBarDropdown = React.createClass({
     return { expanded: false };
   },
 
-  dosomething() {
+  toggleExpanded() {
     this.setState({ expanded: !this.state.expanded });
   },
 
@@ -26,7 +26,7 @@ const NavBarDropdown = React.createClass({
 
     return (
       <li className={`dropdown ${openClass} ${this.props.isActive ? ' active' : ''}`}>
-        <a href='#' className='dropdown-toggle' onClick={this.dosomething}>
+        <a href='#' className='dropdown-toggle' onClick={this.toggleExpanded}>
           {text}
           <span className='caret' />
         </a>
