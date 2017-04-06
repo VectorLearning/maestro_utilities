@@ -1,90 +1,115 @@
-class NavBarNotifications extends React.Component {
-  constructor (props) {
-    super(props)
-    this.classes = props.classes
-
-    this.handleUserNotificationsClick = this.handleUserNotificationsClick.bind(this)
-    this.handleAdminNotificationsClick = this.handleAdminNotificationsClick.bind(this)
-
-    this.state = {
+const NavBarNotifications = React.createClass({
+  getInitialState() {
+    return {
       userNotificationsHighlighted: true,
-      adminNotificationsHighlighted: true
+      userNotificationData: [{ text: 'Loading...' }],
+      userPopoverVisible: false,
+      adminNotificationsHighlighted: true,
+      adminNotificationData: [{ text: 'Loading...' }],
+      adminPopoverVisible: false,
+    };
+  },
+
+  componentWillMount() {
+    this.getNotificationData();
+  },
+
+  getNotificationData() {
+    const thisContext = this;
+
+    if (typeof $ !== 'undefined') {
+      // USER
+      $.ajax('http://api.dev/user_notifications', {
+        contentType: 'application/json',
+        headers: { 'Authorization':`Token token=\"${thisContext.props.token}\", user_id=\"${thisContext.props.user_id}\"`},
+        success(data) {
+          thisContext.setState({
+            userNotificationsCount: data.length,
+            userNotificationData: data
+          });
+        },
+        error() {
+          console.log('error');
+        }
+      });
+
+      // ADMIN
+      $.ajax('http://api.dev/admin_notifications', {
+        contentType: 'application/json',
+        headers: { 'Authorization':`Token token=\"${thisContext.props.token}\", user_id=\"${thisContext.props.user_id}\"`},
+        success(data) {
+          thisContext.setState({
+            adminNotificationsCount: data.length,
+            adminNotificationData: data
+          });
+        },
+        error() {
+          console.log('error');
+        }
+      });
     }
-  }
+  },
 
   handleUserNotificationsClick() {
     this.setState({
-      userNotificationsHighlighted: false
-    })
-  }
+      userNotificationsHighlighted: false,
+      userPopoverVisible: !this.state.userPopoverVisible,
+      adminPopoverVisible: false
+    });
+  },
 
   handleAdminNotificationsClick() {
     this.setState({
-      adminNotificationsHighlighted: false
-    })
-  }
+      adminNotificationsHighlighted: false,
+      adminPopoverVisible: !this.state.adminPopoverVisible,
+      userPopoverVisible: false
+    });
+  },
 
-  componentDidMount () {
-    that = this
-    // TODO: Update this with notifications endpoint
-    $.ajax('/home', {
-      success: function () {
-        $(that.refs.notificationsUser).popover({
-          container: 'body',
-          content: () => '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>',
-          html: true,
-          placement: 'bottom',
-          title: 'My Notifications',
-          trigger: 'focus'
-        })
-      },
-      error: function () {
-        console.log('error')
-      }
-    })
+  render() {
+    const { classes, token, user_id } = this.props;
 
-    // TODO: Update this with notifications endpoint
-    $.ajax('/home', {
-      success: function () {
-        $(that.refs.notificationsAdmin).popover({
-          container: 'body',
-          content: () => '<ul className="list-group"><li class="list-group-item"><a href="#"><span class="titleSingle">You Have No Notifications</span></a></li><li class="list-group-item"><a href="/tsapp/dashboard/pl_fb/index.cfm?fuseaction=c_pro.showNotifications#/1372401/A2A90096CB2D32C08B841029BFA3DA83" title="See All My Notifications"><strong>See My Notifications</strong></a></li></ul>',
-          html: true,
-          placement: 'bottom',
-          title: 'My Notifications',
-          trigger: 'focus'
-        })
-      },
-      error: function () {
-        console.log('error')
-      }
-    })
-  }
+    const UrlPrefix = 'https://app.targetsolutions.com/tsapp/dashboard/pl_fb';
+    const adminUrl = `${UrlPrefix}/index.cfm?fuseaction=c_pro.showNotifications#admin/${user_id}/${token}`;
+    const adminHighlightClass = this.state.adminNotificationsHighlighted ? 'highlight' : '';
+    const userUrl = `${UrlPrefix}/index.cfm?fuseaction=c_pro.showNotifications#/${user_id}/${token}`;
+    const userHighlightClass = this.state.userNotificationsHighlighted ? 'highlight' : '';
 
-  render () {
     return (
-      <ul className={`nav navbar-nav ${this.classes}`} id='navbar-notifications-menu'>
-        <li>
-          <a id='navbar-notifications-user' href='#' className={`navbar-notifications ${this.state.userNotificationsHighlighted ? 'highlight' : ''}`} ref='notificationsUser' onClick={this.handleUserNotificationsClick}>
+      <ul className={`nav navbar-nav ${classes}`} id='navbar-notifications-menu'>
+        <li className="pos-rel">
+          <a
+            id='navbar-notifications-user'
+            href='#'
+            className={`navbar-notifications ${userHighlightClass}`}
+            ref='notificationsUser'
+            onClick={this.handleUserNotificationsClick}
+          >
             <i className='fa fa-user fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
+          <Popover
+            visible={this.state.userPopoverVisible}
+            data={this.state.userNotificationData}
+            notificationsUrl={userUrl}
+          />
         </li>
-        <li>
-          <a id='navbar-notifications-admin' href='#' className={`navbar-notifications ${this.state.adminNotificationsHighlighted ? 'highlight' : ''}`} ref='notificationsAdmin' onClick={this.handleAdminNotificationsClick}>
+        <li className="pos-rel">
+          <a
+            id='navbar-notifications-admin'
+            href='#' className={`navbar-notifications ${adminHighlightClass}`}
+            ref='notificationsAdmin'
+            onClick={this.handleAdminNotificationsClick}
+          >
             <i className='fa fa-users fa-fw fa-lg' />
             <span className='badge'>0</span>
           </a>
+          <Popover
+            visible={this.state.adminPopoverVisible} data={this.state.adminNotificationData}
+            notificationsUrl={adminUrl}
+          />
         </li>
       </ul>
-    )
+    );
   }
-}
-
-NavBarNotifications.propTypes = {
-  classes: React.PropTypes.string
-}
-
-NavBarNotifications.defaultProps = {
-  classes: ''
-}
+});
