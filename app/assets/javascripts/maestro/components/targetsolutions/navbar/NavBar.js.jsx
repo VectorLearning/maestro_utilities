@@ -41,6 +41,7 @@ const NavBar = React.createClass({
       last_name,
       lms_navigation,
       organization_name,
+      role,
       user_id,
     } = this.props;
 
@@ -81,6 +82,7 @@ const NavBar = React.createClass({
               classes='navbar-right'
               user_id={user_id}
               token={api_token}
+              role={role}
             />
           </div>
         </nav>
