@@ -1,9 +1,11 @@
 //= require ../base/navbar
+//= require ./Breadcrumbs
 //= require ./HamburgerButton
 //= require ./HeaderPrivateLabel
 //= require ./HeaderRetail
 //= require ./NavigationRibbon
 //= require ./NavMenu
+//= require ./Tabs
 
 const DEFAULT_HEADER_WIDTH = 1300;
 
@@ -67,6 +69,12 @@ const NavBar = React.createClass({
     this.setState({ menuVisible: !this.state.menuVisible });
   },
 
+  renderBreadcrumbs() {
+    if (this.props.lms_navigation.hasOwnProperty('breadcrumbs')) {
+      return <Breadcrumbs items={this.props.lms_navigation.breadcrumbs.items} />
+    }
+  },
+
   renderHeader() {
     const { lms_navigation } = this.props;
     const { logout_url, profile_url } = this.props.additional_data;
@@ -95,6 +103,12 @@ const NavBar = React.createClass({
   renderNavRibbon() {
     if (this.props.lms_navigation.hasOwnProperty('subnav')) {
       return <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
+    }
+  },
+
+  renderTabs() {
+    if (this.props.lms_navigation.hasOwnProperty('tabs')) {
+      return <Tabs items={this.props.lms_navigation.tabs.items} />
     }
   },
 
@@ -135,6 +149,8 @@ const NavBar = React.createClass({
           </nav>
           <div className="centered" style={maxWidthStyle}>
             {this.renderNavRibbon()}
+            {this.renderBreadcrumbs()}
+            {this.renderTabs()}
           </div>
       </div>
     );
