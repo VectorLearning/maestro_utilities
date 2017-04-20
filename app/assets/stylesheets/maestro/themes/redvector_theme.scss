@@ -1,11 +1,15 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
 
+$color-med: #cccccc;
 $color-dark: #797c83;
 $color-darkest: #44484d;
 $color-orange: #FF9513;
+$color-primary: #0099cc;
+$color-light: #f2f2f2;
 $color-lightest: #ffffff;
 $color-red: #B4141B;
+// $color-dark: #75787e;
 
 html {
   font-family: sans-serif; // 1
@@ -19,6 +23,8 @@ body {
 
 .nav-container {
   @import 'shared/bootstrap';
+
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
 
   .container-fluid {
     @include container-fixed;
@@ -298,11 +304,197 @@ body {
     }
   }
   .margin-right-5 { margin-right: 0.25em; }
+
+  .breadcrumbs {
+    $bc-active: #999999;
+    $bc-hover: lighten($bc-active, 10);
+    $bc-active-hover: lighten($bc-active, 10);
+    $bc-height: 30px;
+
+    border: 1px solid $color-med;
+    border-radius: $border-radius-base;
+    display: inline-block;
+    margin-top: 1.5em;
+
+    a {
+      color: $text-color;
+      font-size: 0.9em;
+    }
+
+    .breadcrumb-item {
+      display: inline-block;
+      max-height: $bc-height;
+      padding: 0.5em;
+      padding-left: 1.4em;
+      position: relative;
+
+      &:not(:last-child) {
+        &:before,
+        &:after {
+          border-top: $bc-height / 2 solid transparent;
+          border-bottom: $bc-height / 2 solid transparent;
+          content: "";
+          height: 0;
+          left: 100%;
+          position: absolute;
+          top: 0;
+          width: 0;
+        }
+
+        &:before {
+          border-left: 15px solid $color-lightest;
+          margin-left: -1px;
+          z-index: 2;
+        }
+
+        &:after {
+          border-left: 15px solid $color-med;
+          z-index: 1;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $bc-hover;
+        &:before {
+          border-left-color: $bc-hover; 
+        } 
+      }
+
+      &.active {
+        background-color: $bc-active;
+        color: $color-lightest;
+
+        &:before {
+          border-left-color: $bc-active; 
+        } 
+
+        &:after {
+          border-left-color: $color-lightest; 
+        } 
+      }
+
+      &.active:hover {
+        background-color: $bc-active-hover;
+        &:before {
+          border-left-color: $bc-active-hover; 
+        } 
+      }
+
+      &.current {
+        font-weight: bold;
+        .hidden-xs {
+          display: inline !important;
+        }
+      }
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    .lg-tabs,
+    .lg-tabs.nav-pills {
+      font-size: 13px;
+
+      > li {
+        width: auto !important;
+        a {
+          font-size: 1.385em; // ~18px
+          font-weight: normal;
+          color: $color_dark;
+          background-color: transparent !important;
+          &:hover {
+            color: $color_darkest;
+            background-color: transparent;
+          }
+        }
+        &.active {
+          a {
+            color: $color-primary;
+            font-weight: bold;
+          }
+        }
+      }
+
+      &.nav-tabs {
+        display: flex;
+        > li {
+          flex: 1;
+
+          &.spacer {
+            border-bottom: 1px solid $nav-tabs-justified-link-border-color;
+            flex-basis: 1em;
+            flex-grow: 0;
+          }
+
+          a {
+            background-color: $color-light !important;
+            border: 1px solid $nav-tabs-justified-link-border-color;
+            font-size: 1.231em; // ~16px
+            padding: 1em;
+          }
+
+          &.active {
+            a {
+              background-color: #fff !important;
+            }
+          }
+        }
+
+        + .tab-content {
+          border: 1px solid $nav-tabs-justified-link-border-color;
+          border-top: none;
+          border-radius: 0 0 $border-radius-base $border-radius-base;
+        }
+      }
+
+      &.with-triangles {
+        > li {
+          &.active {
+            a {
+              color: $color-primary;
+              font-weight: bold;
+              position: relative;
+              padding-bottom: 20px;
+
+              &:before, &:after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: transparent;
+                border-top: 0;
+                z-index: 2;
+                left: 50%;
+              }
+
+              &:before {
+                bottom: -2px;
+                /* If 1px darken stroke slightly */
+                border-bottom-color: #777;
+                border-width: 20px;
+                margin-left: -20px;
+              }
+
+              &:after {
+                bottom: -3px;
+                border-bottom-color: #fff;
+                border-width: 18px;
+                margin-left: -18px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .top-bar {
+      border-top: 2px solid #777;
+    }
+  }
 }
 
 // helpers
 .margin-right-5 { margin-right: 0.25em; }
-
+.mrxs { margin-right: 0.25em;  }
 // NotFound
 
 .error {
