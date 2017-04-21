@@ -149,8 +149,8 @@ const NavBar = React.createClass({
           </nav>
           <div className="centered" style={maxWidthStyle}>
             {this.renderNavRibbon()}
-            {this.renderBreadcrumbs()}
             {this.renderTabs()}
+            {this.renderBreadcrumbs()}
           </div>
       </div>
     );
