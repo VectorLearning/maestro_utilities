@@ -5,8 +5,10 @@ const SideNav = React.createClass({
     }
   },
   
-  renderLinks(links, controller) {
-    return links[controller].map((item, index) => {
+  renderLinks(links, controller = 'home') {
+    const items = Array.isArray(links[controller]) ? links[controller] : links['home'];
+
+    return items.map((item, index) => {
       if (item.hasOwnProperty('sublinks')) {
         return (
           <SideNavMenu
@@ -39,9 +41,9 @@ const SideNav = React.createClass({
 
     return (
       <div className={`nav-container ${theme} ${controller}`} id='sidenav'>
-        {this.renderAvatar(avatar, controller)}
         <nav role='navigation'>
           <ul>
+            {this.renderAvatar(avatar, controller)}
             {this.renderLinks(links, controller)}
           </ul>
         </nav>
