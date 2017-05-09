@@ -165,7 +165,10 @@ body {
           #sidenav__avatar {
             width: $sidenav-width-expanded;
 
-            img { display: block;  }
+            img {
+              opacity: 1;
+              width: 100%;
+            }
           }
         }
       }
@@ -250,8 +253,10 @@ body {
             }
 
             img {
-              display: none;
-              width: 100%;
+              opacity: 0;
+              width: 0px;
+              height: $sidenav-width-expanded - 30;
+              transition: all 0.1s linear;
             }
           }
         }
