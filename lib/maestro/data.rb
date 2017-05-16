@@ -30,6 +30,7 @@ module Maestro
     autoload :Session
 
     # Service Objects
+    autoload :CreateUserIssue
     autoload :GetCompetencyTopics
     autoload :GetUser
     autoload :GetUsers
