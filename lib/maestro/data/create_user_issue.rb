@@ -3,18 +3,18 @@ module Maestro
     module CreateUserIssue
       extend HttpService
 
-      def self.call(session, course_run, issue)
+      def self.call(session, course_id, course_run_id, enrollment_id, issue)
         response = Maestro.connection.post do |request|
           request.body = JSON.generate(
             {
               issue: {
-                course_id: course_run.course_id,
-                email: session[:lms_data][:email],
-                enrollment_id: course_run.enrollment_id,
+                course_id: course_id,
+                course_run_id: course_run_id,
+                enrollment_id: enrollment_id,
                 text: issue[:text],
-                user_id: session[:lms_data][:user_id],
                 url: issue[:url],
               },
+              lms_data: session[:lms_data],
               token: session.token,
             }
           )
