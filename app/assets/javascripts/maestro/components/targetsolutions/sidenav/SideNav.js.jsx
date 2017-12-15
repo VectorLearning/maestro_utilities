@@ -6,7 +6,7 @@ const SideNav = React.createClass({
   },
   
   renderLinks(links, controller = 'home') {
-    const items = Array.isArray(links[controller]) ? links[controller] : links['home'];
+    const items = links;
 
     return items.map((item, index) => {
       if (item.hasOwnProperty('sublinks')) {

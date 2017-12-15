@@ -4,6 +4,13 @@ const NavBar = React.createClass({
   getInitialState() {
     return { isMobileMenuOpen: false };
   },
+  
+  componentDidMount() {
+    let x = document.getElementsByClassName('nav-bar-disabledLink');
+    for (i = 0; i < x.length; i++) {
+      x[i].onclick = function() {return false;};
+    }
+  },
 
   renderLinks(links) {
     return links.map((link, index) => {
@@ -18,14 +25,27 @@ const NavBar = React.createClass({
         );
       }
 
-      return (
-        <NavBarLink
-          text={link.text}
-          link={link.link}
-          active={link.active}
-          key={index}
-        />
-      );
+      if (link.text == 'Help') {
+        return (
+          <NavBarLink
+            text={link.text}
+            link={link.link}
+            active={link.active}
+            target={'_blank'}
+            key={index}
+          />
+        );
+      }
+      else {
+        return (
+          <NavBarLink
+            text={link.text}
+            link={link.link}
+            active={link.active}
+            key={index}
+          />
+        );
+      }
     });
   },
 
@@ -50,17 +70,20 @@ const NavBar = React.createClass({
     const brand = organization_name;
     const name = `${first_name} ${last_name}`;
     const links = lms_navigation.navbar.links;
+    const brand_link = lms_navigation.home_url;
     const profile_links = [
-      { link: '#', text: 'My Profile' },
-      { link: '#', text: 'Log out' }
+      { link: lms_navigation.profile_url, text: 'My Profile' },
+      { link: lms_navigation.logout_url, text: 'Log out' }
     ];
+    
+    console.log(brand_link);
 
     return (
       <div id='navbar' className={`nav-container ${theme}`}>
         <nav className='navbar navbar-inverse' id='navbar--top'>
           <div className='container-fluid'>
             <div className='navbar-header'>
-              <a className='navbar-brand' href='#'>{brand}</a>
+              <a className='navbar-brand' href={brand_link}>{brand}</a>
               <button
                 type='button'
                 className='navbar-toggle collapsed'
@@ -77,12 +100,6 @@ const NavBar = React.createClass({
               classes='navbar-right'
               text={name}
               links={profile_links}
-            />
-            <NavBarNotifications
-              classes='navbar-right'
-              user_id={user_id}
-              token={api_token}
-              role={role}
             />
           </div>
         </nav>
