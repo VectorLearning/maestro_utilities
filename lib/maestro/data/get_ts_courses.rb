@@ -3,21 +3,21 @@ module Maestro
     module GetTsCourses
       extend HttpService
 
-      def self.call(session)
+      def self.call(session, startrow, limit, coursename)
         response = Maestro.connection.get do |request|
-          request.url '/v1/lms/ts_courses'
-          request.params['token'] = session.token
+          request.body = JSON.generate(start: startrow,
+                                       length: limit,
+                                       coursename: coursename,
+                                       token: session.token)
+          request.headers['Content-Type'] = 'application/json'
+          request.url("/v1/lms/ts_courses")
         end
 
         ensure_successful_response(response)
 
         data = parse_json(response.body)
-        headers = response.headers
-
-        ts_courses = data.fetch('ts_courses', [])
-          .map { |data| ::Maestro::Data::TsCourse.new(data) }
-
-        { headers: headers, ts_courses: ts_courses }
+        
+        data
       end
     end
   end
