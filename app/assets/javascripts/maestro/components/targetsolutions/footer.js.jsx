@@ -12,7 +12,7 @@ var Footer = React.createClass({
             <li><a href="http://www.targetsolutions.com/privacy-policy">Privacy</a></li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="http://www.targetsolutions.com/" target="_blank"><img src="app.targetsolutions.com/tsapp/dashboard/pl_fb/library/images/pro/targetsolutions.png" alt="TargetSolutions Logo"/></a></li>
+            <li><a href="http://www.targetsolutions.com/" target="_blank"><img src="/app/assets/stylesheets/maestro/img/targetsolutions.png" alt="TargetSolutions Logo"/></a></li>
           </ul>
         </div>
       </nav>
