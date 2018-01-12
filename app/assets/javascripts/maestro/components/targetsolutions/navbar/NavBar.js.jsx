@@ -76,8 +76,6 @@ const NavBar = React.createClass({
       { link: lms_navigation.logout_url, text: 'Log out' }
     ];
     
-    console.log(brand_link);
-
     return (
       <div id='navbar' className={`nav-container ${theme}`}>
         <nav className='navbar navbar-inverse' id='navbar--top'>
