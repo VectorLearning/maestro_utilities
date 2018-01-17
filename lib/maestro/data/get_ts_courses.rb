@@ -3,11 +3,12 @@ module Maestro
     module GetTsCourses
       extend HttpService
 
-      def self.call(session, startrow, limit, coursename)
+      def self.call(session, startrow, limit, coursename, coursetype)
         response = Maestro.connection.get do |request|
           request.body = JSON.generate(start: startrow,
                                        length: limit,
                                        coursename: coursename,
+                                       coursetype: coursetype,
                                        token: session.token)
           request.headers['Content-Type'] = 'application/json'
           request.url("/v1/lms/ts_courses")
