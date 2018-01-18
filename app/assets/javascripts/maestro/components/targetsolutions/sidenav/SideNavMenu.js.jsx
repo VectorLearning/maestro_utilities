@@ -36,9 +36,9 @@ const SideNavMenu = React.createClass({
     return (
       <li className={`collapsible ${isActive ? 'active' : ''}`}>
         <a href='#' onClick={this.toggleCollapse} className='side-nav-menu-disabledLink'>
+          <i className='fa fa-chevron-down fa-fw hidden-text' />
           <i className={`fa ${icon} fa-2x`} />
           <span className='text hidden-text'>{text}</span>
-          <i className='fa fa-chevron-down fa-fw hidden-text' />
         </a>
         <ul className={`collapse ${this.state.isOpen ? 'in' : ''}`}>
           {this.renderLinks()}
