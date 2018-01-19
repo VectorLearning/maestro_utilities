@@ -69,7 +69,7 @@ RSpec.configure do |config|
       {
         token: token,
         app_id: Maestro.config.app_id,
-        lms_id: "TargetSolutions",
+        lms_id: organization.lms_id,
         launch_url: "http://knowledgeassessment.dev/sessions",
         expires_at: Time.at(expires),
         expires_at_epoch: expires,
