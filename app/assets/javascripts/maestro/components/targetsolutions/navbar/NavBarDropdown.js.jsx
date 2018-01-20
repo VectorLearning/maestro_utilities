@@ -2,6 +2,14 @@ const NavBarDropdown = React.createClass({
   getInitialState() {
     return { expanded: false };
   },
+  
+  componentDidMount() {
+    let x = document.getElementsByClassName('nav-bar-dropdown-disabledLink');
+    for (i = 0; i < x.length; i++) {
+      console.log(x);
+      x[i].onclick = function() {return false;};
+    }
+  },
 
   toggleExpanded() {
     this.setState({ expanded: !this.state.expanded });
@@ -26,7 +34,7 @@ const NavBarDropdown = React.createClass({
 
     return (
       <li className={`dropdown ${openClass} ${this.props.isActive ? ' active' : ''}`}>
-        <a href='#' className='dropdown-toggle' onClick={this.toggleExpanded}>
+        <a href='#' className='dropdown-toggle nav-bar-dropdown-disabledLink' onClick={this.toggleExpanded}>
           {text}
           <span className='caret' />
         </a>

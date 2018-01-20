@@ -20,6 +20,19 @@ body {
   margin: 0;
 }
 
+#ka-container {
+  background-image: url("https://s3.amazonaws.com/assets.targetsolutions.com/686868.png");
+  background-repeat: repeat-y;
+  padding-left: 80px;
+  background-size: 55px 100%;
+  min-height: 870px;
+}
+
+.nav-container .container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .nav-container {
   @import 'shared/bootstrap';
   font-size: 13px;
@@ -136,14 +149,12 @@ body {
   &#sidenav {
     color: #fff;
     float: left;
-    // margin-left: -15px;
     position: absolute;
     width: $sidenav-width;
     z-index: 5;
 
     .container &,
     .container-fluid & {
-      margin-left: -15px;
     }
 
     nav {
@@ -183,9 +194,9 @@ body {
           width: 30px;
         }
         i.fa-chevron-down {
-          float: right;
           position: relative;
-          top: 0.25em;
+          top: -5px;
+          left: 60px;
         }
       }
       ul {
@@ -263,23 +274,6 @@ body {
       }
     }
   }
-
-
-  #footer {
-    background-color: $color-navbar-secondary;
-
-    .navbar-nav:first-child a {
-      padding-bottom: 8px;
-      padding-top: 12px;
-    }
-
-    .navbar-right {
-      span {
-        background-image: url("http://app.targetsolutions.com/tsapp/dashboard/pl_fb/library/images/pro/targetsolutions.png");
-      }
-    }
-  }
-
   .popover {
     left: -137px;
     margin-left: 36px;
@@ -393,11 +387,6 @@ $colorProfiles: (
     background: #efefef;
   }
   .icon-24 {
-    // display: inline-block;
-    // float: none;
-    // margin: 0 6px 0 0;
-    // vertical-align: middle;
-    // width: 25px;
     background-image: url(https://app.targetsolutions.com/tsapp/dashboard/pl_fb/library/images/pro/icon-sprite.png);
   	background-repeat: no-repeat;
   	width: 24px;
@@ -530,4 +519,50 @@ $colorProfiles: (
       }
     }
   }
+}
+
+#sidenav {
+  margin-left: -80px;
+  background-color: #686868;
+}
+
+#footer {
+  background-color: $color-navbar-secondary;
+  min-height: 0;
+  margin-bottom: 0;
+  
+  .navbar-nav:first-child a {
+    padding-bottom: 8px;
+    padding-top: 12px;
+  }
+  
+  .navbar-right {
+    span {
+      background-image: url("https://s3.amazonaws.com/assets.targetsolutions.com/targetsolutions.png");
+    }
+  }
+  
+  .navbar-right > li > a {
+    padding-bottom: 8px;
+    padding-top: 10px;
+    background-color: #333;
+  }
+  
+  .navbar {
+		border: none;
+		border-top: 1px solid darken(#222, 12%);
+	
+		.navbar-nav {
+
+			a {
+					margin: 0 30px 0 0;
+					padding: 11px 0 0 0;
+
+				&:hover {
+					background-color: inherit;
+					color: #fff;
+				}
+			}
+		}
+	}
 }

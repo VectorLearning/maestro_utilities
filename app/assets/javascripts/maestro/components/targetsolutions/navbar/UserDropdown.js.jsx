@@ -2,6 +2,13 @@ const UserDropdown = React.createClass({
   getInitialState() {
     return { expanded: false };
   },
+  
+  componentDidMount() {
+    let x = document.getElementsByClassName('user-dropdown-disabledLink');
+    for (i = 0; i < x.length; i++) {
+      x[i].onclick = function() {return false;};
+    }
+  },
 
   renderLinks(links) {
     return links.map((link, index) => {
@@ -27,7 +34,7 @@ const UserDropdown = React.createClass({
     return (
       <ul className={`nav navbar-nav ${classes}`}>
         <li className={`dropdown ${openClass} ${this.props.isActive ? ' active' : ''}`}>
-          <a href='#' className='dropdown-toggle' onClick={this.toggleDropdown}>
+          <a href='#' className='dropdown-toggle user-dropdown-disabledLink' onClick={this.toggleDropdown}>
             {text}
             <span className='caret' />
           </a>

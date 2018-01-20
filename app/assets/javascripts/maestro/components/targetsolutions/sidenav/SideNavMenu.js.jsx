@@ -2,6 +2,13 @@ const SideNavMenu = React.createClass({
   getInitialState() {
     return { isOpen: this.props.isActive };
   },
+  
+  componentDidMount() {
+    let x = document.getElementsByClassName('side-nav-menu-disabledLink');
+    for (i = 0; i < x.length; i++) {
+      x[i].onclick = function() {return false;};
+    }
+  },
 
   renderLinks() {
     return this.props.links.map((link, index) => {
@@ -28,7 +35,7 @@ const SideNavMenu = React.createClass({
 
     return (
       <li className={`collapsible ${isActive ? 'active' : ''}`}>
-        <a href='#' onClick={this.toggleCollapse}>
+        <a href='#' onClick={this.toggleCollapse} className='side-nav-menu-disabledLink'>
           <i className={`fa ${icon} fa-2x`} />
           <span className='text hidden-text'>{text}</span>
           <i className='fa fa-chevron-down fa-fw hidden-text' />

@@ -3,10 +3,15 @@ require 'spec_helper'
 module Maestro
   module Data
     RSpec.describe GetTsCourses do
-      let!(:request) { stub_maestro_request(:get, path, query) }
+      let!(:request) { stub_maestro_request(:get, path).with(body: json) }
+      let(:body)     { {start: startrow, length: limit, coursename: coursename, coursetype: coursetype, token: token} }
+      let(:json)     { JSON.generate(body) }
       let(:path)     { '/v1/lms/ts_courses' }
-      let(:query)    { "token=#{token}" }
-      let(:response) { described_class.call(session) }
+      let(:startrow)  { 0 }
+      let(:limit) { 1000 }
+      let(:coursename)  { 'Test Course' }
+      let(:coursetype)  { 'TS Course' }
+      let(:response) { described_class.call(session, startrow, limit, coursename, coursetype) }
       let(:session)  { double('Session', token: token, user_id: user_id) }
       let(:user_id) { 1 }
       let(:token)    { 'token' }
@@ -16,15 +21,6 @@ module Maestro
       it 'sends the proper HTTP request' do
         response
         expect(request).to have_been_requested
-      end
-
-      it 'returns result hash' do
-        request
-          .and_return(body: '{"ts_courses": [{"id": 1, "name": "Name"}]}')
-        expect(response.class).to eq Hash
-        expect(response.keys).to eq [:headers, :ts_courses]
-        expect(response[:ts_courses]).to match_array([kind_of(TsCourse)])
-        expect(response[:ts_courses].first.name).to eq('Name')
       end
     end
   end
