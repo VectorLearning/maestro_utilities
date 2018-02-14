@@ -44,7 +44,9 @@ module Maestro
     end
 
     def signature_params
-      @signature_params ||= request.query_parameters
+      @signature_params ||= { token: request.query_parameters['token'],
+                              signature: request.query_parameters['signature'],
+                              expires: request.query_parameters['expires'] }
     end
 
     def request_params
