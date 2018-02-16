@@ -44,7 +44,7 @@ module Maestro
     end
 
     def signature_params
-      @signature_params ||= request.query_parameters
+      @signature_params ||= request.query_parameters.slice(:expires, :signature, :token)
     end
 
     def request_params
