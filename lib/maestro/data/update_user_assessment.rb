@@ -3,12 +3,11 @@ module Maestro
     module UpdateUserAssessment
       extend HttpService
 
-      def self.call(session, assessment_id, status, topic_results=[], assessment_title="")
+      def self.call(session, assessment_id, status, topic_results=[])
         response = Maestro.connection.put do |request|
           request.body = JSON.generate(status: status,
                                        topic_results: topic_results,
-                                       token: session.token,
-                                       title: assessment_title)
+                                       token: session.token)
           request.headers['Content-Type'] = 'application/json'
           request.url("/v1/lms/profile/assessments/#{assessment_id}")
         end
