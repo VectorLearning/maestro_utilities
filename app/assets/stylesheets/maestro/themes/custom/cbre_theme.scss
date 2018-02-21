@@ -1,0 +1,74 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+
+$color-med: #cccccc;
+$color-dark: #797c83;
+$color-darkest: #44484d;
+$color-orange: #FF9513;
+$color-primary: #0099cc;
+$color-light: #f2f2f2;
+$color-lightest: #ffffff;
+$color-red: #B4141B;
+// $color-dark: #75787e;
+
+html {
+  font-family: sans-serif; // 1
+  -ms-text-size-adjust: 100%; // 2
+  -webkit-text-size-adjust: 100%; // 2
+}
+
+body {
+  margin: 0;
+}
+
+.nav-container {
+  @import '../shared/bootstrap';
+
+  font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+
+  .container-fluid {
+    @include container-fixed;
+  }
+
+  a {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .centered {
+    margin: 0 auto !important;
+  }
+
+  .nav-container { margin-bottom: 18px; }
+
+  .nav.navbar { 
+    @media (min-width: 768px) {
+      border-radius: 0px !important;
+    }
+  }
+
+  .navbar {
+    @media (min-width: 768px) { border-radius: 0px !important; }
+  }
+
+  .navbar,
+  .rv-header,
+  .rv-ribbon,
+  .account-links {
+    font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 13px;
+    line-height: 1.384615385em;
+  }
+}
+
+.cbre-header {
+  .img-container {
+    margin: 0px auto;
+    img {
+      max-width: 100%;
+      width: 100%;
+    } 
+  }
+}
