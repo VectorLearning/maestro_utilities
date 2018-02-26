@@ -28,10 +28,12 @@ module Maestro
         maestro/components/dummylms/components.js
         maestro/components/redvector/components.js
         maestro/components/targetsolutions/components.js
+        maestro/components/custom/cbre/components.js
         maestro/themes/centrelearn_theme.css
         maestro/themes/dummylms_theme.css
         maestro/themes/redvector_theme.css
         maestro/themes/targetsolutions_theme.css
+        maestro/themes/custom/cbre_theme.css
       )
     end
   end
