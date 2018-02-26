@@ -12,7 +12,7 @@ module Maestro
           request.headers['Content-Type'] = 'application/json'
           request.url("/v1/lms/profile/assessments/#{assessment_id}")
         end
-        
+
         ensure_successful_response(response)
       end
     end
