@@ -25,11 +25,21 @@ const NavBar = React.createClass({
             </button>
           </div>
           <div className="collapse navbar-collapse" id="navbar-collapse">
-            <NavMenu links={this.props.lms_navigation.navbar.links} />
+            {this.renderNavMenu()}
           </div>
         </div>
       );
     }
+  },
+
+  renderNavMenu() {
+    const { lms_navigation } = this.props;
+
+    if (lms_navigation.navbar) {
+      return <NavMenu links={lms_navigation.navbar.links} />;
+    }
+
+    return <NavMenu />;
   },
 
   render() {

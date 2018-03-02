@@ -1,4 +1,10 @@
 var NavMenu = React.createClass({
+  getDefaultProps: function() {
+    return {
+      links: []
+    };
+  },
+
   render: function(){
     var links = this.props.links.map(function(link){
       if(link.hasOwnProperty('sublinks')) {
