@@ -1,26 +1,38 @@
-var NavMenu = React.createClass({
-  getDefaultProps: function() {
+const NavMenu = React.createClass({
+  getDefaultProps() {
     return {
       links: []
     };
   },
 
-  render: function(){
-    var links = this.props.links.map(function(link){
+  renderLinks() {
+    return this.props.links.map((link, index) => {
       if(link.hasOwnProperty('sublinks')) {
         return (
-          <NavLinkDropdown links={link.sublinks} text={link.text} active={link.active} />
+          <NavLinkDropdown
+            links={link.sublinks}
+            text={link.text}
+            active={link.active}
+            key={index}
+          />
         );
       }
-      else {
-        return (
-          <NavLink linkTo={link.link} text={link.text} active={link.active} />
-        );
-      }
+
+      return (
+        <NavLink
+          linkTo={link.link}
+          text={link.text}
+          active={link.active}
+          key={index}
+        />
+      );
     });
+  },
+
+  render() {
     return (
       <ul className="nav navbar-nav">
-        {links}
+        {this.renderLinks()}
       </ul>
     );
   }
