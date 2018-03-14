@@ -4,11 +4,12 @@
 $color-med: #cccccc;
 $color-dark: #797c83;
 $color-darkest: #44484d;
-$color-orange: #FF9513;
+$color-orange: #ff9513;
 $color-primary: #0099cc;
 $color-light: #f2f2f2;
 $color-lightest: #ffffff;
-$color-red: #B4141B;
+$color-red: #b4141b;
+$color-cbre-green: #2e694e;
 // $color-dark: #75787e;
 
 html {
@@ -43,7 +44,7 @@ body {
 
   .nav-container { margin-bottom: 18px; }
 
-  .nav.navbar { 
+  .nav.navbar {
     @media (min-width: 768px) {
       border-radius: 0px !important;
     }
@@ -64,11 +65,9 @@ body {
 }
 
 .cbre-header {
+  background: $color-cbre-green;
+
   .img-container {
     margin: 0px auto;
-    img {
-      max-width: 100%;
-      width: 100%;
-    } 
   }
 }

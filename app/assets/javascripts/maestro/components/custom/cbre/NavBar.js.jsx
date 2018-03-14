@@ -51,7 +51,7 @@ const NavBar = React.createClass({
     return(
       <div id="cbre-top-navbar" className="cbre-header nav-container">
         <div className="img-container" style={maxWidthStyle}>
-          <img src="https://cbre.redvector.com/Resource/Images/banner.gif" />
+          <img src="https://tp1.goteachpoint.com/logourl?districtid=1116" />
         </div>
         <nav className="navbar navbar-inverse">
           {this.renderNavbar()}
