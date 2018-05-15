@@ -1,4 +1,4 @@
-const NavigationRibbonItem = React.createClass({
+const LmsRibbonItem = React.createClass({
   linkMarkup() {
     return { __html: this.props.link.text };
   },

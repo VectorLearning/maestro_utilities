@@ -1,11 +1,11 @@
-//= require ./NavigationRibbonItem
+//= require ./LmsRibbonItem
 
-const NavigationRibbon = React.createClass({
+const LmsRibbon = React.createClass({
   renderLinks() {
     return this.props.links.map((link, index) => {
       const active = isActive(link.active);
       return (
-        <NavigationRibbonItem link={link} key={index} active={active} />
+        <LmsRibbonItem link={link} key={index} active={active} />
       );
     });
   },

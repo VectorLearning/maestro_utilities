@@ -3,7 +3,7 @@
 const HeaderRetail = React.createClass({
   render() {
     const { logout_url, profile_url, full_name } = this.props;
-    
+
     return (
       <section className="rv-header">
         <div className="row top-links">

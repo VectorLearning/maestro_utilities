@@ -3,7 +3,7 @@
 //= require ./HamburgerButton
 //= require ./HeaderPrivateLabel
 //= require ./HeaderRetail
-//= require ./NavigationRibbon
+//= require ./LmsRibbon
 //= require ./NavMenu
 //= require ./Tabs
 
@@ -102,7 +102,7 @@ const NavBar = React.createClass({
 
   renderNavRibbon() {
     if (this.props.lms_navigation.hasOwnProperty('subnav')) {
-      return <NavigationRibbon links={this.props.lms_navigation.subnav.links} />;
+      return <LmsRibbon links={this.props.lms_navigation.subnav.links} />;
     }
   },
 
