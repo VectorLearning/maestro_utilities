@@ -1,5 +1,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+@import url(https://www.redvectorstage.com/lpe/assets/themes/minimal-depth/css/rv_header.css);
+// @import url(https://www.redvector.com/lpe/assets/themes/minimal-depth/css/rv_header.css);
 
 $color-med: #cccccc;
 $color-dark: #797c83;
@@ -564,5 +566,19 @@ body {
         padding: 0.5em;
       }
     }
+  }
+}
+
+.rvh_wrap {
+  a {
+    font-weight: 700;
+  }
+
+  .rvh_mobile_scroll_list a span {
+    text-transform: uppercase;
+  }
+
+  .hide-icons {
+    i.fa { display: none !important; }
   }
 }
