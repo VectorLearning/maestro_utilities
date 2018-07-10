@@ -1,10 +1,10 @@
 const SideNav = React.createClass({
   renderAvatar(avatar, controller) {
     if (controller === 'home') {
-      return <SideNavAvatar avatar={avatar} />
+      return <SideNavAvatar avatar={avatar} />;
     }
   },
-  
+
   renderLinks(links, controller = 'home') {
     const items = links;
 
@@ -41,7 +41,7 @@ const SideNav = React.createClass({
 
     return (
       <div className={`nav-container ${theme} ${controller}`} id='sidenav'>
-        <nav role='navigation'>
+        <nav>
           <ul>
             {this.renderAvatar(avatar, controller)}
             {this.renderLinks(links, controller)}
