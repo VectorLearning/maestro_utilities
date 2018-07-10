@@ -6,7 +6,7 @@ module Maestro
       let!(:request) { stub_maestro_request(:get, path, query) }
       let(:path)     { '/v1/lms/users' }
       let(:query)    { "token=#{token}" }
-      let(:groups)   { [] }
+      let(:groups)   { nil }
       let(:page)     { nil }
       let(:search)   { nil }
       let(:response) { described_class.call(session, groups, page, search) }
