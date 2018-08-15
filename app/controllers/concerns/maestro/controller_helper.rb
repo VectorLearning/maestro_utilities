@@ -1,8 +1,8 @@
 module Maestro
   module ControllerHelper
     def self.included(controller)
-      controller.before_filter(:set_maestro_session)
-      controller.before_filter(:redirect_to_lms_on_session_expiration)
+      controller.before_action(:set_maestro_session)
+      controller.before_action(:redirect_to_lms_on_session_expiration)
     end
 
     private

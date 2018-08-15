@@ -15,8 +15,6 @@ maestro_helper = Module.new do
 
   def maestro_uri path=nil, query=nil
     URI.parse(Maestro.config.host).tap do |uri|
-      uri.user     = Maestro.config.auth_name
-      uri.password = Maestro.config.auth_pass
       uri.path     = path if path
       uri.query    = query if query
     end

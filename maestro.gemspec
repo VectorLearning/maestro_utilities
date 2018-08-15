@@ -6,11 +6,11 @@ require 'maestro/version'
 Gem::Specification.new do |spec|
   spec.name          = "maestro"
   spec.version       = Maestro::VERSION
-  spec.authors       = ["Jason Paluck"]
-  spec.email         = ["jason.paluck@redvector.com"]
+  spec.authors       = ["Dev Team"]
+  spec.email         = ["devteam@redvector.com"]
 
-  spec.summary       = "A utility library to support Vector Learning Maestro integrations."
-  spec.homepage      = "http://www.vectorlearning.com"
+  spec.summary       = "A utility library to support Vector Solutions Maestro integrations."
+  spec.homepage      = "https://www.github.com/VectorLearning/maestro_utilities"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -25,13 +25,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.11"
-  spec.add_development_dependency "pg", "0.20"
-  spec.add_development_dependency "rake", "~> 11.0"
-  spec.add_development_dependency "rspec-rails", "~> 3.0"
-  spec.add_development_dependency "webmock", "~> 1.0"
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "pg"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "webmock"
+
   spec.add_dependency "faraday"
-  spec.add_dependency "rails", "~> 4.2"
-  spec.add_dependency "react-rails", "~> 1.6.0"
+  spec.add_dependency "rails"
+  spec.add_dependency "react-rails"
   spec.add_dependency "virtus"
 end

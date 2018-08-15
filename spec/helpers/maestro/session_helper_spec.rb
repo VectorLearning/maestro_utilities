@@ -11,9 +11,9 @@ module Maestro
 
       context 'with valid maestro session' do
         before do
-          stub_maestro_request(:patch, '/v1/sessions')
-            .with(body: {session: {token: token}})
-            .to_return(status: 200)
+          stub_maestro_request(:patch, '/v1/sessions').
+            with(body: {session: {token: token}}).
+            to_return(status: 200)
         end
 
         it 'returns Maestro::Data::Session instance' do
