@@ -1,3 +1,133 @@
-h1 {
-  font-size: 69em;
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+@import url(https://vectorsolutionsuniversity.vectorsolutions.com/ets/assets/libs/fontello/css/fontello.css);
+// @import url(https://vectorsolutionsuniversity.vectorsolutions.com/ETS/includes/css?v=87f1e7GQTcZWMuc2sdmve-zPa2LJvzQX3JlYax1ATAU1);
+
+$base-padding: 15px;
+$top-strip-height: 50px;
+
+body {
+  margin: 0;
+}
+
+.profiler-results { display: none; } // TODO: REMOVE THIS!!
+
+[data-react-class="SideNav"] {
+  float: left;
+}
+
+.journey-header,
+.journey-sidebar {
+  @import 'shared/bootstrap';
+  font-family: "Open Sans";
+  font-size: 14px;
+
+  * { box-sizing: border-box; }
+
+  a {
+    color: '#fff';
+
+    &, &:active, &:focus, &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .hidden { display: none !important; }
+
+  .spacer {
+    display: inline-block;
+    width: 0.5em;
+  }
+}
+
+.journey-header {
+  background-color: aqua;
+  height: $top-strip-height;
+
+  .top-links {
+    float: right;
+    height: $top-strip-height;
+    list-style-type: none;
+    margin: 0;
+    padding: 0; 
+
+    > li {
+      float: left;
+    }
+
+    a {
+      display: inline-block;
+      font-size: 18px;
+      height: $top-strip-height;
+      padding: 0 $base-padding;
+      padding-top: $base-padding;
+    }
+  }
+
+  .user-dropdown {
+    float: right;
+    height: $top-strip-height;
+
+    a {
+      display: inline-block;
+      height: $top-strip-height;
+      padding: 0 $base-padding;
+      position: relative;
+    }
+
+    img {
+      border-radius: 50%;
+      margin-top: 5px;
+      height: 40px;
+      width: 40px;
+    }
+
+    .dropdown-actions-container {
+      position: relative;
+      z-index: 2;
+
+      .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid '#000';
+        margin-top: -5px;
+        position: absolute;
+        right: 30px;
+      }
+
+      .dropdown-actions {
+        border-radius: 4px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+          display: block;
+          font-size: 13px;
+          height: auto;
+          padding: 5px 10px;
+        }
+      }
+    }
+
+    .name {
+      display: inline;
+      font-size: 0.86em;
+      // padding-bottom: 15px;
+      position: relative;
+      top: 3px;
+
+      .first {
+        margin-left: 0.75em;
+      }
+
+      .last {
+        font-weight: 700;
+        margin-right: 0.5em;
+      }
+    }
+  }
 }
