@@ -6,18 +6,18 @@ module ::Maestro
     end
 
     def navigation_stylesheet
-      if custom_theme
-        "maestro/themes/custom/#{custom_theme}_theme"
-      else
+      if custom_theme.blank?
         "maestro/themes/#{maestro_session.lms_id.downcase}_theme"
+      else
+        "maestro/themes/custom/#{custom_theme}_theme"
       end
     end
 
     def navigation_javascript
-      if custom_theme
-        "maestro/components/custom/#{custom_theme}/components"
-      else
+      if custom_theme.blank?
         "maestro/components/#{maestro_session.lms_id.downcase}/components"
+      else
+        "maestro/components/custom/#{custom_theme}/components"
       end
     end
 
