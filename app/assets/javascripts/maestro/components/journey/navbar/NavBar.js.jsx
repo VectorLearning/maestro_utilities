@@ -1,4 +1,5 @@
 //= require ./UserDropdown
+//= require ./Breadcrumbs
 //= require ../common/Link
 
 const NavBar = React.createClass({
@@ -7,7 +8,7 @@ const NavBar = React.createClass({
     const { topNav } = lms_navigation.colors;
 
     return lms_navigation.navbar.links.map((item, index) => {
-      return(
+      return (
         <Link
           colors={topNav}
           key={index}
@@ -18,9 +19,10 @@ const NavBar = React.createClass({
   },
 
   render() {
-    console.log(this.props);
     const { lms_navigation } = this.props;
     const { background } = lms_navigation.colors.topNav;
+    const { breadcrumbs: breadcrumbColors } = lms_navigation.colors;
+    const { items: breadcrumbs } = lms_navigation.breadcrumbs;
 
     return (
       <div
@@ -28,9 +30,15 @@ const NavBar = React.createClass({
         style={{ backgroundColor: background }}
       >
         <UserDropdown {...this.props} />
+
         <ul className="top-links">
           {this.renderLinks()}
         </ul>
+
+        <Breadcrumbs
+          colors={breadcrumbColors}
+          breadcrumbs={breadcrumbs}
+        />
       </div>
     );
   },

@@ -43,7 +43,29 @@ body {
 
 .journey-header {
   background-color: aqua;
-  height: $top-strip-height;
+
+  .breadcrumbs {
+    clear: both;
+    font-size: 12px;
+    line-height: 30px;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      padding-left: $base-padding;
+
+      li {
+        display: inline-block;
+
+        & + li::before {
+          content: "\f105";
+          font-family: 'FontAwesome';
+          padding: 0px 10px;
+        }
+      }
+    }
+  }
 
   .top-links {
     float: right;
