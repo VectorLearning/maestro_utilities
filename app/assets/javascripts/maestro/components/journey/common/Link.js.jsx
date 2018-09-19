@@ -1,20 +1,13 @@
 const Link = React.createClass({
-  getDefaultProps() {
-    return {
-      colors: {
-        link: '#444',
-        linkBackgroundHover: 'transparent'
-      },
-      item: {
-        link: '#',
-        alt: ''
-      }
-    };
-  },
-
   getInitialState() {
     return {
       hovered: false
+    };
+  },
+
+  activeStyle() {
+    return {
+      backgroundColor: this.props.colors.linkBackgroundActive
     };
   },
 
@@ -32,6 +25,19 @@ const Link = React.createClass({
 
   hasText() {
     return this.props.item.hasOwnProperty('text');
+  },
+
+  hoverStyle() {
+    const { colors } = this.props;
+
+    return {
+      backgroundColor: colors.linkBackgroundHover,
+      color: colors.linkHover ? colors.linkHover : colors.link
+    };
+  },
+
+  isActive() {
+    return (this.props.item.active || this.props.active);
   },
 
   renderIcon() {
@@ -57,22 +63,22 @@ const Link = React.createClass({
   },
 
   render() {
-    const { alt, link } = this.props.item;
-    const textStyle = { color: this.props.colors.link };
+    const { colors, href, item, style: styleProp } = this.props;
+    const { alt, link } = item;
+    const textStyle = { color: colors.link };
 
-    const hoverStyle= {
-      backgroundColor: this.props.colors.linkBackgroundHover
-    };
-
-    const style = this.state.hovered ? hoverStyle : {};
+    const linkValue = href ? href : link;
+    const hoverStyle = this.state.hovered ? this.hoverStyle() : {};
+    const activeStyle = this.isActive() ? this.activeStyle() : {};
 
     return (
       <a
-        href={link}
+        className={this.props.className}
+        href={linkValue}
         onClick={this.props.onClick}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        style={{ ...textStyle, ...style }}
+        style={{ ...textStyle, ...hoverStyle, ...activeStyle, ...styleProp }}
         title={alt}
       >
         {this.props.children}
@@ -81,5 +87,18 @@ const Link = React.createClass({
         {this.renderText()}
       </a>
     );
+  },
+
+  getDefaultProps() {
+    return {
+      colors: {
+        link: '#444',
+        linkBackgroundHover: 'transparent'
+      },
+      item: {
+        link: '#',
+        alt: ''
+      }
+    };
   }
 });

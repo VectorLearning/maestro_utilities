@@ -1,6 +1,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
-@import url(https://vectorsolutionsuniversity.vectorsolutions.com/ets/assets/libs/fontello/css/fontello.css);
+@import 'shared/fontello';
+// @import url(https://vectorsolutionsuniversity.vectorsolutions.com/ets/assets/libs/fontello/css/fontello.css);
 // @import url(https://vectorsolutionsuniversity.vectorsolutions.com/ETS/includes/css?v=87f1e7GQTcZWMuc2sdmve-zPa2LJvzQX3JlYax1ATAU1);
 
 $base-padding: 15px;
@@ -8,6 +9,11 @@ $top-strip-height: 50px;
 
 body {
   margin: 0;
+  text-rendering: optimizeLegibility;
+
+   > .application-contents {
+     float: left;
+   }
 }
 
 .profiler-results { display: none; } // TODO: REMOVE THIS!!
@@ -16,11 +22,20 @@ body {
   float: left;
 }
 
+.journey-container {
+  display: flex;
+
+  > .application-contents {
+    flex-grow: 1;
+  }
+}
+
 .journey-header,
 .journey-sidebar {
   @import 'shared/bootstrap';
   font-family: "Open Sans";
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 
   * { box-sizing: border-box; }
 
@@ -32,6 +47,8 @@ body {
       text-decoration: none;
     }
   }
+
+  img { max-width: 100%; }
 
   .hidden { display: none !important; }
 
@@ -138,7 +155,6 @@ body {
     .name {
       display: inline;
       font-size: 0.86em;
-      // padding-bottom: 15px;
       position: relative;
       top: 3px;
 
@@ -151,5 +167,103 @@ body {
         margin-right: 0.5em;
       }
     }
+  }
+}
+
+.journey-sidebar {
+  min-height: 100vh; // yolo!
+  width: 280px;
+
+  .avatar {
+    border-radius: 50%;
+    border: 4px double rgba(255,255,255,0.2);
+  }
+
+  .hamburger-button {
+    display: inline-block;
+    font-size: 21px;
+    line-height: 30px;
+    padding: 10px 18px;
+  }
+
+  .hr {
+    border-color: rgba(255,255,255,0.1);
+    width: 90%;
+    margin: 10px 5% 20px 5%;
+    display: block;
+    clear: both;
+  }
+
+  .logo {
+    max-height: 34px;
+    position: relative;
+    top: -4px;
+  }
+
+  .logo-container {
+    height: $top-strip-height;
+    text-align: right;
+  }
+
+  .secondary-logo {
+    border-radius: 10px;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: $base-padding / 2;
+    margin-top: $base-padding;
+    max-width: 200px;
+  }
+
+  .user-links {
+    a {
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 13px;
+      padding: 10px;
+
+      i {
+        font-size: 16px;
+        margin-right: 0.5em;
+
+        &.text-red-1 {
+          color: rgb(235, 80, 85);
+        }
+      }
+    }
+  }
+
+  .sidenav-links {
+    font-size: 13px;
+
+    a {
+      border-left: 4px solid transparent;
+      display: block;
+      padding: 14px 22px 14px 10px;
+      position: relative;
+
+      .triangle {
+        border-bottom: 15px solid transparent;
+        border-top: 15px solid transparent;
+        height: 0;
+        margin-top: -15px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+      }
+    }
+
+    i {
+      font-size: 17px;
+      margin-right: 8px;
+    }
+  }
+
+  .welcome-section {
+    clear: both;
+  }
+
+  .welcome-text {
+    font-size: 18px;
   }
 }
