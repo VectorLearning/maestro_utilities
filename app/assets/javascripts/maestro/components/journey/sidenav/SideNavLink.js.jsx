@@ -44,7 +44,7 @@ const SideNavLink = React.createClass({
         style={style}
       >
         {this.renderIcon()}
-        {text}
+        <span className="text">{text}</span>
         {this.renderTriangle()}
       </Link>
     );

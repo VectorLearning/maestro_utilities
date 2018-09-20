@@ -12,7 +12,7 @@ const WelcomeSection = React.createClass({
     };
 
     return (
-      <div style={containerStyle} className="row">
+      <div style={containerStyle} className="row welcome-section">
         <div className="col-xs-12">
           <div className="col-xs-4">
             <a href={profile_url}>
@@ -27,11 +27,11 @@ const WelcomeSection = React.createClass({
             </div>
             <Link colors={colors} href={messages_url}>
               <i className="fa fa-envelope-o pulse" />
-              Messages
+              <span className="text">Messages</span>
             </Link>
             <Link colors={colors} href={logout_url}>
               <i className="fa fa-power-off text-red-1" />
-              Logout
+              <span className="text">Logout</span>
             </Link>
           </div>
         </div>

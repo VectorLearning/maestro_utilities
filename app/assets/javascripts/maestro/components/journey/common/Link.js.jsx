@@ -58,7 +58,7 @@ const Link = React.createClass({
     const { item } = this.props;
 
     if (this.hasText()) {
-      return item.text;
+      return <span className="text">{item.text}</span>;
     }
   },
 

@@ -1,10 +1,9 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
 @import 'shared/fontello';
-// @import url(https://vectorsolutionsuniversity.vectorsolutions.com/ets/assets/libs/fontello/css/fontello.css);
-// @import url(https://vectorsolutionsuniversity.vectorsolutions.com/ETS/includes/css?v=87f1e7GQTcZWMuc2sdmve-zPa2LJvzQX3JlYax1ATAU1);
 
 $base-padding: 15px;
+$sidebar-width: 280px;
 $top-strip-height: 50px;
 
 body {
@@ -14,6 +13,12 @@ body {
    > .application-contents {
      float: left;
    }
+}
+
+.container, .container-fluid {
+  max-width: 100%;
+  margin-left: $base-padding;
+  margin-right: $base-padding;
 }
 
 .profiler-results { display: none; } // TODO: REMOVE THIS!!
@@ -48,9 +53,14 @@ body {
     }
   }
 
-  img { max-width: 100%; }
-
   .hidden { display: none !important; }
+
+  i {
+    width: 1.28571429em;
+    text-align:center
+  }
+
+  img { max-width: 100%; }
 
   .spacer {
     display: inline-block;
@@ -172,7 +182,7 @@ body {
 
 .journey-sidebar {
   min-height: 100vh; // yolo!
-  width: 280px;
+  width: $sidebar-width;
 
   .avatar {
     border-radius: 50%;
@@ -238,7 +248,7 @@ body {
     a {
       border-left: 4px solid transparent;
       display: block;
-      padding: 14px 22px 14px 10px;
+      padding: 14px 22px 14px 5px;
       position: relative;
 
       .triangle {
@@ -265,5 +275,53 @@ body {
 
   .welcome-text {
     font-size: 18px;
+  }
+
+  // COLLAPSED MENU STYLES -- DON'T DOINK AROUND
+  &.collapsed {
+    width: 50px;
+
+    .hamburger-button { padding: 10px; }
+
+    .hr { width: auto; }
+    
+    .logo { display: none }
+
+    .secondary-logo { display: none; }
+
+    .side-nav-link {
+      &:hover {
+        position: relative;
+        width: $sidebar-width;
+        z-index: 1;
+
+        .text { display: inline; }
+      }
+    }
+
+    .text { display: none; }
+
+    .user-links {
+      clear: both;
+      display: block;
+      float: none;
+      margin-top: 20px;
+
+      a { display: block; }
+    }
+
+    .welcome-section {
+      &.row {
+        margin: 17px 5px 0 5px;
+
+        .col-xs-4, .col-xs-8, .col-xs-12 {
+          float: none;
+          padding: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .welcome-text { display: none; }
   }
 }
