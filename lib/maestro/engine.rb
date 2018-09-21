@@ -23,14 +23,19 @@ module Maestro
     end
 
     initializer "maestro_engine.assets.precompile" do |app|
+      config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+      config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
       app.config.assets.precompile += %w(
         maestro/components/centrelearn/components.js
         maestro/components/dummylms/components.js
+        maestro/components/journey/components.js
         maestro/components/redvector/components.js
         maestro/components/targetsolutions/components.js
         maestro/components/custom/cbre/components.js
         maestro/themes/centrelearn_theme.css
         maestro/themes/dummylms_theme.css
+        maestro/themes/journey_theme.css
         maestro/themes/redvector_theme.css
         maestro/themes/targetsolutions_theme.css
         maestro/themes/custom/cbre_theme.css

@@ -1,0 +1,325 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+@import 'shared/fontello';
+
+$base-padding: 15px;
+$sidebar-width: 280px;
+$top-strip-height: 50px;
+
+body {
+  margin: 0;
+  text-rendering: optimizeLegibility;
+
+   > .application-contents {
+     float: left;
+   }
+}
+
+.container, .container-fluid {
+  max-width: 100%;
+  margin-left: $base-padding;
+  margin-right: $base-padding;
+}
+
+[data-react-class="SideNav"] {
+  float: left;
+}
+
+.journey-container {
+  display: flex;
+
+  > .application-contents {
+    flex-grow: 1;
+  }
+}
+
+.journey-header,
+.journey-sidebar {
+  @import 'shared/bootstrap';
+  font-family: "Open Sans";
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+
+  * { box-sizing: border-box; }
+
+  a {
+    color: '#fff';
+
+    &, &:active, &:focus, &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .hidden { display: none !important; }
+
+  i {
+    width: 1.28571429em;
+    text-align:center
+  }
+
+  img { max-width: 100%; }
+
+  .spacer {
+    display: inline-block;
+    width: 0.5em;
+  }
+}
+
+.journey-header {
+  background-color: aqua;
+
+  .breadcrumbs {
+    clear: both;
+    font-size: 12px;
+    line-height: 30px;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      padding-left: $base-padding;
+
+      li {
+        display: inline-block;
+
+        & + li::before {
+          content: "\f105";
+          font-family: 'FontAwesome';
+          padding: 0px 10px;
+        }
+      }
+    }
+  }
+
+  .top-links {
+    float: right;
+    height: $top-strip-height;
+    list-style-type: none;
+    margin: 0;
+    padding: 0; 
+
+    > li {
+      float: left;
+    }
+
+    a {
+      display: inline-block;
+      font-size: 18px;
+      height: $top-strip-height;
+      padding: 0 $base-padding;
+      padding-top: $base-padding;
+    }
+  }
+
+  .user-dropdown {
+    float: right;
+    height: $top-strip-height;
+
+    a {
+      display: inline-block;
+      height: $top-strip-height;
+      padding: 0 $base-padding;
+      position: relative;
+    }
+
+    img {
+      border-radius: 50%;
+      margin-top: 5px;
+      height: 40px;
+      width: 40px;
+    }
+
+    .dropdown-actions-container {
+      position: relative;
+      z-index: 2;
+
+      .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid '#000';
+        margin-top: -5px;
+        position: absolute;
+        right: 30px;
+      }
+
+      .dropdown-actions {
+        border-radius: 4px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+          display: block;
+          font-size: 13px;
+          height: auto;
+          padding: 5px 10px;
+        }
+      }
+    }
+
+    .name {
+      display: inline;
+      font-size: 0.86em;
+      position: relative;
+      top: 3px;
+
+      .first {
+        margin-left: 0.75em;
+      }
+
+      .last {
+        font-weight: 700;
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+.journey-sidebar {
+  min-height: 100vh; // yolo!
+  width: $sidebar-width;
+
+  .avatar {
+    border-radius: 50%;
+    border: 4px double rgba(255,255,255,0.2);
+  }
+
+  .hamburger-button {
+    display: inline-block;
+    font-size: 21px;
+    line-height: 30px;
+    padding: 10px 18px;
+  }
+
+  .hr {
+    border-color: rgba(255,255,255,0.1);
+    width: 90%;
+    margin: 10px 5% 20px 5%;
+    display: block;
+    clear: both;
+  }
+
+  .logo {
+    max-height: 34px;
+    position: relative;
+    top: -4px;
+  }
+
+  .logo-container {
+    height: $top-strip-height;
+    text-align: right;
+  }
+
+  .secondary-logo {
+    border-radius: 10px;
+    display: block;
+    margin: 0px auto;
+    margin-bottom: $base-padding / 2;
+    margin-top: $base-padding;
+    max-width: 200px;
+  }
+
+  .user-links {
+    a {
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 13px;
+      padding: 10px;
+
+      i {
+        font-size: 16px;
+        margin-right: 0.5em;
+
+        &.text-red-1 {
+          color: rgb(235, 80, 85);
+        }
+      }
+    }
+  }
+
+  .sidenav-links {
+    font-size: 13px;
+
+    a {
+      border-left: 4px solid transparent;
+      display: block;
+      padding: 14px 22px 14px 5px;
+      position: relative;
+
+      .triangle {
+        border-bottom: 15px solid transparent;
+        border-top: 15px solid transparent;
+        height: 0;
+        margin-top: -15px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+      }
+    }
+
+    i {
+      font-size: 17px;
+      margin-right: 8px;
+    }
+  }
+
+  .welcome-section {
+    clear: both;
+  }
+
+  .welcome-text {
+    font-size: 18px;
+  }
+
+  // COLLAPSED MENU STYLES -- DON'T DOINK AROUND
+  &.collapsed {
+    width: 50px;
+
+    .hamburger-button { padding: 10px; }
+
+    .hr { width: auto; }
+    
+    .logo { display: none }
+
+    .secondary-logo { display: none; }
+
+    .side-nav-link {
+      &:hover {
+        position: relative;
+        width: $sidebar-width;
+        z-index: 1;
+
+        .text { display: inline; }
+      }
+    }
+
+    .text { display: none; }
+
+    .user-links {
+      clear: both;
+      display: block;
+      float: none;
+      margin-top: 20px;
+
+      a { display: block; }
+    }
+
+    .welcome-section {
+      &.row {
+        margin: 17px 5px 0 5px;
+
+        .col-xs-4, .col-xs-8, .col-xs-12 {
+          float: none;
+          padding: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .welcome-text { display: none; }
+  }
+}
