@@ -1,0 +1,41 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %meta{content: "NOODP", name: "ROBOTS"}/
+    %meta{content: "initial-scale=1", name: "viewport"}/
+    %title= title
+    = favicon_link_tag 'vector-favicon.png', type: 'image/png'
+
+    = stylesheet_link_tag :application, media: "all"
+    = stylesheet_link_tag navigation_stylesheet, media: 'all'
+
+    = csrf_meta_tags
+  %body{"data-ajax-pending": "false", class: "#{body_class}"}
+    - if @current_organization.lms_id == 'Journey'
+      .journey-container
+        = react_component('SideNav', lms_data)
+        .application-contents
+          = react_component('NavBar', lms_data)
+          #app-container.container-fluid
+            = render partial: 'layouts/application'
+            -# = render "flashes"
+            -# #content= yield
+
+    - else
+      %header
+        = react_component('NavBar', lms_data.merge('maxWidth': 1100))
+      #app-container.container-fluid
+        - if @current_organization.lms_id == 'TargetSolutions'
+          = react_component('SideNav', lms_data)
+        = render partial: 'layouts/application'
+        -# = render "flashes"
+        -# #content= yield
+
+  - if @current_organization.lms_id == 'TargetSolutions'
+    %footer
+      = react_component('Footer')
+  = render "javascript"
+
+-# = render partial: 'layouts/application'
