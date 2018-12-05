@@ -26,10 +26,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler"
-  spec.add_development_dependency "pg"
+  spec.add_development_dependency "pg", "0.20"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "webmock", "~> 1.0"
 
   spec.add_dependency "faraday"
   spec.add_dependency "rails"
