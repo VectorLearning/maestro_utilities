@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pg", "0.20"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "webmock", "~> 1.0"
   spec.add_dependency "faraday"
   spec.add_dependency "rails", "~> 4.2"
   spec.add_dependency "react-rails", "~> 1.6.0"
