@@ -31,7 +31,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "webmock", "~> 1.0"
   spec.add_dependency "faraday"
-  spec.add_dependency "rails", "~> 4.2"
-  spec.add_dependency "react-rails", "~> 1.6.0"
+  spec.add_dependency "rails", "~> 5.2.4"
+  spec.add_dependency "activesupport"
+  spec.add_dependency "react-rails", "~> 2.0"
   spec.add_dependency "virtus"
 end

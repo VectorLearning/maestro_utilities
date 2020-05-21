@@ -48,8 +48,8 @@ RSpec.describe ApplicationController do
 
     context 'with no launch parameters' do
       controller(described_class) do
-        skip_before_filter :authenticate
-        skip_before_filter :redirect_to_lms_on_session_expiration
+        skip_before_action :authenticate
+        skip_before_action :redirect_to_lms_on_session_expiration
 
         def index
           render nothing: true
