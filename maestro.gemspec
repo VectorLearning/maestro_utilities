@@ -33,6 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday"
   spec.add_dependency "rails", "~> 5.2.4"
   spec.add_dependency "activesupport"
-  spec.add_dependency "react-rails", "~> 1.7.0"
+  spec.add_dependency "react-rails", "~> 1.7.2"
   spec.add_dependency "virtus"
 end
